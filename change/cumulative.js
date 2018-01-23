@@ -203,11 +203,8 @@ var update = function() {
 	readFilter();
 	window.session = {};
 
-	var d = new Date();
-	var year = d.getFullYear();
-	var date = d.toISOString().split("T")[0];
-
-	var uri = "https://raw.githubusercontent.com/fxtools/quote_percentages/master/" + year + "/" + date + "/";
+	var dt = DateTime.utc().plus({ hours: 1 });
+	var uri = "https://raw.githubusercontent.com/fxtools/quote_percentages/master/" + dt.year + "/" + dt.toISODate() + "/";
 	var uriA = uri + "asian%20session.tsv";
 	var uriB = uri + "european%20session.tsv";
 	var uriC = uri + "north%20american%20session.tsv";
