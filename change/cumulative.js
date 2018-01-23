@@ -25,7 +25,7 @@ var writeFilter = function() {
 
 var drawSession = function(session) {
   var data = window.session[session];
-  w(data);
+
   var currencies = [],
     quotes = {},
     changes = [],
@@ -157,8 +157,6 @@ var drawSession = function(session) {
       return b.pct - a.pct;
     }
   });
-
-  w(sorted);
 
   d3
     .select("#" + session)
