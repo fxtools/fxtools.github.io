@@ -191,42 +191,6 @@ var drawSession = function(session) {
   // });
 };
 
-readFilter();
-window.session = {};
-
-var d = new Date();
-var year = d.getFullYear();
-var date = d.toISOString().split("T")[0];
-
-var uri = "https://raw.githubusercontent.com/fxtools/quote_percentages/master/" + year + "/" + date + "/";
-var uriA = uri + "asian%20session.tsv";
-var uriB = uri + "european%20session.tsv";
-var uriC = uri + "north%20american%20session.tsv";
-
-d3.tsv(uriA, function(error, data, c) {
-  if (error) {
-    return;
-  }
-  window.session["asession"] = data;
-  drawSession("asession");
-});
-
-d3.tsv(uriB, function(error, data, c) {
-  if (error) {
-    return;
-  }
-  window.session["bsession"] = data;
-  drawSession("bsession");
-});
-
-d3.tsv(uriC, function(error, data, c) {
-  if (error) {
-    return;
-  }
-  window.session["csession"] = data;
-  drawSession("csession");
-});
-
 d3.selectAll("input.show").on("click", function() {
   writeFilter();
   readFilter();
@@ -235,3 +199,45 @@ d3.selectAll("input.show").on("click", function() {
   drawSession("bsession");
   drawSession("csession");
 });
+
+
+var update = function() {
+	readFilter();
+	window.session = {};
+
+	var d = new Date();
+	var year = d.getFullYear();
+	var date = d.toISOString().split("T")[0];
+
+	var uri = "https://raw.githubusercontent.com/fxtools/quote_percentages/master/" + year + "/" + date + "/";
+	var uriA = uri + "asian%20session.tsv";
+	var uriB = uri + "european%20session.tsv";
+	var uriC = uri + "north%20american%20session.tsv";
+
+	d3.tsv(uriA, function(error, data, c) {
+	  if (error) {
+		return;
+	  }
+	  window.session["asession"] = data;
+	  drawSession("asession");
+	});
+
+	d3.tsv(uriB, function(error, data, c) {
+	  if (error) {
+		return;
+	  }
+	  window.session["bsession"] = data;
+	  drawSession("bsession");
+	});
+
+	d3.tsv(uriC, function(error, data, c) {
+	  if (error) {
+		return;
+	  }
+	  window.session["csession"] = data;
+	  drawSession("csession");
+	});
+};
+
+setInterval(update, 1000 * 60 * 15);
+update();
