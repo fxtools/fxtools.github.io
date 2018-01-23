@@ -194,7 +194,14 @@ var drawSession = function(session) {
 readFilter();
 window.session = {};
 
-var uriA = "https://raw.githubusercontent.com/fxtools/quote_percentages/master/2018/2018-01-23/asian%20session.tsv";
+var d = new Date();
+var year = d.getFullYear();
+var date = d.toISOString().split("T")[0];
+
+var uri = "https://raw.githubusercontent.com/fxtools/quote_percentages/master/" + year + "/" + date + "/";
+var uriA = uri + "asian%20session.tsv";
+var uriB = uri + "european%20session.tsv";
+var uriC = uri + "north%20american%20session.tsv";
 
 d3.tsv(uriA, function(error, data, c) {
   if (error) {
@@ -203,22 +210,22 @@ d3.tsv(uriA, function(error, data, c) {
   window.session["asession"] = data;
   drawSession("asession");
 });
-/*
-d3.tsv("european session.tsv", function(error, data, c) {
+
+d3.tsv(uriB, function(error, data, c) {
   if (error) {
     return;
   }
   window.session["bsession"] = data;
   drawSession("bsession");
 });
-*/
-// d3.tsv("north american session.tsv", function(error, data, c) {
-//   if (error) {
-//     return;
-//   }
-//   window.session["csession"] = data;
-//   drawSession("csession");
-// });
+
+d3.tsv(uriC, function(error, data, c) {
+  if (error) {
+    return;
+  }
+  window.session["csession"] = data;
+  drawSession("csession");
+});
 
 d3.selectAll("input.show").on("click", function() {
   writeFilter();
@@ -226,10 +233,5 @@ d3.selectAll("input.show").on("click", function() {
 
   drawSession("asession");
   drawSession("bsession");
-  // drawSession("csession");
+  drawSession("csession");
 });
-
-// var d = new Date();
-// var date = d.toISOString().split("T")[0];
-// var year = d.getFullYear();
-// w(date, year);
