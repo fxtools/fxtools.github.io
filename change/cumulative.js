@@ -121,8 +121,11 @@ var precalcMatrix = function(data) {
 };
 
 var filterAndSort = function(enabled, percentages) {
-  if (typeof percentages == "undefined" || percentages.length < 2) {
-    return;
+  if (
+    typeof percentages == "undefined" ||
+    Object.keys(percentages).length < 2
+  ) {
+    return [];
   }
 
   // as soon as data is filtered
@@ -139,7 +142,7 @@ var filterAndSort = function(enabled, percentages) {
   });
 
   if (filtered.length < 2) {
-    return;
+    return [];
   }
 
   // we can sum up the percentages
@@ -332,17 +335,18 @@ d3.selectAll("input.show").on("click", function() {
     enabled,
     window.sessions.asia.raw
   );
+  redraw("asia", window.sessions.asia.filtered);
+
   window.sessions.europe.filtered = filterAndSort(
     enabled,
     window.sessions.europe.raw
   );
+  redraw("europe", window.sessions.europe.filtered);
+
   window.sessions.america.filtered = filterAndSort(
     enabled,
     window.sessions.america.raw
   );
-
-  redraw("asia", window.sessions.asia.filtered);
-  redraw("europe", window.sessions.europe.filtered);
   redraw("america", window.sessions.america.filtered);
 });
 
