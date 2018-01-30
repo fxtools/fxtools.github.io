@@ -21,17 +21,30 @@
 			background: linear-gradient(to right, green 0%, gray 33%, gray 66%, red 100%);
 			white-space: nowrap;
 			margin: 0 auto;
-			width: 100vw;
+			w-idth: 100vw;
 			text-align: center;
-		}
-
-		span {
 			margin: 0.3vw;
 			padding: 0.3vw;
-			f-ont-size: 1.08vw;
-			f-ont-size: 0.65vw;
+		}
+
+		.cumulative>div {
 			display: inline-block;
+		}
+
+		.cumulative span {
 			color: black;
+		}
+
+		.ccy {
+			display: block;
+		}
+
+		.sum {
+			display: block;
+		}
+
+		.sum:after {
+			content: "%";
 		}
 
 		.show {
@@ -41,6 +54,8 @@
 		.hide {
 			display: none;
 		}
+
+		#chart {}
 	</style>
 	<link rel="stylesheet" type="text/css" href="/js/billboard.js/billboard.min.css" />
 </head>
@@ -48,16 +63,24 @@
 <body>
 
 	Asian Session:
-	<div id="asession" class="cumulative"></div>
+	<div id="asia" class="cumulative"></div>
 	European Session:
-	<div id="bsession" class="cumulative"></div>
+	<div id="europe" class="cumulative"></div>
 	North American Session:
-	<div id="csession" class="cumulative"></div>
+	<div id="america" class="cumulative"></div>
+
+	<center>
+		<h1 id="chartCaption"></h1>
+		<div id="chart"></div>
+	</center>
 
 	<br/>
 	<button name="showFilter" onclick="var el = document.getElementById('filter'); el.classList.contains('hide') ? el.classList.remove('hide') : el.classList.add('hide');">show/hide Filter</button>
 	<br/>
+	<button style="display: none;" name="toggleAll" onclick="var els = document.getElementsByClassName('show'); w(Object.values(els).forEach(i => i.checked = true));">check all</button>
+	<button style="display: none;" name="toggleAll" onclick="var els = document.getElementsByClassName('show'); w(Object.values(els).forEach(i => i.checked = false));">uncheck all</button>
 	<ul id="filter" class="hide">
+
 		<li>
 			<input id="USD" class="show" name="show[]" type="checkbox" value="USD" />
 			<label for="USD">USD</label>
@@ -200,17 +223,8 @@
 
 	<script src="/js/d3/d3.v4.min.js"></script>
 	<script src="/js/luxon/luxon.min.js"></script>
+	<script src="/js/billboard.js/billboard.pkgd.min.js"></script>
 	<script src="cumulative.js"></script>
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112925276-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-112925276-1');
-</script>
 
 </body>
 
