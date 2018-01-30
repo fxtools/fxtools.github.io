@@ -12,7 +12,10 @@ var readFilter = function() {
       : parts;
 
   ret.forEach(function(id) {
-    document.getElementById(id).checked = true;
+    var el = document.getElementById(id);
+    if (el) {
+      el.checked = true;
+    }
   });
 
   return ret;
@@ -162,10 +165,23 @@ var filterAndSort = function(enabled, percentages) {
 };
 
 var GenChart = function(d) {
+  var base = window.chart;
+
+  var chartData = window.sessions.asia.filtered.filter(p => p.base == base);
+  var data0 = chartData.length > 0 ? chartData[0].pcts : [];
+
+  var chartData = window.sessions.europe.filtered.filter(p => p.base == base);
+  var data1 = chartData.length > 0 ? chartData[0].pcts : [];
+
+  var chartData = window.sessions.america.filtered.filter(p => p.base == base);
+  var data2 = chartData.length > 0 ? chartData[0].pcts : [];
+
   bb.generate({
     data: {
       json: {
-        value: Object.values(d.pcts).map(v => v.toFixed(2)),
+        asia: Object.values(data0).map(v => v.toFixed(2)),
+        europe: Object.values(data1).map(v => v.toFixed(2)),
+        america: Object.values(data2).map(v => v.toFixed(2)),
       },
       type: "bar",
     },
@@ -228,14 +244,14 @@ var redraw = function(prefix, percentages) {
       );
     })
     .on("click", function(d) {
-      if (window.chart.base != d.base || window.chart.prefix != prefix) {
-        window.chart = { base: d.base, prefix: prefix };
+      if (window.chart != d.base) {
+        window.chart = d.base;
         GenChart(d);
       }
     })
     .on("mousemove", function(d) {
-      if (window.chart.base != d.base || window.chart.prefix != prefix) {
-        window.chart = { base: d.base, prefix: prefix };
+      if (window.chart != d.base) {
+        window.chart = d.base;
         GenChart(d);
       }
     });
@@ -260,9 +276,9 @@ var loadData = function(enabled) {
   var uriC = uri + "north%20american%20session.tsv";
 
   window.sessions = {
-    asia: {},
-    europe: {},
-    america: {},
+    asia: { raw: {}, filtered: [] },
+    europe: { raw: {}, filtered: [] },
+    america: { raw: {}, filtered: [] },
   };
 
   d3.tsv(uriA, function(error, data) {
