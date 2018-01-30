@@ -171,7 +171,7 @@ var drawSession = function(session) {
     .enter()
     .append("span")
     .html(function(d) {
-      return d.base + "<br/>" + d.pct.toFixed(2) + " %";
+      return d.base + "<br/>" + d.pct.toFixed(2) + "%";
     });
 
   // Object.keys(changes).forEach(function(base) {
