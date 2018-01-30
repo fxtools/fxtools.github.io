@@ -1,340 +1,231 @@
-var w = console.log;
-var DateTime = luxon.DateTime;
+<!DOCTYPE html>
+<html lang="en">
 
-//window.onerror = function(msg, url, line, col, error) {};
+<head>
+	<meta charset="utf-8">
+	<title>FX Tools</title>
 
-var readFilter = function() {
-  var parts = document.cookie.split(",");
+	<style>
+		* {
+			margin: 0px;
+			padding: 0px;
 
-  var ret =
-    parts.length < 2
-      ? ["USD", "EUR", "JPY", "GBP", "AUD", "CAD", "CHF", "NZD"]
-      : parts;
+			margin-right: 18px;
+			font: 14px "Gotham A", "Gotham B", sans-serif;
+			font-weight: 500;
+			color: #8a8a8a;
+			text-transform: uppercase;
+		}
 
-  ret.forEach(function(id) {
-    document.getElementById(id).checked = true;
-  });
+		.cumulative {
+			background: linear-gradient(to right, green 0%, gray 33%, gray 66%, red 100%);
+			white-space: nowrap;
+			margin: 0 auto;
+			w-idth: 100vw;
+			text-align: center;
+			margin: 0.3vw;
+			padding: 0.3vw;
+		}
 
-  return ret;
-};
+		.cumulative>div {
+			display: inline-block;
+		}
 
-var writeFilter = function() {
-  var filterArray = [];
-  Object.values(document.getElementsByClassName("show")).forEach(function(el) {
-    if (el.checked) {
-      filterArray.push(el.id);
-    }
-  });
-  document.cookie = filterArray.join(",");
-};
+		.cumulative span {
+			color: black;
+		}
 
-var precalcMatrix = function(data) {
-  var lookup = new Map(),
-    tmpCurrencies = {};
+		.ccy {
+			display: block;
+		}
 
-  data.forEach(function(entry) {
-    var base = entry.symbol.substring(0, 3);
-    var quote = entry.symbol.substring(3, 6);
-    tmpCurrencies[base] = {};
-    tmpCurrencies[quote] = {};
+		.sum {
+			display: block;
+		}
 
-    lookup.set(entry.symbol, {
-      prev: entry.prev_day_close,
-      last: entry.last,
-    });
-  }, this);
+		.sum:after {
+			content: "%";
+		}
 
-  var currencies = Object.keys(tmpCurrencies);
+		.show {
+			display: inline;
+		}
 
-  var getPercentages = function(base, quote) {
-    var pair = base + quote,
-      rev = quote + base,
-      baseEuropeanTerms = base + "USD",
-      quoteEuropeanTerms = quote + "USD",
-      baseAmericanTerms = "USD" + base,
-      quoteAmericanTerms = "USD" + quote,
-      o = { prev: 0, last: 0 };
+		.hide {
+			display: none;
+		}
 
-    if (lookup.has(pair)) {
-      o = lookup.get(pair);
-    } else if (lookup.has(rev)) {
-      var value = lookup.get(rev);
-      o.prev = 1 / value.prev;
-      o.last = 1 / value.last;
-    } else if (
-      lookup.has(baseEuropeanTerms) &&
-      lookup.has(quoteEuropeanTerms)
-    ) {
-      var valueA = lookup.get(baseEuropeanTerms);
-      var valueB = lookup.get(quoteEuropeanTerms);
+		#chart {}
+	</style>
+	<link rel="stylesheet" type="text/css" href="/js/billboard.js/billboard.min.css" />
+</head>
 
-      o.prev = valueA.prev / valueB.prev;
-      o.last = valueA.last / valueB.last;
-    } else if (
-      lookup.has(baseAmericanTerms) &&
-      lookup.has(quoteAmericanTerms)
-    ) {
-      var valueA = lookup.get(baseAmericanTerms);
-      var valueB = lookup.get(quoteAmericanTerms);
+<body>
 
-      o.prev = 1 / (valueA.prev / valueB.prev);
-      o.last = 1 / (valueA.last / valueB.last);
-    } else if (
-      lookup.has(baseEuropeanTerms) &&
-      lookup.has(quoteAmericanTerms)
-    ) {
-      var valueA = lookup.get(baseEuropeanTerms);
-      var valueB = lookup.get(quoteAmericanTerms);
+	Asian Session:
+	<div id="asia" class="cumulative"></div>
+	European Session:
+	<div id="europe" class="cumulative"></div>
+	North American Session:
+	<div id="america" class="cumulative"></div>
 
-      o.prev = valueA.prev * valueB.prev;
-      o.last = valueA.last * valueB.last;
-    } else if (
-      lookup.has(baseAmericanTerms) &&
-      lookup.has(quoteEuropeanTerms)
-    ) {
-      var valueA = lookup.get(baseAmericanTerms);
-      var valueB = lookup.get(quoteEuropeanTerms);
+	<center>
+		<h1 id="chartCaption"></h1>
+		<div id="chart"></div>
+	</center>
 
-      o.prev = 1 / (valueA.prev * valueB.prev);
-      o.last = 1 / (valueA.last * valueB.last);
-    }
+	<br/>
+	<button name="showFilter" onclick="var el = document.getElementById('filter'); el.classList.contains('hide') ? el.classList.remove('hide') : el.classList.add('hide');">show/hide Filter</button>
+	<br/>
+	<button style="display: none;" name="toggleAll" onclick="var els = document.getElementsByClassName('show'); w(Object.values(els).forEach(i => i.checked = true));">check all</button>
+	<button style="display: none;" name="toggleAll" onclick="var els = document.getElementsByClassName('show'); w(Object.values(els).forEach(i => i.checked = false));">uncheck all</button>
+	<ul id="filter" class="hide">
 
-    return (o.last - o.prev) / o.last * 100;
-  };
+		<li>
+			<input id="USD" class="show" name="show[]" type="checkbox" value="USD" />
+			<label for="USD">USD</label>
+		</li>
+		<li>
+			<input id="EUR" class="show" name="show[]" type="checkbox" value="EUR" />
+			<label for="EUR">EUR</label>
+		</li>
+		<li>
+			<input id="JPY" class="show" name="show[]" type="checkbox" value="JPY" />
+			<label for="JPY">JPY</label>
+		</li>
+		<li>
+			<input id="GBP" class="show" name="show[]" type="checkbox" value="GBP" />
+			<label for="GBP">GBP</label>
+		</li>
+		<li>
+			<input id="AUD" class="show" name="show[]" type="checkbox" value="AUD" />
+			<label for="AUD">AUD</label>
+		</li>
+		<li>
+			<input id="CAD" class="show" name="show[]" type="checkbox" value="CAD" />
+			<label for="CAD">CAD</label>
+		</li>
+		<li>
+			<input id="CHF" class="show" name="show[]" type="checkbox" value="CHF" />
+			<label for="CHF">CHF</label>
+		</li>
+		<li>
+			<input id="NZD" class="show" name="show[]" type="checkbox" value="NZD" />
+			<label for="NZD">NZD</label>
+		</li>
+		<li>
+			<input id="CNY" class="show" name="show[]" type="checkbox" value="CNY">
+			<label for="CNY">CNY</label>
+		</li>
+		<li>
+			<input id="SEK" class="show" name="show[]" type="checkbox" value="SEK">
+			<label for="SEK">SEK</label>
+		</li>
+		<li>
+			<input id="MXN" class="show" name="show[]" type="checkbox" value="MXN">
+			<label for="MXN">MXN</label>
+		</li>
+		<li>
+			<input id="SGD" class="show" name="show[]" type="checkbox" value="SGD">
+			<label for="SGD">SGD</label>
+		</li>
+		<li>
+			<input id="HKD" class="show" name="show[]" type="checkbox" value="HKD">
+			<label for="HKD">HKD</label>
+		</li>
+		<li>
+			<input id="NOK" class="show" name="show[]" type="checkbox" value="NOK">
+			<label for="NOK">NOK</label>
+		</li>
+		<li>
+			<input id="KRW" class="show" name="show[]" type="checkbox" value="KRW">
+			<label for="KRW">KRW</label>
+		</li>
+		<li>
+			<input id="TRY" class="show" name="show[]" type="checkbox" value="TRY">
+			<label for="TRY">TRY</label>
+		</li>
+		<li>
+			<input id="RUB" class="show" name="show[]" type="checkbox" value="RUB">
+			<label for="RUB">RUB</label>
+		</li>
+		<li>
+			<input id="INR" class="show" name="show[]" type="checkbox" value="INR">
+			<label for="INR">INR</label>
+		</li>
+		<li>
+			<input id="BRL" class="show" name="show[]" type="checkbox" value="BRL">
+			<label for="BRL">BRL</label>
+		</li>
+		<li>
+			<input id="ZAR" class="show" name="show[]" type="checkbox" value="ZAR">
+			<label for="ZAR">ZAR</label>
+		</li>
+		<li>
+			<input id="DKK" class="show" name="show[]" type="checkbox" value="DKK">
+			<label for="DKK">DKK</label>
+		</li>
+		<li>
+			<input id="PLN" class="show" name="show[]" type="checkbox" value="PLN">
+			<label for="PLN">PLN</label>
+		</li>
+		<li>
+			<input id="TWD" class="show" name="show[]" type="checkbox" value="TWD">
+			<label for="TWD">TWD</label>
+		</li>
+		<li>
+			<input id="THB" class="show" name="show[]" type="checkbox" value="THB">
+			<label for="THB">THB</label>
+		</li>
+		<li>
+			<input id="MYR" class="show" name="show[]" type="checkbox" value="MYR">
+			<label for="MYR">MYR</label>
+		</li>
+		<li>
+			<input id="HUF" class="show" name="show[]" type="checkbox" value="HUF">
+			<label for="HUF">HUF</label>
+		</li>
+		<li>
+			<input id="SAR" class="show" name="show[]" type="checkbox" value="SAR">
+			<label for="SAR">SAR</label>
+		</li>
+		<li>
+			<input id="CZK" class="show" name="show[]" type="checkbox" value="CZK">
+			<label for="CZK">CZK</label>
+		</li>
+		<li>
+			<input id="ILS" class="show" name="show[]" type="checkbox" value="ILS">
+			<label for="ILS">ILS</label>
+		</li>
+		<li>
+			<input id="BTC" class="show" name="show[]" type="checkbox" value="BTC">
+			<label for="BTC">BTC</label>
+		</li>
+		<li>
+			<input id="XAU" class="show" name="show[]" type="checkbox" value="XAU">
+			<label for="XAU">XAU</label>
+		</li>
+		<li>
+			<input id="XAG" class="show" name="show[]" type="checkbox" value="XAG">
+			<label for="XAG">XAG</label>
+		</li>
+		<li>
+			<input id="XPD" class="show" name="show[]" type="checkbox" value="XPD">
+			<label for="XPD">XPD</label>
+		</li>
+		<li>
+			<input id="XPT" class="show" name="show[]" type="checkbox" value="XPT">
+			<label for="XPT">XPT</label>
+		</li>
 
-  var percentages = {};
-  currencies.forEach(function(base) {
-    currencies.forEach(function(quote) {
-      if (base != quote) {
-        if (!percentages.hasOwnProperty(base)) {
-          percentages[base] = {};
-        }
-        percentages[base][quote] = getPercentages(base, quote);
-      }
-    });
-  });
 
-  return percentages;
-};
+	</ul>
 
-var filterAndSort = function(enabled, percentages) {
-  if (typeof percentages == "undefined" || percentages.length < 2) {
-    return;
-  }
+	<script src="/js/d3/d3.v4.min.js"></script>
+	<script src="/js/luxon/luxon.min.js"></script>
+	<script src="/js/billboard.js/billboard.pkgd.min.js"></script>
+	<script src="cumulative.js"></script>
 
-  // as soon as data is filtered
-  var filtered = {};
-  enabled.forEach(function(base) {
-    enabled.forEach(function(quote) {
-      if (base != quote) {
-        if (!filtered.hasOwnProperty(base)) {
-          filtered[base] = {};
-        }
-        filtered[base][quote] = percentages[base][quote];
-      }
-    });
-  });
+</body>
 
-  if (filtered.length < 2) {
-    return;
-  }
-
-  // we can sum up the percentages
-  var sums = [];
-  enabled.forEach(function(base) {
-    sums.push({
-      base: base,
-      sum: Object.values(filtered[base]).reduce((a, b) => a + b, 0),
-      pcts: filtered[base],
-    });
-  });
-
-  // and sort by percentage values
-  var sorted = Object.values(sums).sort(function(a, b) {
-    if (b.sum == a.sum) {
-      return a.base.localeCompare(b.base);
-    } else {
-      return b.sum - a.sum;
-    }
-  });
-
-  return sorted;
-};
-
-var GenChart = function(d) {
-  bb.generate({
-    data: {
-      json: {
-        value: Object.values(d.pcts).map(v => v.toFixed(2)),
-      },
-      type: "bar",
-    },
-    // bar: {
-    //   width: {
-    //     ratio: 0.5,
-    //   },
-    // },
-    grid: {
-      y: {
-        lines: [
-          {
-            value: 0,
-          },
-        ],
-      },
-    },
-    axis: {
-      x: {
-        type: "category",
-        categories: Object.keys(d.pcts),
-      },
-    },
-    legend: {
-      show: false,
-    },
-    size: {
-      height: 240,
-      width: 480,
-    },
-    bindto: "#chart",
-  });
-
-  d3.select("#chartCaption").text(d.base);
-};
-
-var redraw = function(prefix, percentages) {
-  d3
-    .select("#" + prefix)
-    .selectAll("div")
-    .remove();
-
-  var parent = d3
-    .select("#" + prefix)
-    .selectAll("div")
-    // .data(percentages.filter(p => p.sum > 0))
-    .data(percentages);
-
-  parent
-    .enter()
-    .append("div")
-    // .classed(d.base, true)
-    .html(function(d) {
-      return (
-        "<span class='ccy'>" +
-        d.base +
-        "</span><span class='sum'>" +
-        d.sum.toFixed(2) +
-        "</span>"
-      );
-    })
-    .on("click", function(d) {
-      if (window.chart.base != d.base || window.chart.prefix != prefix) {
-        window.chart = { base: d.base, prefix: prefix };
-        GenChart(d);
-      }
-    })
-    .on("mousemove", function(d) {
-      if (window.chart.base != d.base || window.chart.prefix != prefix) {
-        window.chart = { base: d.base, prefix: prefix };
-        GenChart(d);
-      }
-    });
-
-  var chartData = percentages.filter(p => p.base == window.chart);
-  if (chartData.length > 0) {
-    GenChart(chartData[0]);
-  }
-};
-
-var loadData = function(enabled) {
-  var dt = DateTime.utc().plus({ hours: 1 });
-  var uri =
-    "https://raw.githubusercontent.com/fxtools/quote_percentages/master/" +
-    dt.year +
-    "/" +
-    dt.toISODate() +
-    "/";
-
-  var uriA = uri + "asian%20session.tsv";
-  var uriB = uri + "european%20session.tsv";
-  var uriC = uri + "north%20american%20session.tsv";
-
-  window.sessions = {
-    asia: {},
-    europe: {},
-    america: {},
-  };
-
-  d3.tsv(uriA, function(error, data) {
-    if (error) {
-      return;
-    }
-    window.sessions.asia.raw = precalcMatrix(data);
-
-    window.sessions.asia.filtered = filterAndSort(
-      enabled,
-      window.sessions.asia.raw
-    );
-
-    redraw("asia", window.sessions.asia.filtered);
-  });
-
-  d3.tsv(uriB, function(error, data) {
-    if (error) {
-      return;
-    }
-    window.sessions.europe.raw = precalcMatrix(data);
-
-    window.sessions.europe.filtered = filterAndSort(
-      enabled,
-      window.sessions.europe.raw
-    );
-
-    redraw("europe", window.sessions.europe.filtered);
-  });
-
-  d3.tsv(uriC, function(error, data) {
-    if (error) {
-      return;
-    }
-    window.sessions.america.raw = precalcMatrix(data);
-
-    window.sessions.america.filtered = filterAndSort(
-      enabled,
-      window.sessions.america.raw
-    );
-
-    redraw("america", window.sessions.america.filtered);
-  });
-};
-
-d3.selectAll("input.show").on("click", function() {
-  writeFilter();
-  var enabled = readFilter();
-
-  window.sessions.asia.filtered = filterAndSort(
-    enabled,
-    window.sessions.asia.raw
-  );
-  window.sessions.europe.filtered = filterAndSort(
-    enabled,
-    window.sessions.europe.raw
-  );
-  window.sessions.america.filtered = filterAndSort(
-    enabled,
-    window.sessions.america.raw
-  );
-
-  redraw("asia", window.sessions.asia.filtered);
-  redraw("europe", window.sessions.europe.filtered);
-  redraw("america", window.sessions.america.filtered);
-});
-
-var update = function() {
-  var enabled = readFilter();
-
-  loadData(enabled);
-};
-
-setInterval(update, 1000 * 60 * 15);
-update();
+</html>
