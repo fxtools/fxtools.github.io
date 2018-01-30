@@ -1,11 +1,15 @@
 var w = console.log;
 var DateTime = luxon.DateTime;
 
+//window.onerror = function(msg, url, line, col, error) {};
+
 var readFilter = function() {
+  var parts = document.cookie.split(",");
+
   var ret =
-    document.cookie.length == 0
+    parts.length < 2
       ? ["USD", "EUR", "JPY", "GBP", "AUD", "CAD", "CHF", "NZD"]
-      : document.cookie.split(",");
+      : parts;
 
   ret.forEach(function(id) {
     document.getElementById(id).checked = true;
@@ -15,224 +19,321 @@ var readFilter = function() {
 };
 
 var writeFilter = function() {
-  var filter = [];
+  var filterArray = [];
   Object.values(document.getElementsByClassName("show")).forEach(function(el) {
     if (el.checked) {
-      filter.push(el.id);
+      filterArray.push(el.id);
     }
   });
-  document.cookie = filter.join(",");
+  document.cookie = filterArray.join(",");
 };
 
-var drawSession = function(session) {
-  var data = window.session[session];
+var precalcMatrix = function(data) {
+  var lookup = new Map(),
+    tmpCurrencies = {};
 
-  var currencies = [],
-    quotes = {},
-    changes = [],
-    sums = {};
+  data.forEach(function(entry) {
+    var base = entry.symbol.substring(0, 3);
+    var quote = entry.symbol.substring(3, 6);
+    tmpCurrencies[base] = {};
+    tmpCurrencies[quote] = {};
 
-  data.forEach(function(e) {
-    var base = e.currency.substring(0, 3);
-    var quote = e.currency.substring(3, 6);
-
-    if (currencies.indexOf(base) == -1) {
-      currencies.push(base);
-    }
-
-    if (currencies.indexOf(quote) == -1) {
-      currencies.push(quote);
-    }
-
-    quotes[base + quote] = { last: e.last, prev: e.prev_day_close };
+    lookup.set(entry.symbol, {
+      prev: entry.prev_day_close,
+      last: entry.last,
+    });
   }, this);
 
-  var GetPct = function(prev, last) {
-    return (last - prev) / last * 100;
-  };
-
-  var GetPctInv = function(prev, last) {
-    prev = 1 / prev;
-    last = 1 / last;
-    return (last - prev) / last * 100;
-  };
+  var currencies = Object.keys(tmpCurrencies);
 
   var getPercentages = function(base, quote) {
-    if (typeof quotes[base + quote] !== "undefined") {
-      return GetPct(quotes[base + quote].prev, quotes[base + quote].last);
-    } else if (typeof quotes[quote + base] !== "undefined") {
-      return GetPctInv(quotes[quote + base].prev, quotes[quote + base].last);
+    var pair = base + quote,
+      rev = quote + base,
+      baseEuropeanTerms = base + "USD",
+      quoteEuropeanTerms = quote + "USD",
+      baseAmericanTerms = "USD" + base,
+      quoteAmericanTerms = "USD" + quote,
+      o = { prev: 0, last: 0 };
+
+    if (lookup.has(pair)) {
+      o = lookup.get(pair);
+    } else if (lookup.has(rev)) {
+      var value = lookup.get(rev);
+      o.prev = 1 / value.prev;
+      o.last = 1 / value.last;
     } else if (
-      typeof quotes[base + "USD"] !== "undefined" &&
-      typeof quotes[quote + "USD"] !== "undefined"
+      lookup.has(baseEuropeanTerms) &&
+      lookup.has(quoteEuropeanTerms)
     ) {
-      // If two currencies are quoted in the same terms, divide the base currency of the cross currency pair into the terms currency of the pair.
-      var prevA = quotes[base + "USD"].prev;
-      var lastA = quotes[base + "USD"].last;
+      var valueA = lookup.get(baseEuropeanTerms);
+      var valueB = lookup.get(quoteEuropeanTerms);
 
-      var prevB = quotes[quote + "USD"].prev;
-      var lastB = quotes[quote + "USD"].last;
-
-      var prev = prevA / prevB;
-      var last = lastA / lastB;
-
-      return GetPct(prev, last);
+      o.prev = valueA.prev / valueB.prev;
+      o.last = valueA.last / valueB.last;
     } else if (
-      typeof quotes["USD" + base] !== "undefined" &&
-      typeof quotes["USD" + quote] !== "undefined"
+      lookup.has(baseAmericanTerms) &&
+      lookup.has(quoteAmericanTerms)
     ) {
-      // If two currencies are quoted in the same terms, divide the base currency of the cross currency pair into the terms currency of the pair.
-      var prevA = quotes["USD" + base].prev;
-      var lastA = quotes["USD" + base].last;
+      var valueA = lookup.get(baseAmericanTerms);
+      var valueB = lookup.get(quoteAmericanTerms);
 
-      var prevB = quotes["USD" + quote].prev;
-      var lastB = quotes["USD" + quote].last;
-
-      var prev = prevA / prevB;
-      var last = lastA / lastB;
-
-      return GetPct(1 / prev, 1 / last);
+      o.prev = 1 / (valueA.prev / valueB.prev);
+      o.last = 1 / (valueA.last / valueB.last);
     } else if (
-      typeof quotes[base + "USD"] !== "undefined" &&
-      typeof quotes["USD" + quote] !== "undefined"
+      lookup.has(baseEuropeanTerms) &&
+      lookup.has(quoteAmericanTerms)
     ) {
-      // If two currencies are quoted in different terms, multipy one rate by the othe
-      var prevA = quotes[base + "USD"].prev;
-      var lastA = quotes[base + "USD"].last;
+      var valueA = lookup.get(baseEuropeanTerms);
+      var valueB = lookup.get(quoteAmericanTerms);
 
-      var prevB = quotes["USD" + quote].prev;
-      var lastB = quotes["USD" + quote].last;
-
-      var prev = prevA * prevB;
-      var last = lastA * lastB;
-
-      return GetPct(prev, last);
+      o.prev = valueA.prev * valueB.prev;
+      o.last = valueA.last * valueB.last;
     } else if (
-      typeof quotes["USD" + base] !== "undefined" &&
-      typeof quotes[quote + "USD"] !== "undefined"
+      lookup.has(baseAmericanTerms) &&
+      lookup.has(quoteEuropeanTerms)
     ) {
-      // If two currencies are quoted in different terms, multipy one rate by the othe
-      var prevA = quotes["USD" + base].prev;
-      var lastA = quotes["USD" + base].last;
+      var valueA = lookup.get(baseAmericanTerms);
+      var valueB = lookup.get(quoteEuropeanTerms);
 
-      var prevB = quotes[quote + "USD"].prev;
-      var lastB = quotes[quote + "USD"].last;
-
-      var prev = prevA * prevB;
-      var last = lastA * lastB;
-
-      return GetPct(1 / prev, 1 / last);
+      o.prev = 1 / (valueA.prev * valueB.prev);
+      o.last = 1 / (valueA.last * valueB.last);
     }
 
-    return 0;
+    return (o.last - o.prev) / o.last * 100;
   };
 
+  var percentages = {};
   currencies.forEach(function(base) {
-    if (document.getElementById(base).checked) {
-      currencies.forEach(function(quote) {
-        if (document.getElementById(quote).checked) {
-          if (base != quote) {
-            changes.push({
-              base: base,
-              quote: quote,
-              pct: getPercentages(base, quote),
-            });
-          }
+    currencies.forEach(function(quote) {
+      if (base != quote) {
+        if (!percentages.hasOwnProperty(base)) {
+          percentages[base] = {};
         }
-      }, this);
-    }
-  }, this);
-
-  changes.forEach(function(el) {
-    if (typeof sums[el.base] === "undefined") {
-      sums[el.base] = { base: el.base, pct: 0 };
-    }
-
-    sums[el.base].pct += el.pct;
+        percentages[base][quote] = getPercentages(base, quote);
+      }
+    });
   });
 
+  return percentages;
+};
+
+var filterAndSort = function(enabled, percentages) {
+  if (typeof percentages == "undefined" || percentages.length < 2) {
+    return;
+  }
+
+  // as soon as data is filtered
+  var filtered = {};
+  enabled.forEach(function(base) {
+    enabled.forEach(function(quote) {
+      if (base != quote) {
+        if (!filtered.hasOwnProperty(base)) {
+          filtered[base] = {};
+        }
+        filtered[base][quote] = percentages[base][quote];
+      }
+    });
+  });
+
+  if (filtered.length < 2) {
+    return;
+  }
+
+  // we can sum up the percentages
+  var sums = [];
+  enabled.forEach(function(base) {
+    sums.push({
+      base: base,
+      sum: Object.values(filtered[base]).reduce((a, b) => a + b, 0),
+      pcts: filtered[base],
+    });
+  });
+
+  // and sort by percentage values
   var sorted = Object.values(sums).sort(function(a, b) {
-    if (b.pct == a.pct) {
+    if (b.sum == a.sum) {
       return a.base.localeCompare(b.base);
     } else {
-      return b.pct - a.pct;
+      return b.sum - a.sum;
     }
   });
 
+  return sorted;
+};
+
+var GenChart = function(d) {
+  bb.generate({
+    data: {
+      json: {
+        value: Object.values(d.pcts).map(v => v.toFixed(2)),
+      },
+      type: "bar",
+    },
+    // bar: {
+    //   width: {
+    //     ratio: 0.5,
+    //   },
+    // },
+    grid: {
+      y: {
+        lines: [
+          {
+            value: 0,
+          },
+        ],
+      },
+    },
+    axis: {
+      x: {
+        type: "category",
+        categories: Object.keys(d.pcts),
+      },
+    },
+    legend: {
+      show: false,
+    },
+    size: {
+      height: 240,
+      width: 480,
+    },
+    bindto: "#chart",
+  });
+
+  d3.select("#chartCaption").text(d.base);
+};
+
+var redraw = function(prefix, percentages) {
   d3
-    .select("#" + session)
-    .selectAll("span")
+    .select("#" + prefix)
+    .selectAll("div")
     .remove();
 
-  d3
-    .select("#" + session)
-    .selectAll("span")
-    .data(sorted)
+  var parent = d3
+    .select("#" + prefix)
+    .selectAll("div")
+    // .data(percentages.filter(p => p.sum > 0))
+    .data(percentages);
+
+  parent
     .enter()
-    .append("span")
+    .append("div")
+    // .classed(d.base, true)
     .html(function(d) {
-      return d.base + "<br/>" + d.pct.toFixed(2) + "%";
+      return (
+        "<span class='ccy'>" +
+        d.base +
+        "</span><span class='sum'>" +
+        d.sum.toFixed(2) +
+        "</span>"
+      );
+    })
+    .on("click", function(d) {
+      if (window.chart.base != d.base || window.chart.prefix != prefix) {
+        window.chart = { base: d.base, prefix: prefix };
+        GenChart(d);
+      }
+    })
+    .on("mousemove", function(d) {
+      if (window.chart.base != d.base || window.chart.prefix != prefix) {
+        window.chart = { base: d.base, prefix: prefix };
+        GenChart(d);
+      }
     });
 
-  // Object.keys(changes).forEach(function(base) {
-  //   bb.generate({
-  //     data: {
-  //       rows: [Object.keys(changes[base]), Object.values(changes[base])],
-  //       type: "bar",
-  //     },
-  //     bar: {
-  //       width: {
-  //         ratio: 0.5,
-  //       },
-  //     },
-  //     bindto: "#barChart-" + session + "-" + base,
-  //   });
-  // });
+  var chartData = percentages.filter(p => p.base == window.chart);
+  if (chartData.length > 0) {
+    GenChart(chartData[0]);
+  }
+};
+
+var loadData = function(enabled) {
+  var dt = DateTime.utc().plus({ hours: 1 });
+  var uri =
+    "https://raw.githubusercontent.com/fxtools/quote_percentages/master/" +
+    dt.year +
+    "/" +
+    dt.toISODate() +
+    "/";
+
+  var uriA = uri + "asian%20session.tsv";
+  var uriB = uri + "european%20session.tsv";
+  var uriC = uri + "north%20american%20session.tsv";
+
+  window.sessions = {
+    asia: {},
+    europe: {},
+    america: {},
+  };
+
+  d3.tsv(uriA, function(error, data) {
+    if (error) {
+      return;
+    }
+    window.sessions.asia.raw = precalcMatrix(data);
+
+    window.sessions.asia.filtered = filterAndSort(
+      enabled,
+      window.sessions.asia.raw
+    );
+
+    redraw("asia", window.sessions.asia.filtered);
+  });
+
+  d3.tsv(uriB, function(error, data) {
+    if (error) {
+      return;
+    }
+    window.sessions.europe.raw = precalcMatrix(data);
+
+    window.sessions.europe.filtered = filterAndSort(
+      enabled,
+      window.sessions.europe.raw
+    );
+
+    redraw("europe", window.sessions.europe.filtered);
+  });
+
+  d3.tsv(uriC, function(error, data) {
+    if (error) {
+      return;
+    }
+    window.sessions.america.raw = precalcMatrix(data);
+
+    window.sessions.america.filtered = filterAndSort(
+      enabled,
+      window.sessions.america.raw
+    );
+
+    redraw("america", window.sessions.america.filtered);
+  });
 };
 
 d3.selectAll("input.show").on("click", function() {
   writeFilter();
-  readFilter();
+  var enabled = readFilter();
 
-  drawSession("asession");
-  drawSession("bsession");
-  drawSession("csession");
+  window.sessions.asia.filtered = filterAndSort(
+    enabled,
+    window.sessions.asia.raw
+  );
+  window.sessions.europe.filtered = filterAndSort(
+    enabled,
+    window.sessions.europe.raw
+  );
+  window.sessions.america.filtered = filterAndSort(
+    enabled,
+    window.sessions.america.raw
+  );
+
+  redraw("asia", window.sessions.asia.filtered);
+  redraw("europe", window.sessions.europe.filtered);
+  redraw("america", window.sessions.america.filtered);
 });
 
-
 var update = function() {
-	readFilter();
-	window.session = {};
+  var enabled = readFilter();
 
-	var dt = DateTime.utc().plus({ hours: 1 });
-	var uri = "https://raw.githubusercontent.com/fxtools/quote_percentages/master/" + dt.year + "/" + dt.toISODate() + "/";
-	var uriA = uri + "asian%20session.tsv";
-	var uriB = uri + "european%20session.tsv";
-	var uriC = uri + "north%20american%20session.tsv";
-
-	d3.tsv(uriA, function(error, data, c) {
-	  if (error) {
-		return;
-	  }
-	  window.session["asession"] = data;
-	  drawSession("asession");
-	});
-
-	d3.tsv(uriB, function(error, data, c) {
-	  if (error) {
-		return;
-	  }
-	  window.session["bsession"] = data;
-	  drawSession("bsession");
-	});
-
-	d3.tsv(uriC, function(error, data, c) {
-	  if (error) {
-		return;
-	  }
-	  window.session["csession"] = data;
-	  drawSession("csession");
-	});
+  loadData(enabled);
 };
 
 setInterval(update, 1000 * 60 * 15);
