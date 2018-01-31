@@ -307,6 +307,22 @@ var redraw = function(prefix, percentages) {
 
 var loadData = function(enabled) {
   var dt = DateTime.utc().plus({ hours: 2 });
+
+  try {
+    var ago = parseInt(document.location.href.match(/ago=(\d+)/)[1]);
+    dt = dt.plus({ days: -ago });
+  } catch (e) {}
+  try {
+    var day = document.location.href.match(/day=(\d{4}-\d{2}-\d{2})/)[1];
+    dt = DateTime.fromISO(day);
+  } catch (e) {}
+
+  document.getElementById("prev").href =
+    "?day=" + dt.plus({ days: -1 }).toISODate();
+  document.getElementById("date").innerText = dt.toISODate();
+  document.getElementById("next").href =
+    "?day=" + dt.plus({ days: +1 }).toISODate();
+
   var uri =
     "https://raw.githubusercontent.com/fxtools/quote_percentages/master/" +
     dt.year +
