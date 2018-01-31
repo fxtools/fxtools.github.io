@@ -207,7 +207,25 @@ var GenChart = function(d) {
         type: "category",
         categories: Object.keys(d.pcts),
       },
+      y: {
+        label: {
+          text: "change in %",
+          position: "outer-middle",
+        },
+      },
     },
+    tooltip: {
+      format: {
+        // title: function(d) {
+        //   w(d);
+        //   return d.base;
+        // },
+        value: function(value, ratio, id) {
+          return value + "%";
+        },
+      },
+    },
+
     legend: {
       show: false,
     },
@@ -225,7 +243,7 @@ var redraw = function(prefix, percentages) {
   var color = d3
     .scaleLinear()
     .domain([10, 2, 0, -2, -10])
-    .range(["green", "lightgreen", "gray", "LightCoral", "red"]);
+    .range(["green", "lightgreen", "gray", "lightcoral", "red"]);
 
   d3
     .select("#" + prefix)
