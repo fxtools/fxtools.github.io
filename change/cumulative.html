@@ -9,8 +9,6 @@
 		* {
 			margin: 0px;
 			padding: 0px;
-
-			margin-right: 18px;
 			font: 14px "Gotham A", "Gotham B", sans-serif;
 			font-weight: 500;
 			color: #8a8a8a;
@@ -56,20 +54,25 @@
 		}
 
 		#chart {}
+		
+		#percentages {
+			overflow-x: scroll;
+			width: 100%;
+		}
 	</style>
 	<link rel="stylesheet" type="text/css" href="/js/billboard.js/billboard.min.css" />
 </head>
 
 <body>
 
-	<div style="overflow: scroll;">
+	<section id="percentages">
 		Asian Session:
 		<div id="asia" class="cumulative"></div>
 		European Session:
 		<div id="europe" class="cumulative"></div>
 		North American Session:
 		<div id="america" class="cumulative"></div>
-	</div>
+	</section>
 
 	<center>
 		<h1 id="chartCaption"></h1>
