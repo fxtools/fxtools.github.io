@@ -237,7 +237,6 @@ var redraw = function(prefix, percentages) {
     .enter()
     .append("div")
     .classed("tile", true)
-    .classed(d.base, true)
     .html(function(d) {
       return (
         "<span class='ccy'>" +
