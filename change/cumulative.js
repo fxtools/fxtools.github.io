@@ -186,6 +186,11 @@ var GenChart = function(d) {
         europe: Object.values(data1).map(v => v.toFixed(2)),
         america: Object.values(data2).map(v => v.toFixed(2)),
       },
+      colors: {
+        asia: "lightgray",
+        europe: "gray",
+        america: "dimgray",
+      },
       type: "bar",
     },
     // bar: {
@@ -301,7 +306,7 @@ var redraw = function(prefix, percentages) {
 };
 
 var loadData = function(enabled) {
-  var dt = DateTime.utc().plus({ hours: 1 });
+  var dt = DateTime.utc().plus({ hours: 2 });
   var uri =
     "https://raw.githubusercontent.com/fxtools/quote_percentages/master/" +
     dt.year +
