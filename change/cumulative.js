@@ -245,6 +245,9 @@ var redraw = function(prefix, percentages) {
     .style("background-color", function(d) {
       return color(Math.max(-10, Math.min(10, d.sum)));
     })
+    .attr("ccy", function(d) {
+      return d.base;
+    })
     .html(function(d) {
       return (
         "<span class='ccy'>" +
@@ -261,6 +264,12 @@ var redraw = function(prefix, percentages) {
       }
     })
     .on("mousemove", function(d) {
+      d3.selectAll(".tile").style("text-shadow", "0px 0px");
+
+      d3
+        .selectAll(".tile[ccy='" + d.base + "']")
+        .style("text-shadow", "1px 1px 2px black, 0 0 25px green, 0 0 5px red");
+
       if (window.chart != d.base) {
         window.chart = d.base;
         GenChart(d);
