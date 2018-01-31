@@ -64,11 +64,32 @@
 			padding: 5px;
 			border-radius: 3px
 		}
+
+		#navi {
+			font-size: 15px;
+			width: 250px;
+			margin: auto;
+			padding: 10px;
+		}
+
+		#navi>* {
+			display: inline;
+		}
+
+		#navi>a {
+			margin: 0px 15px 0px 15px;
+		}
 	</style>
 	<link rel="stylesheet" type="text/css" href="/js/billboard.js/billboard.min.css" />
 </head>
 
 <body>
+
+	<section id="navi">
+		<a id="prev" href="">&lt;&lt;</a>
+		<h1 id="date"></h1>
+		<a id="next" href="">&gt;&gt;</a>
+	</section>
 
 	<section id="percentages">
 		Asian Session:
@@ -80,7 +101,7 @@
 	</section>
 
 	<center>
-		<h1 id="chartCaption"></h1>
+		<h2 id="chartCaption"></h2>
 		<div id="chart"></div>
 	</center>
 
