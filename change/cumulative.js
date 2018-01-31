@@ -222,6 +222,11 @@ var GenChart = function(d) {
 };
 
 var redraw = function(prefix, percentages) {
+  var color = d3
+    .scaleLinear()
+    .domain([10, 2, 0, -2, -10])
+    .range(["green", "lightgreen", "gray", "LightCoral", "red"]);
+
   d3
     .select("#" + prefix)
     .selectAll("div")
@@ -237,6 +242,9 @@ var redraw = function(prefix, percentages) {
     .enter()
     .append("div")
     .classed("tile", true)
+    .style("background-color", function(d) {
+      return color(Math.max(-10, Math.min(10, d.sum)));
+    })
     .html(function(d) {
       return (
         "<span class='ccy'>" +
