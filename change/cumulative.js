@@ -356,5 +356,5 @@ var update = function() {
   loadData(enabled);
 };
 
-setInterval(update, 1000 * 60 * 15);
+setInterval(update, 1000 * 60 * 5);
 update();
