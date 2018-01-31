@@ -79,6 +79,11 @@
 		#navi>a {
 			margin: 0px 15px 0px 15px;
 		}
+
+		#disqus_thread {
+			margin: auto;
+			width: 95%;
+		}
 	</style>
 	<link rel="stylesheet" type="text/css" href="/js/billboard.js/billboard.min.css" />
 </head>
@@ -265,6 +270,13 @@
 	<script src="/js/luxon/luxon.min.js"></script>
 	<script src="/js/billboard.js/billboard.min.js"></script>
 	<script src="cumulative.js"></script>
+
+	<br/>
+	<hr/>
+	<br/>
+
+	<button onclick='this.style.display="none"; w(document.body); var d = document, s = d.createElement("script"); s.src = "https://fx-tools.disqus.com/embed.js"; s.setAttribute("data-timestamp", +new Date()); d.body.appendChild(s);'>show comments</button>
+	<div id="disqus_thread"></div>
 
 </body>
 
