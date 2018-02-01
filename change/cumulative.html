@@ -66,6 +66,7 @@
 			padding: 5px;
 			border-radius: 3px;
 			width: 50px;
+			overflow: hidden;
 		}
 
 		#navi,
@@ -388,35 +389,32 @@
 			</div>
 		</section>
 
-		<br/>
-		<hr/>
-		<br/>
+		<section id="charts">
+			<h2 id="chartCaption"></h2>
+			<div id="chart"></div>
+		</section>
 
-		<h2 id="chartCaption"></h2>
-		<div id="chart"></div>
+		<section id="comments">
+			<div id="disqus_thread"></div>
+		</section>
+
+
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112925276-1"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() { dataLayer.push(arguments); }
+			gtag('js', new Date());
+			gtag('config', 'UA-112925276-1');
+		</script>
+
+		<script src="/js/d3/d3.v4.min.js"></script>
+		<script src="/js/luxon/luxon.min.js"></script>
+		<script src="/js/billboard.js/billboard.min.js"></script>
+		<script src="cumulative.js"></script>
+
+		<script id="dsq-count-scr" src="//fx-tools.disqus.com/count.js" async></script>
 
 	</center>
-
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112925276-1"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() { dataLayer.push(arguments); }
-		gtag('js', new Date());
-		gtag('config', 'UA-112925276-1');
-	</script>
-
-	<script src="/js/d3/d3.v4.min.js"></script>
-	<script src="/js/luxon/luxon.min.js"></script>
-	<script src="/js/billboard.js/billboard.min.js"></script>
-	<script src="cumulative.js"></script>
-
-	<br/>
-	<hr/>
-	<br/>
-
-	<div id="disqus_thread"></div>
-	<script id="dsq-count-scr" src="//fx-tools.disqus.com/count.js" async></script>
 
 </body>
 
