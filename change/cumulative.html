@@ -84,6 +84,27 @@
 			margin: auto;
 			width: 95%;
 		}
+
+		#container-asia,
+		#container-europe,
+		#container-america,
+		#heading-asia {
+			display: none;
+		}
+
+		li {
+			list-style: none;
+			margin: 5px;
+		}
+
+		#filter {
+			margin: 10px;
+		}
+
+		#filter>tbody>tr>td {
+			vertical-align: top;
+			padding: 10px 10px 10px 10px;
+		}
 	</style>
 	<link rel="stylesheet" type="text/css" href="/js/billboard.js/billboard.min.css" />
 </head>
@@ -98,165 +119,207 @@
 	</section>
 
 	<section id="percentages">
-		Asian Session:
-		<div id="asia" class="cumulative"></div>
-		European Session:
-		<div id="europe" class="cumulative"></div>
-		North American Session:
-		<div id="america" class="cumulative"></div>
+		<div id="container-asia">
+			<h3 id="heading-asia">Asian Session:</h3>
+			<div id="asia" class="cumulative"></div>
+		</div>
+		<div id="container-europe">
+			<h3>European Session:</h3>
+			<div id="europe" class="cumulative"></div>
+		</div>
+		<div id="container-america">
+			<h3>North American Session:</h3>
+			<div id="america" class="cumulative"></div>
+		</div>
 	</section>
 
 	<center>
 		<h2 id="chartCaption"></h2>
 		<div id="chart"></div>
+
+		<br/>
+		<hr/>
+		<br/>
+
+		<button name="showFilter" onclick="var el = document.getElementById('filter'); el.classList.contains('hide') ? el.classList.remove('hide') : el.classList.add('hide');">show/hide Filter</button>
+		<button onclick='this.style.display="none"; w(document.body); var d = document, s = d.createElement("script"); s.src = "https://fx-tools.disqus.com/embed.js"; s.setAttribute("data-timestamp", +new Date()); d.body.appendChild(s);'>show comments</button>
+
+		<table border="0" id="filter" class="hide">
+			<tr>
+				<th>Majors</th>
+				<th>Minors1</th>
+				<th>Minors2</th>
+				<th>Metals</th>
+				<th>Crypto</th>
+			</tr>
+			<tr>
+				<td>
+					<ul>
+						<li>
+							<input id="USD" class="show" name="majors[]" type="checkbox" value="USD" />
+							<label for="USD">USD</label>
+						</li>
+						<li>
+							<input id="EUR" class="show" name="majors[]" type="checkbox" value="EUR" />
+							<label for="EUR">EUR</label>
+						</li>
+						<li>
+							<input id="JPY" class="show" name="majors[]" type="checkbox" value="JPY" />
+							<label for="JPY">JPY</label>
+						</li>
+						<li>
+							<input id="GBP" class="show" name="majors[]" type="checkbox" value="GBP" />
+							<label for="GBP">GBP</label>
+						</li>
+						<li>
+							<input id="AUD" class="show" name="majors[]" type="checkbox" value="AUD" />
+							<label for="AUD">AUD</label>
+						</li>
+						<li>
+							<input id="CAD" class="show" name="majors[]" type="checkbox" value="CAD" />
+							<label for="CAD">CAD</label>
+						</li>
+						<li>
+							<input id="CHF" class="show" name="majors[]" type="checkbox" value="CHF" />
+							<label for="CHF">CHF</label>
+						</li>
+						<li>
+							<input id="NZD" class="show" name="majors[]" type="checkbox" value="NZD" />
+							<label for="NZD">NZD</label>
+						</li>
+					</ul>
+				</td>
+				<td>
+					<ul>
+						<li>
+							<input id="CNY" class="show" name="minors1[]" type="checkbox" value="CNY">
+							<label for="CNY">CNY</label>
+						</li>
+						<li>
+							<input id="SEK" class="show" name="minors1[]" type="checkbox" value="SEK">
+							<label for="SEK">SEK</label>
+						</li>
+						<li>
+							<input id="MXN" class="show" name="minors1[]" type="checkbox" value="MXN">
+							<label for="MXN">MXN</label>
+						</li>
+						<li>
+							<input id="SGD" class="show" name="minors1[]" type="checkbox" value="SGD">
+							<label for="SGD">SGD</label>
+						</li>
+						<li>
+							<input id="HKD" class="show" name="minors1[]" type="checkbox" value="HKD">
+							<label for="HKD">HKD</label>
+						</li>
+						<li>
+							<input id="NOK" class="show" name="minors1[]" type="checkbox" value="NOK">
+							<label for="NOK">NOK</label>
+						</li>
+						<li>
+							<input id="KRW" class="show" name="minors1[]" type="checkbox" value="KRW">
+							<label for="KRW">KRW</label>
+						</li>
+						<li>
+							<input id="TRY" class="show" name="minors1[]" type="checkbox" value="TRY">
+							<label for="TRY">TRY</label>
+						</li>
+						<li>
+							<input id="RUB" class="show" name="minors1[]" type="checkbox" value="RUB">
+							<label for="RUB">RUB</label>
+						</li>
+						<li>
+							<input id="INR" class="show" name="minors1[]" type="checkbox" value="INR">
+							<label for="INR">INR</label>
+						</li>
+						<li>
+							<input id="BRL" class="show" name="minors1[]" type="checkbox" value="BRL">
+							<label for="BRL">BRL</label>
+						</li>
+					</ul>
+				</td>
+				<td>
+					<ul>
+						<li>
+							<input id="ZAR" class="show" name="minors2[]" type="checkbox" value="ZAR">
+							<label for="ZAR">ZAR</label>
+						</li>
+						<li>
+							<input id="DKK" class="show" name="minors2[]" type="checkbox" value="DKK">
+							<label for="DKK">DKK</label>
+						</li>
+						<li>
+							<input id="PLN" class="show" name="minors2[]" type="checkbox" value="PLN">
+							<label for="PLN">PLN</label>
+						</li>
+						<li>
+							<input id="TWD" class="show" name="minors2[]" type="checkbox" value="TWD">
+							<label for="TWD">TWD</label>
+						</li>
+						<li>
+							<input id="THB" class="show" name="minors2[]" type="checkbox" value="THB">
+							<label for="THB">THB</label>
+						</li>
+						<li>
+							<input id="MYR" class="show" name="minors2[]" type="checkbox" value="MYR">
+							<label for="MYR">MYR</label>
+						</li>
+						<li>
+							<input id="HUF" class="show" name="minors2[]" type="checkbox" value="HUF">
+							<label for="HUF">HUF</label>
+						</li>
+						<li>
+							<input id="SAR" class="show" name="minors2[]" type="checkbox" value="SAR">
+							<label for="SAR">SAR</label>
+						</li>
+						<li>
+							<input id="CZK" class="show" name="minors2[]" type="checkbox" value="CZK">
+							<label for="CZK">CZK</label>
+						</li>
+						<li>
+							<input id="ILS" class="show" name="minors2[]" type="checkbox" value="ILS">
+							<label for="ILS">ILS</label>
+						</li>
+					</ul>
+				</td>
+				<td>
+					<ul>
+						<li>
+							<input id="XAU" class="show" name="metals[]" type="checkbox" value="XAU">
+							<label for="XAU">XAU</label>
+						</li>
+						<li>
+							<input id="XAG" class="show" name="metals[]" type="checkbox" value="XAG">
+							<label for="XAG">XAG</label>
+						</li>
+						<li>
+							<input id="XPD" class="show" name="metals[]" type="checkbox" value="XPD">
+							<label for="XPD">XPD</label>
+						</li>
+						<li>
+							<input id="XPT" class="show" name="metals[]" type="checkbox" value="XPT">
+							<label for="XPT">XPT</label>
+						</li>
+					</ul>
+				</td>
+				<td>
+					<ul>
+						<li>
+							<input id="BTC" class="show" name="crypto[]" type="checkbox" value="BTC">
+							<label for="BTC">BTC</label>
+						</li>
+						<li>
+							<input id="ETH" class="show" name="crypto[]" type="checkbox" value="ETH">
+							<label for="ETH">ETH</label>
+						</li>
+						<li>
+							<input id="XRP" class="show" name="crypto[]" type="checkbox" value="XRP">
+							<label for="XRP">XRP</label>
+						</li>
+					</ul>
+				</td>
+			</tr>
+		</table>
 	</center>
-
-	<br/>
-	<button name="showFilter" onclick="var el = document.getElementById('filter'); el.classList.contains('hide') ? el.classList.remove('hide') : el.classList.add('hide');">show/hide Filter</button>
-	<br/>
-	<button style="display: none;" name="toggleAll" onclick="var els = document.getElementsByClassName('show'); w(Object.values(els).forEach(i => i.checked = true));">check all</button>
-	<button style="display: none;" name="toggleAll" onclick="var els = document.getElementsByClassName('show'); w(Object.values(els).forEach(i => i.checked = false));">uncheck all</button>
-	<ul id="filter" class="hide">
-
-		<li>
-			<input id="USD" class="show" name="show[]" type="checkbox" value="USD" />
-			<label for="USD">USD</label>
-		</li>
-		<li>
-			<input id="EUR" class="show" name="show[]" type="checkbox" value="EUR" />
-			<label for="EUR">EUR</label>
-		</li>
-		<li>
-			<input id="JPY" class="show" name="show[]" type="checkbox" value="JPY" />
-			<label for="JPY">JPY</label>
-		</li>
-		<li>
-			<input id="GBP" class="show" name="show[]" type="checkbox" value="GBP" />
-			<label for="GBP">GBP</label>
-		</li>
-		<li>
-			<input id="AUD" class="show" name="show[]" type="checkbox" value="AUD" />
-			<label for="AUD">AUD</label>
-		</li>
-		<li>
-			<input id="CAD" class="show" name="show[]" type="checkbox" value="CAD" />
-			<label for="CAD">CAD</label>
-		</li>
-		<li>
-			<input id="CHF" class="show" name="show[]" type="checkbox" value="CHF" />
-			<label for="CHF">CHF</label>
-		</li>
-		<li>
-			<input id="NZD" class="show" name="show[]" type="checkbox" value="NZD" />
-			<label for="NZD">NZD</label>
-		</li>
-		<li>
-			<input id="CNY" class="show" name="show[]" type="checkbox" value="CNY">
-			<label for="CNY">CNY</label>
-		</li>
-		<li>
-			<input id="SEK" class="show" name="show[]" type="checkbox" value="SEK">
-			<label for="SEK">SEK</label>
-		</li>
-		<li>
-			<input id="MXN" class="show" name="show[]" type="checkbox" value="MXN">
-			<label for="MXN">MXN</label>
-		</li>
-		<li>
-			<input id="SGD" class="show" name="show[]" type="checkbox" value="SGD">
-			<label for="SGD">SGD</label>
-		</li>
-		<li>
-			<input id="HKD" class="show" name="show[]" type="checkbox" value="HKD">
-			<label for="HKD">HKD</label>
-		</li>
-		<li>
-			<input id="NOK" class="show" name="show[]" type="checkbox" value="NOK">
-			<label for="NOK">NOK</label>
-		</li>
-		<li>
-			<input id="KRW" class="show" name="show[]" type="checkbox" value="KRW">
-			<label for="KRW">KRW</label>
-		</li>
-		<li>
-			<input id="TRY" class="show" name="show[]" type="checkbox" value="TRY">
-			<label for="TRY">TRY</label>
-		</li>
-		<li>
-			<input id="RUB" class="show" name="show[]" type="checkbox" value="RUB">
-			<label for="RUB">RUB</label>
-		</li>
-		<li>
-			<input id="INR" class="show" name="show[]" type="checkbox" value="INR">
-			<label for="INR">INR</label>
-		</li>
-		<li>
-			<input id="BRL" class="show" name="show[]" type="checkbox" value="BRL">
-			<label for="BRL">BRL</label>
-		</li>
-		<li>
-			<input id="ZAR" class="show" name="show[]" type="checkbox" value="ZAR">
-			<label for="ZAR">ZAR</label>
-		</li>
-		<li>
-			<input id="DKK" class="show" name="show[]" type="checkbox" value="DKK">
-			<label for="DKK">DKK</label>
-		</li>
-		<li>
-			<input id="PLN" class="show" name="show[]" type="checkbox" value="PLN">
-			<label for="PLN">PLN</label>
-		</li>
-		<li>
-			<input id="TWD" class="show" name="show[]" type="checkbox" value="TWD">
-			<label for="TWD">TWD</label>
-		</li>
-		<li>
-			<input id="THB" class="show" name="show[]" type="checkbox" value="THB">
-			<label for="THB">THB</label>
-		</li>
-		<li>
-			<input id="MYR" class="show" name="show[]" type="checkbox" value="MYR">
-			<label for="MYR">MYR</label>
-		</li>
-		<li>
-			<input id="HUF" class="show" name="show[]" type="checkbox" value="HUF">
-			<label for="HUF">HUF</label>
-		</li>
-		<li>
-			<input id="SAR" class="show" name="show[]" type="checkbox" value="SAR">
-			<label for="SAR">SAR</label>
-		</li>
-		<li>
-			<input id="CZK" class="show" name="show[]" type="checkbox" value="CZK">
-			<label for="CZK">CZK</label>
-		</li>
-		<li>
-			<input id="ILS" class="show" name="show[]" type="checkbox" value="ILS">
-			<label for="ILS">ILS</label>
-		</li>
-		<li>
-			<input id="BTC" class="show" name="show[]" type="checkbox" value="BTC">
-			<label for="BTC">BTC</label>
-		</li>
-		<li>
-			<input id="XAU" class="show" name="show[]" type="checkbox" value="XAU">
-			<label for="XAU">XAU</label>
-		</li>
-		<li>
-			<input id="XAG" class="show" name="show[]" type="checkbox" value="XAG">
-			<label for="XAG">XAG</label>
-		</li>
-		<li>
-			<input id="XPD" class="show" name="show[]" type="checkbox" value="XPD">
-			<label for="XPD">XPD</label>
-		</li>
-		<li>
-			<input id="XPT" class="show" name="show[]" type="checkbox" value="XPT">
-			<label for="XPT">XPT</label>
-		</li>
-
-
-	</ul>
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112925276-1"></script>
@@ -276,7 +339,6 @@
 	<hr/>
 	<br/>
 
-	<button onclick='this.style.display="none"; w(document.body); var d = document, s = d.createElement("script"); s.src = "https://fx-tools.disqus.com/embed.js"; s.setAttribute("data-timestamp", +new Date()); d.body.appendChild(s);'>show comments</button>
 	<div id="disqus_thread"></div>
 
 </body>
