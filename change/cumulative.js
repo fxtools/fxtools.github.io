@@ -1,3 +1,5 @@
+// https://www.oanda.com/forex-trading/analysis/currency-heatmap
+
 var w = console.log;
 var DateTime = luxon.DateTime;
 var Interval = luxon.Interval;
@@ -510,14 +512,6 @@ var redraw = function(prefix, percentages) {
   }
 };
 
-var nextTick = function() {
-    return 60000 - new Date() % 60000;
-  },
-  autoUpdate = function() {
-    update(DateTime.local().toISO());
-    setTimeout(autoUpdate, nextTick());
-  };
-
 var loadData = function(enabled) {
   var today = DateTime.fromISO(
       DateTime.utc()
@@ -534,7 +528,6 @@ var loadData = function(enabled) {
 
   if (dt.toISODate() == today.toISODate()) {
     window.runCheckTime = true;
-    setTimeout(autoUpdate, nextTick());
   } else {
     document.getElementById("jumpToCurrentDay").href =
       document.location.origin + document.location.pathname;
@@ -614,8 +607,6 @@ var loadData = function(enabled) {
   });
 
   d3.tsv(uriC, function(error, data) {
-    setInterval(checkTime, 1000 * 30);
-
     if (error) {
       return;
     }
@@ -629,8 +620,6 @@ var loadData = function(enabled) {
     redraw("america", window.sessions.america.filtered);
     document.getElementById("heading-asia").style.display = "block";
     document.getElementById("container-america").style.display = "block";
-
-    checkTime();
   });
 };
 
@@ -682,7 +671,23 @@ var checkTime = function() {
       .toDuration(["minutes"])
       .toObject();
     old.innerText = "Data is " + Math.ceil(i.minutes) + " minutes old";
+
+    if (Math.ceil(i.minutes) >= 7) {
+      w("jp udpate now!");
+      update();
+    } else {
+      w("nix update!", Math.ceil(i.minutes));
+    }
   }
 };
 
+var nextTick = function() {
+    return 60000 - new Date() % 60000;
+  },
+  checkTimeLoop = function() {
+    checkTime(DateTime.local().toISO());
+    setTimeout(checkTimeLoop, nextTick());
+  };
+
 update();
+setTimeout(checkTimeLoop, nextTick());
