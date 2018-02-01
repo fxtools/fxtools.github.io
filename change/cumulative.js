@@ -253,7 +253,7 @@ var GenChart = function(d) {
     bindto: "#chart",
   });
 
-  d3.select("#chartCaption").text(d.base);
+  d3.select("#chartCaption").html("all currencies vs " + d.base);
 };
 
 var redraw = function(prefix, percentages) {
