@@ -308,22 +308,39 @@ var redraw = function(prefix, percentages) {
 };
 
 var loadData = function(enabled) {
-  var dt = DateTime.utc().plus({ hours: 2 });
-
-  document.getElementById("today").href =
-    document.location.origin + document.location.pathname;
-  // "?day=" + dt.toISODate();
+  var today = DateTime.fromISO(
+      DateTime.utc()
+        .plus({ hours: 2 })
+        .toISODate()
+    ),
+    dt = today;
 
   try {
-    var day = document.location.href.match(/day=(\d{4}-\d{2}-\d{2})/)[1];
-    dt = DateTime.fromISO(day);
+    dt = DateTime.fromISO(
+      document.location.href.match(/day=(\d{4}-\d{2}-\d{2})/)[1]
+    );
   } catch (e) {}
 
-  document.getElementById("prev").href =
-    "?day=" + dt.plus({ days: -1 }).toISODate();
+  if (dt.toISODate() != today.toISODate()) {
+    document.getElementById("jumpToCurrentDay").href =
+      document.location.origin + document.location.pathname;
+    // "?day=" + dt.toISODate();
+    document.getElementById("subNavi").style.display = "block";
+  }
+
+  if (dt > DateTime.fromISO("2018-01-30")) {
+    document.getElementById("prev").style.display = "block";
+    document.getElementById("prev").href =
+      "?day=" + dt.plus({ days: -1 }).toISODate();
+  }
+
   document.getElementById("date").innerText = dt.toISODate();
-  document.getElementById("next").href =
-    "?day=" + dt.plus({ days: +1 }).toISODate();
+
+  if (dt < today) {
+    document.getElementById("next").style.display = "block";
+    document.getElementById("next").href =
+      "?day=" + dt.plus({ days: +1 }).toISODate();
+  }
 
   var disqus_config = function() {
     this.page.url =
@@ -433,7 +450,7 @@ var update = function() {
 setInterval(update, 1000 * 60 * 5);
 update();
 
-d3.selectAll("#filter > tbody > tr > th").on("click", function(d, a, b) {
+d3.selectAll("#filter th").on("click", function(d, a, b) {
   var name = this.innerText.toLowerCase() + "[]";
   var els = document.getElementsByName(name);
   if (els[0].checked) {
@@ -443,3 +460,4 @@ d3.selectAll("#filter > tbody > tr > th").on("click", function(d, a, b) {
   }
   onFilterUpdate();
 });
+    
