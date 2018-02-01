@@ -675,6 +675,7 @@ var checkTime = function() {
     if (Math.ceil(i.minutes) >= 7) {
       w("update now!");
       update();
+      old.innerText = "";
     } else {
       w("wait!", Math.ceil(i.minutes));
     }
