@@ -673,10 +673,10 @@ var checkTime = function() {
     old.innerText = "Data is " + Math.ceil(i.minutes) + " minutes old";
 
     if (Math.ceil(i.minutes) >= 7) {
-      w("jp udpate now!");
+      w("update now!");
       update();
     } else {
-      w("nix update!", Math.ceil(i.minutes));
+      w("wait!", Math.ceil(i.minutes));
     }
   }
 };
