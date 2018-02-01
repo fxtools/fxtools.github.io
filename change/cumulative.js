@@ -605,6 +605,8 @@ var loadData = function(enabled) {
   });
 
   d3.tsv(uriC, function(error, data) {
+    setInterval(checkTime, 1000 * 30);
+
     if (error) {
       return;
     }
@@ -618,6 +620,8 @@ var loadData = function(enabled) {
     redraw("america", window.sessions.america.filtered);
     document.getElementById("heading-asia").style.display = "block";
     document.getElementById("container-america").style.display = "block";
+
+    checkTime();
   });
 };
 
@@ -677,5 +681,3 @@ var checkTime = function() {
 };
 
 update();
-checkTime();
-setInterval(checkTime, 1000 * 30);
