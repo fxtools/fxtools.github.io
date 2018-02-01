@@ -670,14 +670,15 @@ var checkTime = function() {
     var i = Interval.fromDateTimes(newestDateTime, DateTime.local())
       .toDuration(["minutes"])
       .toObject();
-    old.innerText = "Data is " + Math.ceil(i.minutes) + " minutes old";
+    var minutes = Math.ceil(i.minutes);
+
+    if (minutes >= 10) {
+      old.innerText = "Data is " + Math.ceil(i.minutes) + " minutes old";
+    }
 
     if (Math.ceil(i.minutes) >= 7) {
-      w("update now!");
       update();
       old.innerText = "";
-    } else {
-      w("wait!", Math.ceil(i.minutes));
     }
   }
 };
