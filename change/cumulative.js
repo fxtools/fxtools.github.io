@@ -1,7 +1,98 @@
 var w = console.log;
 var DateTime = luxon.DateTime;
+var Interval = luxon.Interval;
 
 //window.onerror = function(msg, url, line, col, error) {};
+
+var newestDateTime = DateTime.fromObject({
+  year: 2018,
+  month: 01,
+  day: 01,
+});
+
+// var getPow = function(pair) {
+//   switch (pair) {
+//     case "USDEUR":
+//       return 4;
+//     case "USDGBP":
+//       return 4;
+//     case "USDAUD":
+//       return 4;
+//     case "USDNZD":
+//       return 4;
+//     case "CADUSD":
+//       return 4;
+//     case "CHFUSD":
+//       return 4;
+//     case "JPYUSD":
+//       return 6;
+//     case "EURJPY":
+//       return 2;
+//   }
+
+//   return 0;
+// };
+
+// var drawSecondChart = function(upDown) {
+//   upDown = upDown.filter(v => v.pair.indexOf("USD") != -1);
+
+//   var pairs = upDown.map(v => v.pair);
+
+//   var chart2 = bb.generate({
+//     data: {
+//       json: {
+//         up: upDown.map(v => +v.up),
+//         down: upDown.map(v => -v.down),
+//       },
+//       colors: {
+//         up: "dimgray",
+//         down: "red",
+//       },
+//       labels: true,
+//       type: "bar",
+//       groups: [["up", "down"]],
+//     },
+//     grid: {
+//       y: {
+//         lines: [
+//           {
+//             value: 0,
+//           },
+//         ],
+//       },
+//     },
+//     axis: {
+//       x: {
+//         type: "category",
+//         categories: pairs,
+//       },
+//       y: {
+//         padding: {
+//           top: 100,
+//           bottom: 100,
+//         },
+//       },
+//     },
+//     //   y: {
+//     //     label: {
+//     //       text: "change in %",
+//     //       position: "outer-middle",
+//     //     },
+//     //   },
+//     // },
+//     // tooltip: {
+//     //   format: {
+//     //     value: function(value, ratio, id) {
+//     //       return value + "%";
+//     //     },
+//     //   },
+//     // },
+//     legend: {
+//       show: false,
+//     },
+//     bindto: "#CombinationChart",
+//   });
+// };
 
 var readFilter = function() {
   var parts = document.cookie.split(",");
@@ -33,6 +124,10 @@ var writeFilter = function() {
   document.cookie = filterArray.join(",");
 };
 
+var digits = function(number) {
+  return Math.floor(Math.log10(+number)) + 1;
+};
+
 var precalcMatrix = function(data) {
   var lookup = new Map(),
     tmpCurrencies = {};
@@ -40,17 +135,51 @@ var precalcMatrix = function(data) {
   data.forEach(function(entry) {
     var base = entry.symbol.substring(0, 3);
     var quote = entry.symbol.substring(3, 6);
+
+    var t = DateTime.fromISO(entry.time);
+    if (t.toISO() != null) {
+      var local = DateTime.local();
+
+      if (newestDateTime < t) {
+        newestDateTime = t;
+      }
+    }
+
     tmpCurrencies[base] = {};
     tmpCurrencies[quote] = {};
 
+    // var match = entry.prev_day_close.toString().match(/(\d+\.){0,1}(\d+)/);
+    // var pow1 =
+    //   match != null && match.length == 3 ? Math.pow(10, digits(match[2])) : 0;
+
+    // var match = entry.open.toString().match(/(\d+\.){0,1}(\d+)/);
+    // var pow2 =
+    //   match != null && match.length == 3 ? Math.pow(10, digits(match[2])) : 0;
+
+    // var match = entry.high.toString().match(/(\d+\.){0,1}(\d+)/);
+    // var pow3 =
+    //   match != null && match.length == 3 ? Math.pow(10, digits(match[2])) : 0;
+
+    // var match = entry.low.toString().match(/(\d+\.){0,1}(\d+)/);
+    // var pow4 =
+    //   match != null && match.length == 3 ? Math.pow(10, digits(match[2])) : 0;
+
+    // var match = entry.last.toString().match(/(\d+\.){0,1}(\d+)/);
+    // var pow5 =
+    //   match != null && match.length == 3 ? Math.pow(10, digits(match[2])) : 0;
+
     lookup.set(entry.symbol, {
-      prev: entry.prev_day_close,
-      last: entry.last,
+      prev: +entry.prev_day_close,
+      high: entry.high,
+      low: entry.low,
+      last: +entry.last,
+      // pow: Math.max(pow1, pow2, pow3, pow4, pow5),
     });
   }, this);
 
-  var currencies = Object.keys(tmpCurrencies);
+  checkTime();
 
+  var currencies = Object.keys(tmpCurrencies);
   var getPercentages = function(base, quote) {
     var pair = base + quote,
       rev = quote + base,
@@ -58,13 +187,21 @@ var precalcMatrix = function(data) {
       quoteEuropeanTerms = quote + "USD",
       baseAmericanTerms = "USD" + base,
       quoteAmericanTerms = "USD" + quote,
-      o = { prev: 0, last: 0 };
+      o = {
+        prev: 0,
+        high: 0,
+        low: 0,
+        last: 0,
+        // pow: Math.pow(10, getPow(pair)),
+      };
 
     if (lookup.has(pair)) {
       o = lookup.get(pair);
     } else if (lookup.has(rev)) {
       var value = lookup.get(rev);
       o.prev = 1 / value.prev;
+      o.high = 1 / value.high;
+      o.low = 1 / value.low;
       o.last = 1 / value.last;
     } else if (
       lookup.has(baseEuropeanTerms) &&
@@ -74,6 +211,8 @@ var precalcMatrix = function(data) {
       var valueB = lookup.get(quoteEuropeanTerms);
 
       o.prev = valueA.prev / valueB.prev;
+      o.high = valueA.high / valueB.high;
+      o.low = valueA.low / valueB.low;
       o.last = valueA.last / valueB.last;
     } else if (
       lookup.has(baseAmericanTerms) &&
@@ -83,6 +222,8 @@ var precalcMatrix = function(data) {
       var valueB = lookup.get(quoteAmericanTerms);
 
       o.prev = 1 / (valueA.prev / valueB.prev);
+      o.high = 1 / (valueA.high / valueB.high);
+      o.low = 1 / (valueA.low / valueB.low);
       o.last = 1 / (valueA.last / valueB.last);
     } else if (
       lookup.has(baseEuropeanTerms) &&
@@ -92,6 +233,8 @@ var precalcMatrix = function(data) {
       var valueB = lookup.get(quoteAmericanTerms);
 
       o.prev = valueA.prev * valueB.prev;
+      o.high = valueA.high * valueB.high;
+      o.low = valueA.low * valueB.low;
       o.last = valueA.last * valueB.last;
     } else if (
       lookup.has(baseAmericanTerms) &&
@@ -101,10 +244,64 @@ var precalcMatrix = function(data) {
       var valueB = lookup.get(quoteEuropeanTerms);
 
       o.prev = 1 / (valueA.prev * valueB.prev);
+      o.high = 1 / (valueA.high * valueB.low);
+      o.low = 1 / (valueA.low * valueB.low);
       o.last = 1 / (valueA.last * valueB.last);
     }
 
-    return (o.last - o.prev) / o.last * 100;
+    // var up = Math.max(o.high, o.prev) - Math.min(o.high, o.prev);
+    // var down = Math.max(o.low, o.prev) - Math.min(o.low, o.prev);
+
+    // if (
+    //   up == Number.POSITIVE_INFINITY ||
+    //   up == Number.NEGATIVE_INFINITY ||
+    //   up == Number.NaN
+    // ) {
+    //   up = 0;
+    // }
+    // if (
+    //   down == Number.POSITIVE_INFINITY ||
+    //   down == Number.NEGATIVE_INFINITY ||
+    //   down == Number.NaN
+    // ) {
+    //   down = 0;
+    // }
+
+    // var upO = up;
+    // var downO = down;
+
+    // up = Math.round(up * o.pow);
+    // down = Math.round(down * o.pow);
+
+    // var pair = base + quote;
+    // if (pair == "USDJPY" || pair == "JPYUSD") {
+    //   w(
+    //     pair,
+    //     "prev",
+    //     o.prev,
+    //     "high",
+    //     o.high,
+    //     "low",
+    //     o.low,
+    //     "up",
+    //     up,
+    //     "down",
+    //     down,
+    //     "upO",
+    //     upO,
+    //     "downO",
+    //     downO,
+    //     "pow",
+    //     o.pow
+    //   );
+    //   // EUR/USD 1.242 1.2429 1.24 1 2 0.0008999999999999009 0.0020000000000000018
+    // }
+
+    return {
+      pct: (o.last - o.prev) / o.last * 100,
+      // up: up,
+      // down: down,
+    };
   };
 
   var percentages = {};
@@ -131,7 +328,9 @@ var filterAndSort = function(enabled, percentages) {
   }
 
   // as soon as data is filtered
-  var filtered = {};
+  var filtered = {},
+    upDown = [];
+
   enabled.forEach(function(base) {
     enabled.forEach(function(quote) {
       if (base != quote) {
@@ -142,14 +341,20 @@ var filterAndSort = function(enabled, percentages) {
           percentages.hasOwnProperty(base) &&
           percentages[base].hasOwnProperty(quote)
         ) {
-          filtered[base][quote] = percentages[base][quote];
+          filtered[base][quote] = percentages[base][quote].pct;
+
+          upDown.push({
+            pair: base + quote,
+            up: percentages[base][quote].up,
+            down: percentages[base][quote].down,
+          });
         } else {
           filtered[base][quote] = 0;
         }
       }
     });
   });
-  w(filtered);
+
   if (filtered.length < 2) {
     return [];
   }
@@ -176,7 +381,7 @@ var filterAndSort = function(enabled, percentages) {
   return sorted;
 };
 
-var GenChart = function(d) {
+var genChart = function(d) {
   var base = window.chart;
 
   var chartData = window.sessions.asia.filtered.filter(p => p.base == base);
@@ -191,10 +396,7 @@ var GenChart = function(d) {
   bb.generate({
     data: {
       json: {
-        //asia: Object.values(data0).map(v => w(v); v.toFixed(2)),
-        asia: Object.values(data0).map(function(v) {
-          return v.toFixed(2);
-        }),
+        asia: Object.values(data0).map(v => v.toFixed(2)),
         europe: Object.values(data1).map(v => v.toFixed(2)),
         america: Object.values(data2).map(v => v.toFixed(2)),
       },
@@ -233,23 +435,14 @@ var GenChart = function(d) {
     },
     tooltip: {
       format: {
-        // title: function(d) {
-        //   w(d);
-        //   return d.base;
-        // },
         value: function(value, ratio, id) {
           return value + "%";
         },
       },
     },
-
     legend: {
       show: false,
     },
-    // size: {
-    //   height: 240,
-    //   width: 480,
-    // },
     bindto: "#chart",
   });
 
@@ -295,7 +488,7 @@ var redraw = function(prefix, percentages) {
     .on("click", function(d) {
       if (window.chart != d.base) {
         window.chart = d.base;
-        GenChart(d);
+        genChart(d);
       }
     })
     .on("mousemove", function(d) {
@@ -309,13 +502,13 @@ var redraw = function(prefix, percentages) {
 
       if (window.chart != d.base) {
         window.chart = d.base;
-        GenChart(d);
+        genChart(d);
       }
     });
 
   var chartData = percentages.filter(p => p.base == window.chart);
   if (chartData.length > 0) {
-    GenChart(chartData[0]);
+    genChart(chartData[0]);
   }
 };
 
@@ -370,9 +563,9 @@ var loadData = function(enabled) {
     dt.toISODate() +
     "/";
 
-  var uriA = uri + "asian%20session.tsv";
-  var uriB = uri + "european%20session.tsv";
-  var uriC = uri + "north%20american%20session.tsv";
+  var uriA = uri + "asian%20session.tsv?" + Date.now();
+  var uriB = uri + "european%20session.tsv?" + Date.now();
+  var uriC = uri + "north%20american%20session.tsv?" + Date.now();
 
   window.sessions = {
     asia: { raw: {}, filtered: [] },
@@ -438,6 +631,8 @@ var onFilterUpdate = function() {
   );
   redraw("asia", window.sessions.asia.filtered);
 
+  w(window.sessions.asia.raw);
+
   window.sessions.europe.filtered = filterAndSort(
     enabled,
     window.sessions.europe.raw
@@ -459,9 +654,6 @@ var update = function() {
   loadData(enabled);
 };
 
-setInterval(update, 1000 * 60 * 5);
-update();
-
 d3.selectAll("#filter th").on("click", function(d, a, b) {
   var name = this.innerText.toLowerCase() + "[]";
   var els = document.getElementsByName(name);
@@ -472,3 +664,18 @@ d3.selectAll("#filter th").on("click", function(d, a, b) {
   }
   onFilterUpdate();
 });
+
+var checkTime = function() {
+  var i = Interval.fromDateTimes(newestDateTime, DateTime.local())
+    .toDuration(["minutes"])
+    .toObject();
+  old.innerText = "Data is " + Math.ceil(i.minutes) + " minutes old";
+
+  if (Math.ceil(i.minutes) >= 7) {
+    update();
+  }
+};
+
+update();
+checkTime();
+setInterval(checkTime, 1000 * 30);
