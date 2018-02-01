@@ -138,11 +138,18 @@ var filterAndSort = function(enabled, percentages) {
         if (!filtered.hasOwnProperty(base)) {
           filtered[base] = {};
         }
-        filtered[base][quote] = percentages[base][quote];
+        if (
+          percentages.hasOwnProperty(base) &&
+          percentages[base].hasOwnProperty(quote)
+        ) {
+          filtered[base][quote] = percentages[base][quote];
+        } else {
+          filtered[base][quote] = 0;
+        }
       }
     });
   });
-
+  w(filtered);
   if (filtered.length < 2) {
     return [];
   }
@@ -184,7 +191,10 @@ var GenChart = function(d) {
   bb.generate({
     data: {
       json: {
-        asia: Object.values(data0).map(v => v.toFixed(2)),
+        //asia: Object.values(data0).map(v => w(v); v.toFixed(2)),
+        asia: Object.values(data0).map(function(v) {
+          return v.toFixed(2);
+        }),
         europe: Object.values(data1).map(v => v.toFixed(2)),
         america: Object.values(data2).map(v => v.toFixed(2)),
       },
@@ -236,10 +246,10 @@ var GenChart = function(d) {
     legend: {
       show: false,
     },
-    size: {
-      height: 240,
-      width: 480,
-    },
+    // size: {
+    //   height: 240,
+    //   width: 480,
+    // },
     bindto: "#chart",
   });
 
@@ -290,9 +300,11 @@ var redraw = function(prefix, percentages) {
     })
     .on("mousemove", function(d) {
       d3.selectAll(".tile").style("text-shadow", "0px 0px");
+      // d3.selectAll(".tile").style("font-width", "normal");
 
       d3
         .selectAll(".tile[ccy='" + d.base + "']")
+        // .style("font-width", "bolder");
         .style("text-shadow", "1px 1px 2px black, 0 0 25px green, 0 0 5px red");
 
       if (window.chart != d.base) {
@@ -460,4 +472,3 @@ d3.selectAll("#filter th").on("click", function(d, a, b) {
   }
   onFilterUpdate();
 });
-    
