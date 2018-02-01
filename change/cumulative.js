@@ -635,8 +635,6 @@ var onFilterUpdate = function() {
   );
   redraw("asia", window.sessions.asia.filtered);
 
-  w(window.sessions.asia.raw);
-
   window.sessions.europe.filtered = filterAndSort(
     enabled,
     window.sessions.europe.raw
