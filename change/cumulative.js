@@ -363,6 +363,7 @@ var loadData = function(enabled) {
     );
 
     redraw("asia", window.sessions.asia.filtered);
+    document.getElementById("container-asia").style.display = "block";
   });
 
   d3.tsv(uriB, function(error, data) {
@@ -377,6 +378,8 @@ var loadData = function(enabled) {
     );
 
     redraw("europe", window.sessions.europe.filtered);
+    document.getElementById("heading-asia").style.display = "block";
+    document.getElementById("container-europe").style.display = "block";
   });
 
   d3.tsv(uriC, function(error, data) {
@@ -391,10 +394,12 @@ var loadData = function(enabled) {
     );
 
     redraw("america", window.sessions.america.filtered);
+    document.getElementById("heading-asia").style.display = "block";
+    document.getElementById("container-america").style.display = "block";
   });
 };
 
-d3.selectAll("input.show").on("click", function() {
+var onFilterUpdate = function() {
   writeFilter();
   var enabled = readFilter();
 
@@ -415,7 +420,9 @@ d3.selectAll("input.show").on("click", function() {
     window.sessions.america.raw
   );
   redraw("america", window.sessions.america.filtered);
-});
+};
+
+d3.selectAll("input.show").on("click", onFilterUpdate);
 
 var update = function() {
   var enabled = readFilter();
@@ -425,3 +432,14 @@ var update = function() {
 
 setInterval(update, 1000 * 60 * 5);
 update();
+
+d3.selectAll("#filter > tbody > tr > th").on("click", function(d, a, b) {
+  var name = this.innerText.toLowerCase() + "[]";
+  var els = document.getElementsByName(name);
+  if (els[0].checked) {
+    els.forEach(c => (c.checked = false));
+  } else {
+    els.forEach(c => (c.checked = true));
+  }
+  onFilterUpdate();
+});
