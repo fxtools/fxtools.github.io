@@ -177,8 +177,6 @@ var precalcMatrix = function(data) {
     });
   }, this);
 
-  checkTime();
-
   var currencies = Object.keys(tmpCurrencies);
   var getPercentages = function(base, quote) {
     var pair = base + quote,
@@ -512,6 +510,14 @@ var redraw = function(prefix, percentages) {
   }
 };
 
+var nextTick = function() {
+    return 60000 - new Date() % 60000;
+  },
+  autoUpdate = function() {
+    update(DateTime.local().toISO());
+    setTimeout(autoUpdate, nextTick());
+  };
+
 var loadData = function(enabled) {
   var today = DateTime.fromISO(
       DateTime.utc()
@@ -526,7 +532,10 @@ var loadData = function(enabled) {
     );
   } catch (e) {}
 
-  if (dt.toISODate() != today.toISODate()) {
+  if (dt.toISODate() == today.toISODate()) {
+    window.runCheckTime = true;
+    setTimeout(autoUpdate, nextTick());
+  } else {
     document.getElementById("jumpToCurrentDay").href =
       document.location.origin + document.location.pathname;
     // "?day=" + dt.toISODate();
@@ -668,13 +677,11 @@ d3.selectAll("#filter th").on("click", function(d, a, b) {
 });
 
 var checkTime = function() {
-  var i = Interval.fromDateTimes(newestDateTime, DateTime.local())
-    .toDuration(["minutes"])
-    .toObject();
-  old.innerText = "Data is " + Math.ceil(i.minutes) + " minutes old";
-
-  if (Math.ceil(i.minutes) >= 7) {
-    update();
+  if (window.runCheckTime) {
+    var i = Interval.fromDateTimes(newestDateTime, DateTime.local())
+      .toDuration(["minutes"])
+      .toObject();
+    old.innerText = "Data is " + Math.ceil(i.minutes) + " minutes old";
   }
 };
 
