@@ -31,6 +31,8 @@ if (!localStorage.getItem("user")) {
 }
 window.user = localStorage.getItem("user");
 
+console.log(window.user);
+
 // var getPow = function(pair) {
 //   switch (pair) {
 //     case "USDEUR":
@@ -144,7 +146,6 @@ var writeFilter = function() {
     }
   });
   filter = filterArray.join(",");
-  //document.cookie = filter;
 
   localStorage.setItem("filter", filter);
 
@@ -724,4 +725,3 @@ var nextTick = function() {
 
 update();
 setTimeout(checkTimeLoop, nextTick());
-  
