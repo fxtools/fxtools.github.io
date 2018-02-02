@@ -31,8 +31,6 @@ if (!localStorage.getItem("user")) {
 }
 window.user = localStorage.getItem("user");
 
-console.log(window.user);
-
 // var getPow = function(pair) {
 //   switch (pair) {
 //     case "USDEUR":
