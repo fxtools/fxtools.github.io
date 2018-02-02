@@ -18,6 +18,21 @@ var newestDateTime = DateTime.fromObject({
   day: 01,
 });
 
+function uuidv4() {
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
+    var r = (Math.random() * 16) | 0,
+      v = c == "x" ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+}
+
+if (!localStorage.getItem("user")) {
+  localStorage.setItem("user", uuidv4());
+}
+window.user = localStorage.getItem("user");
+
+console.log(window.user);
+
 // var getPow = function(pair) {
 //   switch (pair) {
 //     case "USDEUR":
@@ -103,7 +118,8 @@ var newestDateTime = DateTime.fromObject({
 // };
 
 var readFilter = function() {
-  var parts = document.cookie.split(",");
+  var filter = localStorage.getItem("filter");
+  var parts = filter ? filter.split(",") : [];
 
   var ret =
     parts.length < 2
@@ -130,10 +146,12 @@ var writeFilter = function() {
     }
   });
   filter = filterArray.join(",");
-  document.cookie = filter;
+  //document.cookie = filter;
 
-  gtag("event", "changed_filter", {
-    event_category: "filter",
+  localStorage.setItem("filter", filter);
+
+  gtag("event", "filter", {
+    event_category: window.user,
     event_label: filter,
   });
 };
@@ -708,3 +726,4 @@ var nextTick = function() {
 
 update();
 setTimeout(checkTimeLoop, nextTick());
+  
