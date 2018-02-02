@@ -13,7 +13,7 @@
 			font: 14px "Gotham A", "Gotham B", sans-serif;
 			font-weight: 500;
 			color: #8a8a8a;
-			text-transform: uppercase;
+			t-ext-transform: uppercase;
 		}
 
 		.cumulative {
@@ -155,6 +155,11 @@
 	</style>
 	<link rel="stylesheet" type="text/css" href="/js/billboard.js/billboard.min.css" />
 	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
+	<link href="/js/enjoyhint/enjoyhint.css" rel="stylesheet">
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="/js/enjoyhint/enjoyhint.js"></script>
+
 </head>
 
 <body class="noselect" unselectable="on" onselectstart="return false;" onmousedown="return false;">
@@ -163,7 +168,7 @@
 		<header>
 
 			<ul>
-				<li title="show other tools">
+				<li id="home" title="show other tools">
 					<a href="/">
 						<i class="fas fa-home"></i>
 					</a>
@@ -184,19 +189,21 @@
 				<li>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				</li>
-				<li>
+				<li id="settings">
 					<a href="javascript:void(0);" onclick="var el = document.getElementById('filter'); el.classList.contains('hide') ? el.classList.remove('hide') : el.classList.add('hide');">
 						<i class="fas fa-cogs" style="margin-left: 0px"></i>
 					</a>
 				</li>
 				<li>
-					<a id="commentCounterLink" href="#disqus_thread" onclick='var d = document, s = d.createElement("script"); s.src = "https://fx-tools.disqus.com/embed.js"; s.setAttribute("data-timestamp", +new Date()); d.body.appendChild(s); this.onclick="";'>
+					<a id="commentLink" href="#disqus_thread" onclick='var d = document, s = d.createElement("script"); s.src = "https://fx-tools.disqus.com/embed.js"; s.setAttribute("data-timestamp", +new Date()); d.body.appendChild(s); this.onclick="";'>
 						0
 						<i class="fas fa-comments"></i>
 					</a>
 				</li>
 				<li>
-					<i class="fas fa-question"></i>
+					<a href="javascript:void(0);" id="tour" onclick="javascript: startTour();">
+						<i class="fas fa-question"></i>
+					</a>
 				</li>
 			</ul>
 
@@ -216,12 +223,12 @@
 				<tr>
 					<th>Majors</th>
 					<th>Minors1</th>
-					<th>Minors2</th>
+					<th id="minors2">Minors2</th>
 					<th>Metals</th>
 					<th>Crypto</th>
 				</tr>
 				<tr>
-					<td>
+					<td id="majors">
 						<ul>
 							<li>
 								<input id="USD" class="show" name="majors[]" type="checkbox" value="USD" />
@@ -432,6 +439,97 @@
 		<script src="cumulative.js"></script>
 
 		<script id="dsq-count-scr" src="//fx-tools.disqus.com/count.js" async></script>
+
+		<script>
+
+			var startTour = function () {
+
+				//initialize instance
+				var tour = new EnjoyHint({
+					showNext: true,
+					showSkip: true,
+				});
+
+				//simple config. 
+				//Only one step - highlighting(with description) "New" button 
+				//hide EnjoyHint after a click on the button.
+				var enjoyhint_script_steps = [
+					{
+						"next header": "This is the navigation area.<br>All settings are accessible here." + "<br><br>" + "Click 'Next' to proceed." + "<br/><br/>"
+					},
+					{
+						"next #percentages": "Heatmap" + "<br/><br/>"
+					},
+					{
+						"next #chartCaption": "Chart Area" + "<br/><br/>",
+						onBeforeStart: function () {
+							$("#commentLink").click();
+						},
+					},
+					{
+						"next #disqus_thread": "And comments are at the bottom." + "<br/><br/>",
+					},
+					{
+						"next #date": "This is the current day for data on this page." + "<br/><br/>"
+					},
+					{
+						"next #prev": "Switch days with this arrows." + "<br/><br/>"
+					},
+					{
+						"next #settings": "This is the filter button." + "<br/><br/>"
+					},
+					{
+						"next #settings": "And this is the filter area." + "<br/><br/>",
+						onBeforeStart: function () {
+							var el = document.getElementById('filter');
+							el.classList.remove('hide');
+						},
+					},
+					{
+						"next #minors2": "Enable/disable whole category by clicking the heading..." + "<br/><br/>",
+					},
+					{
+						"next #THB": "... or a single currency pair by clicking corresponding checkbox." + "<br/><br/>",
+					},
+					{
+						"next #majors": "Only majors selected for this presentation." + "<br/><br/>",
+						onBeforeStart: function () {
+							Object.values(document.getElementsByClassName("show")).forEach(function (el) {
+								el.checked = false;
+							});
+							onFilterUpdate();
+						},
+					},
+					{
+						"next #commentLink": "Comment section can be switched on here." + "<br/><br/>",
+						onBeforeStart: function () {
+							var el = document.getElementById('filter');
+							el.classList.add('hide');
+							Object.values(document.getElementsByClassName("show")).forEach(function (el) {
+								el.checked = false;
+							});
+							onFilterUpdate();
+						},
+					},
+					{
+						"next #percentages": "The Heatmap: Cumulated percentage values for selected currency pairs ordered by session." + "<br/><br/>",
+					},
+					{
+						"next div[ccy='EUR']": "By clicking on a tile you can see the breakdown chart for selected currency." + "<br/><br/>",
+						onBeforeStart: function () {
+							$("div[ccy='EUR']").click();
+						},
+					},
+					{
+						"end #home": "And return to main page with this button." + "<br/><br/>" + "That's it." + "<br/><br/>",
+					},
+				];
+
+				tour.set(enjoyhint_script_steps);
+				tour.run();
+			};
+
+		</script>
 
 	</center>
 
