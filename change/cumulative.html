@@ -444,6 +444,13 @@
 
 			var startTour = function () {
 
+				try {
+					gtag("event", "tour", {
+						event_category: window.user,
+						event_label: "started",
+					});
+				} catch (e) { }
+
 				//initialize instance
 				var tour = new EnjoyHint({
 					showNext: true,
@@ -522,6 +529,14 @@
 					},
 					{
 						"end #home": "And return to main page with this button." + "<br/><br/>" + "That's it." + "<br/><br/>",
+						onBeforeStart: function () {
+							try {
+								gtag("event", "tour", {
+									event_category: window.user,
+									event_label: "ended",
+								});
+							} catch (e) { }
+						},
 					},
 				];
 
