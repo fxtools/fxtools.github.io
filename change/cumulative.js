@@ -4,7 +4,13 @@ var w = console.log;
 var DateTime = luxon.DateTime;
 var Interval = luxon.Interval;
 
-//window.onerror = function(msg, url, line, col, error) {};
+window.onerror = function(msg, url, line, col, error) {
+  gtag("event", "exception", {
+    description:
+      "[" + error + "] " + msg + " in " + url + "[" + line + ":" + col + "]",
+    fatal: false,
+  });
+};
 
 var newestDateTime = DateTime.fromObject({
   year: 2018,
@@ -123,7 +129,13 @@ var writeFilter = function() {
       filterArray.push(el.id);
     }
   });
-  document.cookie = filterArray.join(",");
+  filter = filterArray.join(",");
+  document.cookie = filter;
+
+  gtag("event", "changed_filter", {
+    event_category: "filter",
+    event_label: filter,
+  });
 };
 
 var digits = function(number) {
@@ -446,7 +458,7 @@ var genChart = function(d) {
     bindto: "#chart",
   });
 
-  d3.select("#chartCaption").html("all currencies vs " + d.base);
+  d3.select("#chartCaption").html(d.base + " vs other currencies");
 };
 
 var redraw = function(prefix, percentages) {
@@ -515,7 +527,7 @@ var redraw = function(prefix, percentages) {
 var loadData = function(enabled) {
   var today = DateTime.fromISO(
       DateTime.utc()
-        .plus({ hours: 2 })
+        .plus({ hours: 2, minutes: 6 })
         .toISODate()
     ),
     dt = today;
@@ -576,9 +588,11 @@ var loadData = function(enabled) {
   };
 
   d3.tsv(uriA, function(error, data) {
+    document.getElementById("container-nodata").style.display = "block";
     if (error) {
       return;
     }
+
     window.sessions.asia.raw = precalcMatrix(data);
 
     window.sessions.asia.filtered = filterAndSort(
@@ -587,6 +601,7 @@ var loadData = function(enabled) {
     );
 
     redraw("asia", window.sessions.asia.filtered);
+    document.getElementById("container-nodata").style.display = "none";
     document.getElementById("container-asia").style.display = "block";
   });
 
