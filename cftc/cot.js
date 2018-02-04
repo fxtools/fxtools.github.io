@@ -454,8 +454,8 @@ $("table td").hover(
   },
   function() {
     $("table td:nth-child(" + ($(this).index() + 1) + ")").removeClass("hover");
-    // $(".colorized")
-    //   .css("background", "")
-    //   .removeClass("colorized");
+    $(".colorized")
+      .css("background", "")
+      .removeClass("colorized");
   }
 );
