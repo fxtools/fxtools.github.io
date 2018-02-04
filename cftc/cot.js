@@ -460,8 +460,8 @@ var loadReport = function(date) {
         $("<option>", {
           value: name,
           text: name,
-          // selected: name == "EURO FX - CHICAGO MERCANTILE EXCHANGE",
-          selected: name == "BITCOIN-USD - CBOE FUTURES EXCHANGE",
+          selected: name == "EURO FX - CHICAGO MERCANTILE EXCHANGE",
+          // selected: name == "BITCOIN-USD - CBOE FUTURES EXCHANGE",
         })
       );
     });
