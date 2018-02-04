@@ -425,8 +425,6 @@ var loadReport = function(date) {
 
     window.reports = Enumerable.from(reports).where(r => r.value.cotCombined && r.value.cotFutures && r.value.tffCombined && r.value.tffFutures);
 
-    w("all repos", window.reports.toArray());
-
     self.next();
   });
 
@@ -435,6 +433,11 @@ var loadReport = function(date) {
     var rawReport = window.reports.where(r => r.key.indexOf(symbol) != -1).first().value;
     window.currentReport = calculateReport(rawReport);
     drawReport();
+    window.currentReport.reportTypes.forEach(function(reportType) {
+      window.currentReport.rows.forEach(function(row) {
+        colorize("tff", "without-spreading", reportType, row);
+      });
+    });
   };
 
   this.next = function() {
@@ -474,21 +477,25 @@ $("table td").hover(
       .attr("id")
       .split("_");
 
-    var cot = $("#futures_positions_noncom_long:visible").length > 0;
-    var tff = $("#futures_positions_dealer_long:visible").length > 0;
+    // var cot = $("#futures_positions_noncom_long:visible").length > 0;
+    // var tff = $("#futures_positions_dealer_long:visible").length > 0;
 
-    var visibility = cot && tff ? "both" : cot ? "cot" : "tff";
-    var spreading = $(".spreading:visible").length > 0 ? "with-spreading" : "without-spreading";
-    var reportType = parts[0];
-    var row = parts[1];
+    // var visibility = cot && tff ? "both" : cot ? "cot" : "tff";
+    // var spreading = $(".spreading:visible").length > 0 ? "with-spreading" : "without-spreading";
+    // var reportType = parts[0];
+    // var row = parts[1];
 
-    colorize(visibility, spreading, reportType, row);
+    // window.currentReport.reportTypes.forEach(function(reportType) {
+    //   window.currentReport.rows.forEach(function(row) {
+    //     colorize(visibility, spreading, reportType, row);
+    //   });
+    // });
   },
   function() {
     $("table td:nth-child(" + ($(this).index() + 1) + ")").removeClass("hover");
-    $(".colorized")
-      .css("background", "")
-      .removeClass("colorized");
+    // $(".colorized")
+    //   .css("background", "")
+    //   .removeClass("colorized");
   }
 );
 
