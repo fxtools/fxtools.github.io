@@ -411,6 +411,12 @@ var loadReport = function(date) {
     var rawReport = window.reports.where(r => r.key.indexOf(symbol) != -1).first().value;
     window.currentReport = calculateReport(rawReport);
     drawReport();
+
+    // $("#switch-report-types").click();
+    // $("#no-spreading").click();
+
+    // $("#switch-report-types").hide();
+    // $("#no-spreading").hide();
   };
 
   this.next = function() {
@@ -431,8 +437,6 @@ var loadReport = function(date) {
     drawSelectedSymbol();
   };
 };
-
-loadReport(DateTime.fromISO("2018-01-30"));
 
 $("table td").hover(
   function() {
@@ -459,3 +463,5 @@ $("table td").hover(
       .removeClass("colorized");
   }
 );
+
+loadReport(DateTime.fromISO("2018-01-30"));
