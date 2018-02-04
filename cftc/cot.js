@@ -284,8 +284,14 @@ var calculateReport = function(rawReport) {
         } else if (row == "percentages") {
           var total = report.oi.total[rawReport.key];
           var positions = report["positions"][opponent][rawReport.key];
-          report[row][opponent][rawReport.key].grossLong = +(positions.grossLong / total * 100).toFixed(1);
-          report[row][opponent][rawReport.key].grossShort = +(positions.grossShort / total * 100).toFixed(1);
+
+          if (total == 0) {
+            report[row][opponent][rawReport.key].grossLong = +(positions.grossLong / total * 100).toFixed(1);
+            report[row][opponent][rawReport.key].grossShort = +(positions.grossShort / total * 100).toFixed(1);
+          } else {
+            report[row][opponent][rawReport.key].grossLong = 0;
+            report[row][opponent][rawReport.key].grossShort = 0;
+          }
         } else if (row == "traders") {
           report[row][opponent][rawReport.key].grossLong = Math.max(report[row][opponent][rawReport.key].long, report[row][opponent][rawReport.key].spreading);
           report[row][opponent][rawReport.key].grossShort = Math.max(report[row][opponent][rawReport.key].short, report[row][opponent][rawReport.key].spreading);
@@ -306,11 +312,19 @@ var calculateReport = function(rawReport) {
         var positions = report["positions"][opponent]["options"];
         report[row][opponent]["options"] = {};
 
-        report[row][opponent]["options"].long = +(positions.long / total * 100).toFixed(1);
-        report[row][opponent]["options"].short = +(positions.short / total * 100).toFixed(1);
-        report[row][opponent]["options"].spreading = +(positions.spreading / total * 100).toFixed(1);
-        report[row][opponent]["options"].grossShort = +(positions.grossShort / total * 100).toFixed(1);
-        report[row][opponent]["options"].grossLong = +(positions.grossLong / total * 100).toFixed(1);
+        if (total == 0) {
+          report[row][opponent]["options"].long = 0;
+          report[row][opponent]["options"].short = 0;
+          report[row][opponent]["options"].spreading = 0;
+          report[row][opponent]["options"].grossShort = 0;
+          report[row][opponent]["options"].grossLong = 0;
+        } else {
+          report[row][opponent]["options"].long = +(positions.long / total * 100).toFixed(1);
+          report[row][opponent]["options"].short = +(positions.short / total * 100).toFixed(1);
+          report[row][opponent]["options"].spreading = +(positions.spreading / total * 100).toFixed(1);
+          report[row][opponent]["options"].grossShort = +(positions.grossShort / total * 100).toFixed(1);
+          report[row][opponent]["options"].grossLong = +(positions.grossLong / total * 100).toFixed(1);
+        }
       } else if (row == "traders") {
         // there are no traders for OptOnly
       }
@@ -446,7 +460,8 @@ var loadReport = function(date) {
         $("<option>", {
           value: name,
           text: name,
-          selected: name == "EURO FX - CHICAGO MERCANTILE EXCHANGE",
+          // selected: name == "EURO FX - CHICAGO MERCANTILE EXCHANGE",
+          selected: name == "BITCOIN-USD - CBOE FUTURES EXCHANGE",
         })
       );
     });
