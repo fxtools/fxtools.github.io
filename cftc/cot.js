@@ -284,13 +284,12 @@ var calculateReport = function(rawReport) {
         } else if (row == "percentages") {
           var total = report.oi.total[rawReport.key];
           var positions = report["positions"][opponent][rawReport.key];
-
           if (total == 0) {
-            report[row][opponent][rawReport.key].grossLong = +(positions.grossLong / total * 100).toFixed(1);
-            report[row][opponent][rawReport.key].grossShort = +(positions.grossShort / total * 100).toFixed(1);
-          } else {
             report[row][opponent][rawReport.key].grossLong = 0;
             report[row][opponent][rawReport.key].grossShort = 0;
+          } else {
+            report[row][opponent][rawReport.key].grossLong = +(positions.grossLong / total * 100).toFixed(1);
+            report[row][opponent][rawReport.key].grossShort = +(positions.grossShort / total * 100).toFixed(1);
           }
         } else if (row == "traders") {
           report[row][opponent][rawReport.key].grossLong = Math.max(report[row][opponent][rawReport.key].long, report[row][opponent][rawReport.key].spreading);
