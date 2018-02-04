@@ -43,7 +43,7 @@ var calcMinMaxAndColors = function(report) {
     if (spreading == "with-spreading") {
       target.max = Math.max(target.max, values.long, values.short, values.spreading);
       target.min = Math.min(target.min, values.long, values.short, values.spreading);
-    } else {
+    } else if (spreading == "without-spreading") {
       target.max = Math.max(target.max, values.grossLong, values.grossShort);
       target.min = Math.min(target.min, values.grossLong, values.grossShort);
     }
@@ -60,7 +60,7 @@ var calcMinMaxAndColors = function(report) {
         minMaxMatrix[visibility][spreading][reportType] = {};
 
         report.rows.forEach(function(row) {
-          minMaxMatrix[visibility][spreading][reportType][row] = { min: 0, max: 0 };
+          minMaxMatrix[visibility][spreading][reportType][row] = { min: Number.MAX_VALUE, max: Number.MIN_VALUE };
 
           report.opponents.forEach(function(opponent) {
             var values = report[row][opponent][reportType];
@@ -100,14 +100,22 @@ var calcMinMaxAndColors = function(report) {
 
         report.rows.forEach(function(row) {
           var mm = minMaxMatrix[visibility][spreading][reportType][row];
-          colors[visibility][spreading][reportType][row] = d3
+
+          // colors[visibility][spreading][reportType][row] = d3
+          //   .scaleLinear()
+          //   // .domain([mm.max, mm.min])
+          //   // .range(["green", "red"]);
+          //   .domain([mm.max, 0, mm.min])
+          //   .range(["green", "white", "red"]);
+          // // .domain([mm.max, mm.max / 10, 0, mm.min / 10, mm.min])
+          // // .range(["green", "lightgreen", "white", "lightcoral", "red"]);
+
+          var color = d3
             .scaleLinear()
-            // .domain([mm.max, mm.min])
-            // .range(["green", "red"]);
-            .domain([mm.max, 0, mm.min])
+            .domain([Math.max(0, mm.max), 0, Math.min(0, mm.min)])
             .range(["green", "white", "red"]);
-          // .domain([mm.max, mm.max / 10, 0, mm.min / 10, mm.min])
-          // .range(["green", "lightgreen", "white", "lightcoral", "red"]);
+
+          colors[visibility][spreading][reportType][row] = color;
         });
       });
     });
@@ -133,11 +141,14 @@ var formatAllCells = function() {
 var colorize = function(visibility, spreading, reportType, row) {
   var color = window.currentColors[visibility][spreading][reportType][row];
 
+  var withoutSpreading = spreading == "without-spreading";
+
   var cells = $("#" + reportType + "_" + row + " td");
 
   cells.each(function(i, d) {
+    var value = +(withoutSpreading && d.hasAttribute("gross") ? d.getAttribute("gross") : d.getAttribute("value"));
     $(this)
-      .css("background", color(+d.getAttribute("value")))
+      .css("background", color(value))
       .addClass("colorized");
   });
 };
@@ -269,7 +280,6 @@ var calculateReport = function(rawReport) {
 
         if (row == "positions" || row == "changes") {
           report[row][opponent][rawReport.key].grossLong = report[row][opponent][rawReport.key].long + report[row][opponent][rawReport.key].spreading;
-
           report[row][opponent][rawReport.key].grossShort = report[row][opponent][rawReport.key].short + report[row][opponent][rawReport.key].spreading;
         } else if (row == "percentages") {
           var total = report.oi.total[rawReport.key];
