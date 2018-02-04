@@ -336,9 +336,8 @@ var calculateReport = function(rawReport) {
 
 var drawReport = function() {
   var report = window.currentReport;
-
   $("#name").text(report.name);
-  $("#date").text(report.date);
+  $("#date").text(DateTime.fromISO(report.date).toLocaleString(DateTime.DATE_HUGE));
 
   // set report headers
   Object.keys(report.oi).forEach(function(key) {
