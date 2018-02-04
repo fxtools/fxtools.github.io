@@ -440,8 +440,8 @@ var loadReport = function(date) {
     self.next();
   });
 
-  this.drawSelectedSymbol = function() {
-    var symbol = $("#symbol").val();
+  this.drawSelectedSymbol = function(symbol) {
+    //var symbol = $("#symbol").val();
     var rawReport = window.reports.where(r => r.key.indexOf(symbol) != -1).first().value;
     window.currentReport = calculateReport(rawReport);
     drawReport();
@@ -453,13 +453,19 @@ var loadReport = function(date) {
   };
 
   this.next = function() {
+    var symbol = localStorage.getItem("default-symbol");
+    if (symbol == null) {
+      symbol = "EURO FX - CHICAGO MERCANTILE EXCHANGE";
+      // defaultSymbol = "BITCOIN-USD - CBOE FUTURES EXCHANGE";
+      localStorage.setItem("default-symbol", symbol);
+    }
+
     var names = window.reports.select(r => r.key).forEach(function(name, i) {
       $("#symbol").append(
         $("<option>", {
           value: name,
           text: name,
-          selected: name == "EURO FX - CHICAGO MERCANTILE EXCHANGE",
-          // selected: name == "BITCOIN-USD - CBOE FUTURES EXCHANGE",
+          selected: name == symbol,
         })
       );
     });
@@ -470,15 +476,19 @@ var loadReport = function(date) {
     $("#switch-report-types").hide();
     $("#no-spreading").hide();
 
-    $("#symbol").on("input", function() {
-      gtag("event", "changed symbol", {
-        event_category: window.user,
-        event_label: $("#symbol").val(),
-      });
-      drawSelectedSymbol();
-    });
+    drawSelectedSymbol(symbol);
 
-    drawSelectedSymbol();
+    $("#symbol").on("input", function() {
+      var symbol = $("#symbol").val();
+      localStorage.setItem("default-symbol", symbol);
+      drawSelectedSymbol(symbol);
+      try {
+        gtag("event", "changed symbol", {
+          event_category: window.user,
+          event_label: symbol,
+        });
+      } catch (e) {}
+    });
   };
 };
 
