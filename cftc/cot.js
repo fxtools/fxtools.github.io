@@ -412,11 +412,11 @@ var loadReport = function(date) {
     window.currentReport = calculateReport(rawReport);
     drawReport();
 
-    // $("#switch-report-types").click();
-    // $("#no-spreading").click();
+    $("#switch-report-types").click();
+    $("#no-spreading").click();
 
-    // $("#switch-report-types").hide();
-    // $("#no-spreading").hide();
+    $("#switch-report-types").hide();
+    $("#no-spreading").hide();
   };
 
   this.next = function() {
