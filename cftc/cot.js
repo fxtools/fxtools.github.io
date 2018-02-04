@@ -1,12 +1,26 @@
-// https://www.oanda.com/forex-trading/analysis/currency-heatmap
-
 var w = console.log;
 var DateTime = luxon.DateTime;
 var Interval = luxon.Interval;
 
 window.onerror = function(msg, url, line, col, error) {
-  w(msg, url, line, col, error);
+  gtag("event", "exception", {
+    description: "[" + error + "] " + msg + " in " + url + "[" + line + ":" + col + "]",
+    fatal: false,
+  });
 };
+
+function uuidv4() {
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
+    var r = (Math.random() * 16) | 0,
+      v = c == "x" ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+}
+
+if (!localStorage.getItem("user")) {
+  localStorage.setItem("user", uuidv4());
+}
+window.user = localStorage.getItem("user");
 
 // ******************************************* //
 // ******************************************* //
@@ -431,6 +445,10 @@ var loadReport = function(date) {
     $("#no-spreading").hide();
 
     $("#symbol").on("input", function() {
+      gtag("event", "changed symbol", {
+        event_category: window.user,
+        event_label: $("#symbol").val(),
+      });
       drawSelectedSymbol();
     });
 
