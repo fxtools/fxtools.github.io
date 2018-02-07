@@ -65,7 +65,7 @@ var calcMinMaxAndColors = function(report) {
           report.opponents.forEach(function(opponent) {
             var values = report[row][opponent][reportType];
 
-            var target = reportType == "options" ? minMaxMatrix[visibility][spreading][reportType][row] : minMaxMatrix[visibility][spreading]["futures"][row];
+            var target = reportType == "options" ? minMaxMatrix[visibility][spreading]["futures"][row] : minMaxMatrix[visibility][spreading][reportType][row];
 
             if (reportType == "options" && row == "traders") {
               // there is no traders-row in options-only-report
@@ -140,7 +140,7 @@ var formatAllCells = function() {
 };
 
 var colorize = function(visibility, spreading, reportType, row) {
-  var color = reportType == "options" ? window.currentColors[visibility][spreading][reportType][row] : window.currentColors[visibility][spreading]["futures"][row];
+  var color = reportType == "options" ? window.currentColors[visibility][spreading]["futures"][row] : window.currentColors[visibility][spreading][reportType][row];
   var withoutSpreading = spreading == "without-spreading";
   var cells = $("#" + reportType + "_" + row + " td");
 
