@@ -449,6 +449,7 @@ var genChart = function(d) {
       },
     },
     axis: {
+      rotated: true,
       x: {
         type: "category",
         categories: Object.keys(d.pcts),
