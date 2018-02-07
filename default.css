@@ -1,0 +1,50 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  font: 12px "Gotham A", "Gotham B", sans-serif;
+  font-weight: 500;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-shadow: 1px 0px 20px yellow;
+}
+
+section {
+  padding: 10px;
+}
+
+header * {
+  color: #8a8a8a;
+}
+
+header {
+  background-color: #272b38;
+  color: #48d8a0;
+}
+
+header#subNavi {
+  background-color: darkred;
+  display: none;
+}
+
+header li {
+  list-style: none;
+  display: inline-block;
+  margin: 10px;
+  text-align: center;
+  vertical-align: top;
+}
