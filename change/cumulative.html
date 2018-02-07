@@ -10,7 +10,7 @@
 		* {
 			margin: 0px;
 			padding: 0px;
-			font: 14px "Gotham A", "Gotham B", sans-serif;
+			font: 10px "Gotham A", "Gotham B", sans-serif;
 			font-weight: 500;
 			color: #8a8a8a;
 			t-ext-transform: uppercase;
@@ -46,10 +46,6 @@
 			display: inline;
 		}
 
-		.hide {
-			display: none;
-		}
-
 		#chart {
 			margin-left: 5%;
 			margin-right: 10%;
@@ -64,13 +60,13 @@
 			margin: 1px;
 			padding: 5px;
 			border-radius: 3px;
-			width: 50px;
+			width: 35px;
 			overflow: hidden;
 		}
 
 		#navi,
 		#navi2 {
-			font-size: 15px;
+			f-ont-size: 15px;
 			padding: 10px;
 		}
 
@@ -152,21 +148,25 @@
 			-o-user-select: none;
 			user-select: none;
 		}
+
+		#time {
+			position: absolute;
+			right: 0px;
+			bottom: 0px;
+			margin: 5px;
+		}
 	</style>
 	<link rel="stylesheet" type="text/css" href="/js/billboard.js/billboard.min.css" />
 	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 
 	<link href="/js/enjoyhint/enjoyhint.css" rel="stylesheet">
-	<script src="/js/jquery-3.3.1.min.js"></script>
-	<script src="/js/enjoyhint/enjoyhint.min.js"></script>
-
 </head>
 
 <body class="noselect" unselectable="on" onselectstart="return false;" onmousedown="return false;">
 	<center>
 
 		<header>
-
+			<span id="time"></span>
 			<ul>
 				<li id="home" title="show other tools">
 					<a href="/">
@@ -174,15 +174,14 @@
 					</a>
 				</li>
 				<li title="jump to previous day">
-					<a id="prev" class="hide" href="javascript:void(0);">
+					<a id="prev" style="display: none;" href="javascript:void(0);">
 						<i class="fas fa-angle-double-left"></i>
 					</a>
 				</li>
-				<li>
-					<h1 id="date"></h1>
+				<li id="date">
 				</li>
 				<li title="jump to next day">
-					<a id="next" class="hide" href="javascript:void(0);">
+					<a id="next" style="display: none;" href="javascript:void(0);">
 						<i class="fas fa-angle-double-right"></i>
 					</a>
 				</li>
@@ -190,7 +189,7 @@
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				</li>
 				<li id="settings">
-					<a href="javascript:void(0);" onclick="var el = document.getElementById('filter'); el.classList.contains('hide') ? el.classList.remove('hide') : el.classList.add('hide');">
+					<a href="javascript:void(0);">
 						<i class="fas fa-cogs" style="margin-left: 0px"></i>
 					</a>
 				</li>
@@ -217,15 +216,17 @@
 			</ul>
 		</header>
 
-		<section id="filter" class="hide">
+		<section id="filter" style="display: none;">
 
 			<table border="0">
 				<tr>
-					<th>Majors</th>
-					<th>Minors1</th>
-					<th id="minors2">Minors2</th>
-					<th>Metals</th>
-					<th>Crypto</th>
+					<th id="majors">Majors</th>
+					<th id="minors1">Minors 1</th>
+					<th id="minors2">Minors 2</th>
+					<th id="minors3">Minors 3</th>
+					<th id="minors4">Minors 4</th>
+					<th id="metals">Metals</th>
+					<th id="crypto">Crypto</th>
 				</tr>
 				<tr>
 					<td id="majors">
@@ -262,13 +263,19 @@
 								<input id="NZD" class="show" name="majors[]" type="checkbox" value="NZD" />
 								<label for="NZD">NZD</label>
 							</li>
+
 						</ul>
 					</td>
 					<td>
 						<ul>
+
 							<li>
 								<input id="CNY" class="show" name="minors1[]" type="checkbox" value="CNY">
 								<label for="CNY">CNY</label>
+							</li>
+							<li>
+								<input id="CNH" class="show" name="minors1[]" type="checkbox" value="CNH">
+								<label for="CNH">CNH</label>
 							</li>
 							<li>
 								<input id="SEK" class="show" name="minors1[]" type="checkbox" value="SEK">
@@ -290,30 +297,40 @@
 								<input id="NOK" class="show" name="minors1[]" type="checkbox" value="NOK">
 								<label for="NOK">NOK</label>
 							</li>
+
+
+
 							<li>
 								<input id="KRW" class="show" name="minors1[]" type="checkbox" value="KRW">
 								<label for="KRW">KRW</label>
 							</li>
-							<li>
-								<input id="TRY" class="show" name="minors1[]" type="checkbox" value="TRY">
-								<label for="TRY">TRY</label>
-							</li>
-							<li>
-								<input id="RUB" class="show" name="minors1[]" type="checkbox" value="RUB">
-								<label for="RUB">RUB</label>
-							</li>
-							<li>
-								<input id="INR" class="show" name="minors1[]" type="checkbox" value="INR">
-								<label for="INR">INR</label>
-							</li>
-							<li>
-								<input id="BRL" class="show" name="minors1[]" type="checkbox" value="BRL">
-								<label for="BRL">BRL</label>
-							</li>
+
+
+
+
 						</ul>
 					</td>
 					<td>
 						<ul>
+
+
+
+							<li>
+								<input id="TRY" class="show" name="minors2[]" type="checkbox" value="TRY">
+								<label for="TRY">TRY</label>
+							</li>
+							<li>
+								<input id="RUB" class="show" name="minors2[]" type="checkbox" value="RUB">
+								<label for="RUB">RUB</label>
+							</li>
+							<li>
+								<input id="INR" class="show" name="minors2[]" type="checkbox" value="INR">
+								<label for="INR">INR</label>
+							</li>
+							<li>
+								<input id="BRL" class="show" name="minors2[]" type="checkbox" value="BRL">
+								<label for="BRL">BRL</label>
+							</li>
 							<li>
 								<input id="ZAR" class="show" name="minors2[]" type="checkbox" value="ZAR">
 								<label for="ZAR">ZAR</label>
@@ -330,30 +347,89 @@
 								<input id="TWD" class="show" name="minors2[]" type="checkbox" value="TWD">
 								<label for="TWD">TWD</label>
 							</li>
+
+
+						</ul>
+					</td>
+					<td>
+						<ul>
+
 							<li>
-								<input id="THB" class="show" name="minors2[]" type="checkbox" value="THB">
+								<input id="THB" class="show" name="minors3[]" type="checkbox" value="THB">
 								<label for="THB">THB</label>
 							</li>
 							<li>
-								<input id="MYR" class="show" name="minors2[]" type="checkbox" value="MYR">
+								<input id="MYR" class="show" name="minors3[]" type="checkbox" value="MYR">
 								<label for="MYR">MYR</label>
 							</li>
 							<li>
-								<input id="HUF" class="show" name="minors2[]" type="checkbox" value="HUF">
+								<input id="HUF" class="show" name="minors3[]" type="checkbox" value="HUF">
 								<label for="HUF">HUF</label>
 							</li>
 							<li>
-								<input id="SAR" class="show" name="minors2[]" type="checkbox" value="SAR">
+								<input id="SAR" class="show" name="minors3[]" type="checkbox" value="SAR">
 								<label for="SAR">SAR</label>
 							</li>
 							<li>
-								<input id="CZK" class="show" name="minors2[]" type="checkbox" value="CZK">
+								<input id="CZK" class="show" name="minors3[]" type="checkbox" value="CZK">
 								<label for="CZK">CZK</label>
 							</li>
+
 							<li>
-								<input id="ILS" class="show" name="minors2[]" type="checkbox" value="ILS">
+								<input id="ILS" class="show" name="minors3[]" type="checkbox" value="ILS">
 								<label for="ILS">ILS</label>
 							</li>
+
+							<li>
+								<input id="CLP" class="show" name="minors3[]" type="checkbox" value="CLP">
+								<label for="CLP">CLP</label>
+							</li>
+							<li>
+								<input id="IDR" class="show" name="minors3[]" type="checkbox" value="IDR">
+								<label for="IDR">IDR</label>
+							</li>
+
+
+
+
+						</ul>
+					</td>
+					<td>
+						<ul>
+
+
+
+							<li>
+								<input id="COP" class="show" name="minors4[]" type="checkbox" value="COP">
+								<label for="COP">COP</label>
+							</li>
+							<li>
+								<input id="PHP" class="show" name="minors4[]" type="checkbox" value="PHP">
+								<label for="PHP">PHP</label>
+							</li>
+							<li>
+								<input id="RON" class="show" name="minors4[]" type="checkbox" value="RON">
+								<label for="RON">RON</label>
+							</li>
+							<li>
+								<input id="PEN" class="show" name="minors4[]" type="checkbox" value="PEN">
+								<label for="PEN">PEN</label>
+							</li>
+							<li>
+								<input id="ARS" class="show" name="minors4[]" type="checkbox" value="ARS">
+								<label for="ARS">ARS</label>
+							</li>
+							<li>
+								<input id="BGN" class="show" name="minors4[]" type="checkbox" value="BGN">
+								<label for="BGN">BGN</label>
+							</li>
+							<li>
+								<input id="BHD" class="show" name="minors4[]" type="checkbox" value="BHD">
+								<label for="BHD">BHD</label>
+							</li>
+
+
+
 						</ul>
 					</td>
 					<td>
@@ -393,11 +469,24 @@
 						</ul>
 					</td>
 				</tr>
+				<tr>
+					<th colspan="7">
+						<a href="javascript:void(0);" id="select-all">All</a>
+						|
+						<a href="javascript:void(0);" id="select-amer">Americas</a>
+						|
+						<a href="javascript:void(0);" id="select-emea">Europe, the Middle East and Africa</a>
+						|
+						<a href="javascript:void(0);" id="select-asia">Asia-Pacific</a>
+						|
+						<a href="javascript:void(0);" id="select-none">None</a>
+					</th>
+				</tr>
 			</table>
 		</section>
 
 		<section id="percentages">
-			<div id="container-nodata" class="hide">
+			<div id="container-nodata" style="display: none;">
 				<h3>There is no data for this day just yet.</h3>
 			</div>
 			<div id="container-asia">
@@ -424,7 +513,6 @@
 			<div id="disqus_thread"></div>
 		</section>
 
-
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112925276-1"></script>
 		<script>
 			window.dataLayer = window.dataLayer || [];
@@ -433,6 +521,9 @@
 			gtag('config', 'UA-112925276-1');
 		</script>
 
+		<script src="/js/jquery-3.3.1.min.js"></script>
+		<script src="/js/linq/linq.min.js"></script>
+		<script src="/js/enjoyhint/enjoyhint.min.js"></script>
 		<script src="/js/d3/d3.v4.min.js"></script>
 		<script src="/js/luxon/luxon.min.js"></script>
 		<script src="/js/billboard.js/billboard.min.js"></script>
@@ -488,8 +579,7 @@
 					{
 						"next #filter": "And this is the filter area." + "<br/><br/>",
 						onBeforeStart: function () {
-							var el = document.getElementById('filter');
-							el.classList.remove('hide');
+							$("#filter").show();
 						},
 					},
 					{
@@ -510,8 +600,7 @@
 					{
 						"next #commentLink": "Comment section can be switched on here." + "<br/><br/>",
 						onBeforeStart: function () {
-							var el = document.getElementById('filter');
-							el.classList.add('hide');
+							$("#filter").hide();
 							Object.values(document.getElementsByClassName("show")).forEach(function (el) {
 								el.checked = false;
 							});
