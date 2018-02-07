@@ -64,7 +64,8 @@ var calcMinMaxAndColors = function(report) {
 
           report.opponents.forEach(function(opponent) {
             var values = report[row][opponent][reportType];
-            var target = minMaxMatrix[visibility][spreading][reportType][row];
+
+            var target = reportType == "options" ? minMaxMatrix[visibility][spreading][reportType][row] : minMaxMatrix[visibility][spreading]["futures"][row];
 
             if (reportType == "options" && row == "traders") {
               // there is no traders-row in options-only-report
@@ -139,17 +140,15 @@ var formatAllCells = function() {
 };
 
 var colorize = function(visibility, spreading, reportType, row) {
-  var color = window.currentColors[visibility][spreading][reportType][row];
-
+  var color = reportType == "options" ? window.currentColors[visibility][spreading][reportType][row] : window.currentColors[visibility][spreading]["futures"][row];
   var withoutSpreading = spreading == "without-spreading";
-
   var cells = $("#" + reportType + "_" + row + " td");
 
   cells.each(function(i, d) {
     var value = +(withoutSpreading && d.hasAttribute("gross") ? d.getAttribute("gross") : d.getAttribute("value"));
     $(this)
       .css("background", color(value))
-      .addClass("colorized");
+      .addClass(",d");
   });
 };
 
@@ -446,7 +445,8 @@ var loadReport = function(date) {
     window.currentReport = calculateReport(rawReport);
     drawReport();
     window.currentReport.reportTypes.forEach(function(reportType) {
-      window.currentReport.rows.forEach(function(row) {
+      // window.currentReport.rows.forEach(function(row) {
+      ["positions", "changes"].forEach(function(row) {
         colorize("tff", "without-spreading", reportType, row);
       });
     });
@@ -492,34 +492,34 @@ var loadReport = function(date) {
   };
 };
 
-$("table td").hover(
-  function() {
-    $("table td:nth-child(" + ($(this).index() + 1) + ")").addClass("hover");
+// $("table td").hover(
+//   function() {
+//     $("table td:nth-child(" + ($(this).index() + 1) + ")").addClass("hover");
 
-    var parts = $(this)
-      .attr("id")
-      .split("_");
+//     var parts = $(this)
+//       .attr("id")
+//       .split("_");
 
-    // var cot = $("#futures_positions_noncom_long:visible").length > 0;
-    // var tff = $("#futures_positions_dealer_long:visible").length > 0;
+//     // var cot = $("#futures_positions_noncom_long:visible").length > 0;
+//     // var tff = $("#futures_positions_dealer_long:visible").length > 0;
 
-    // var visibility = cot && tff ? "both" : cot ? "cot" : "tff";
-    // var spreading = $(".spreading:visible").length > 0 ? "with-spreading" : "without-spreading";
-    // var reportType = parts[0];
-    // var row = parts[1];
+//     // var visibility = cot && tff ? "both" : cot ? "cot" : "tff";
+//     // var spreading = $(".spreading:visible").length > 0 ? "with-spreading" : "without-spreading";
+//     // var reportType = parts[0];
+//     // var row = parts[1];
 
-    // window.currentReport.reportTypes.forEach(function(reportType) {
-    //   window.currentReport.rows.forEach(function(row) {
-    //     colorize(visibility, spreading, reportType, row);
-    //   });
-    // });
-  },
-  function() {
-    $("table td:nth-child(" + ($(this).index() + 1) + ")").removeClass("hover");
-    // $(".colorized")
-    //   .css("background", "")
-    //   .removeClass("colorized");
-  }
-);
+//     // window.currentReport.reportTypes.forEach(function(reportType) {
+//     //   window.currentReport.rows.forEach(function(row) {
+//     //     ,(visibility, spreading, reportType, row);
+//     //   });
+//     // });
+//   },
+//   function() {
+//     $("table td:nth-child(" + ($(this).index() + 1) + ")").removeClass("hover");
+//     // $(".,d")
+//     //   .css("background", "")
+//     //   .removeClass(",d");
+//   }
+// );
 
 loadReport(DateTime.fromISO("2018-01-30"));
