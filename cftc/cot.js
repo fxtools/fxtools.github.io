@@ -113,7 +113,7 @@ var calcMinMaxAndColors = function(report) {
 
           var color = d3
             .scaleLinear()
-            .domain([Math.max(0, mm.max), 0, Math.min(0, mm.min)])
+            .domain([Math.max(0, Math.max(mm.max, -1 * mm.min)), 0, Math.min(0, Math.min(-1 * mm.max, mm.min))])
             .range(["green", "white", "red"]);
 
           colors[visibility][spreading][reportType][row] = color;
