@@ -442,10 +442,10 @@ var loadReport = function(date) {
   this.drawSelectedSymbol = function(symbol) {
     //var symbol = $("#symbol").val();
     try {
-    var rawReport = window.reports.where(r => r.key.indexOf(symbol) != -1).first().value;
-      catch (e) {
+      var rawReport = window.reports.where(r => r.key.indexOf(symbol) != -1).first().value;
+    } catch (e) {
         var rawReport = window.reports.where(r => r.key.indexOf("EURO FX") != -1).first().value;
-      }
+    }
     window.currentReport = calculateReport(rawReport);
     drawReport();
     window.currentReport.reportTypes.forEach(function(reportType) {
