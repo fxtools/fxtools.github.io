@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<title>charts</title>
+		<link href="/js/c3/c3.css" rel="stylesheet">
+		<style>
+
+			.bar { fill: steelblue; }
+
+			div {
+				d-isplay: inline-block;
+			}
+
+			#daily {
+			}
+
+			#weekly {
+			}
+
+			.wrap {
+				 display: inline-block;
+				 width: 49%;
+			}
+
+			time[tz="Europe/Berlin"]:parent {
+				background-color: red;
+			}
+
+			table, td {
+				b-order: 1px solid black;
+				b-order-collapse: collapse;
+			}
+
+			table {
+				text-align: center;
+				border-collapse: collapse;
+			}
+
+			th, td {
+				border: 1px solid black;
+			}
+
+			td {
+				padding: 5px;
+			}
+
+		</style>
+	</head>
+	<body>
+
+<div id="fixcut"></div>
+
+		<script src="/js/d3.v3.js"></script>
+		<script src="/js/momentjs/moment-with-locales.js"></script>
+		<script src="/js/momentjs/moment-timezone-with-data.js"></script>
+
+<script>
+var now = moment();
+//var DATE_RFC2822 = "ddd, DD MMM YYYY HH:mm:ss ZZ";
+
+var tag = function (tagName) {
+	return document.getElementsByTagName(tagName);
+}
+
+var cls = function (tagName) {
+	return document.getElementsByClassName(tagName);
+}
+
+var $ = function(id) {
+	return document.getElementById(id);
+}
+
+	var locales	= navigator.languages
+				? navigator.languages
+				: [ navigator.userLanguage, navigator.browserLanguage, navigator.systemLanguage, navigator.language, ];
+	 //var locales  = ["ar-SQ", "se-NO" ]; // test
+
+	var options = {
+		hour12: false,
+		hour: "2-digit",
+		minute:"2-digit",
+		second: "2-digit",
+	};
+
+	var timeTags = Array.prototype.slice.call(tag("time"));
+
+	var update = function() {
+		var d = new Date();
+
+		timeTags.forEach(function(obj, idx, arr) {
+			options.timeZone = obj.getAttribute("tz");
+			if (options.timeZone == "local") {
+				delete options.timeZone;
+			}
+			obj.innerText = obj.getAttribute("name") + "\r\n" + d.toLocaleTimeString(locales, options);
+		});
+/*
+		var timeleftTags = Array.prototype.slice.call(cls("timeleft"));
+		timeleftTags.forEach(function(obj, idx, arr) {
+			var m = moment(obj.parentElement.getAttribute("time"));
+			var d = m.diff(d, "minutes");
+			
+			if (d < 0) {
+				obj.parentElement.setAttribute("time", m.add(1, 'day').locale("en").format());
+			}
+
+			if (0 < d && d < 60) {
+				obj.innerText	= d + " min";
+			}
+		});
+		*/
+	}
+
+	update();
+	setInterval(update, 1000);
+
+var specialTime = [
+
+/*
+CME Group FX Fixing Price Methodology
+http://www.cmegroup.com/trading/fx/currfixprice.html
+
+Forex Trading and the WMR Fix: http://people.stern.nyu.edu/jhasbrou/SternMicroMtg/SternMicroMtg2015/Papers/4ExEvans.pdf
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+There are many fixings in FX.
+In Western timezones the most widely used ones are
+midday London (Frankfurt Fix),
+13:15 London (ECB Fix)
+16:00 London (WMR fix).
+Usage patterns vary by customer type.
+Imho fixes are a poor way to get chunky business done as the conflict of interest created between the client with the business to transact and the bank executing the transaction is Large. Huge even.
+Source: http://www.trade2win.com/boards/forex/69052-what-london-fix.html
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Sydney: 0900 (2200 GMT); 0945 (2245 GMT)
+Tokyo: 0955 (0055 GMT); 1100 (0200 GMT); 1300 (0400 GMT); 1400 (0500 GMT); 1500 (0600 GMT)
+London: 0900 GMT, 1000 GMT; 1100 GMT; 1200 GMT; 1315 GMT; 1500 GMT; 1600 GMT
+New York: 1200 (1700 GMT); 1500 (2000 GMT)
+Source: http://www.trade2win.com/boards/forex/13149-fixing-times-forex-market-s-2.html
+
+*/
+
+	// some other London fix: Fun and games on pound pairs as GBP plummets at the 11.00 GMT fix
+	// http://www.forexlive.com/news/!/fickle-finger-of-forex-hits-the-pound-20180223
+
+
+	// 09:50 Tokyo - Tokyo Fix
+	{ name: "Tokyo Fix", time: moment.tz({ hour: 09, minute: 50 }, "Asia/Tokyo") },
+
+	// 11:00 Berlin - Frankfurt Fix
+	// IS THIS A THING?
+	{ name: "Frankfurt Fix", time: moment.tz({ hour: 12, minute: 00 }, "Europe/Berlin") },
+
+	// 14:15 Berlin - ECB Fix
+	{ name: "ECB Fix", time: moment.tz({ hour: 14, minute: 15 }, "Europe/Berlin") },
+
+	// 16:00 London - WMR fix
+	{ name: "WMR Fix", time: moment.tz({ hour: 16, minute: 00 }, "Europe/London") },
+
+	// 10:00 AM ET - New York cut
+	{ name: "New York 10am ET Cut", time: moment.tz({ hour: 10, minute: 00 }, "America/New_York") },
+
+	// 09:00 AM CT - CME Fix
+	{ name: "CME 9am CT Fix", time: moment.tz({ hour: 09, minute: 00 }, "US/Central") },
+
+	// 02:00 PM CT - CME Fix
+	{ name: "CME 2pm CT Fix", time: moment.tz({ hour: 14, minute: 00 }, "US/Central") },
+
+];
+
+specialTime.sort(function(a, b) {
+	return a.time - b.time;
+});
+
+var createTable = function(data) {
+    // the columns you'd like to display
+    var columns = ["name", "time GMT", "local time"];
+
+    var table = d3.select("#fixcut").append("table"),
+        thead = table.append("thead"),
+        tbody = table.append("tbody");
+
+    // append the header row
+    thead.append("tr")
+        .selectAll("th")
+        .data(columns)
+        .enter()
+        .append("th")
+            .text(function(column) { return column; });
+
+    // create a row for each object in the data
+    var rows = tbody.selectAll("tr")
+        .data(data)
+        .enter()
+        .append("tr")
+		//.attr("time", function(d) { return d.time.toISOString(); });
+		.attr("time", function(d) { return d.time.locale("en").format(); });
+
+    // create a cell in each row for each column
+    var cells = rows.selectAll("td")
+        .data(function(row) {
+            return columns.map(function(column) {
+
+if (column == "local time") {
+	return { column: column, value: row["time"].local().format("HH:mm") };
+} else if (column == "time GMT") {
+	return { column: column, value: row["time"].utc().format("HH:mm")};
+} /* else if (column == "diff") {
+	//var m = row["time"].diff(now, "minutes");
+	//return { column: column, value: (m > 0) ? m + " min" : "---" };
+	return { column: column, value: "" };
+}*/
+
+                return { column: column, value: row[column] };
+            });
+        })
+        .enter()
+        .append("td")
+			.text(function(d) { return d.value; })
+			.classed("timeleft", function(d) { return d.column == "diff"; });
+};
+
+createTable(specialTime);
+
+</script>
+
+
+	</body>
+</html>
