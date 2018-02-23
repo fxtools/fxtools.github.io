@@ -19,7 +19,7 @@
 			text-align: right;
 			white-space: nowrap;
 		}
-		th[class$='_caption'] {
+		th {
 			white-space: nowrap;
 		}
 		table a:link {
@@ -234,13 +234,13 @@ var specialTime = [
 	{ name: "London Fix (WMR Fix)", time: moment.tz({ hour: 16, minute: 00 }, "Europe/London") },
 
 	// 10:00 AM ET - New York cut
-	{ name: "New York 10am ET Cut", time: moment.tz({ hour: 10, minute: 00 }, "America/New_York") },
+	{ name: "New York Cut (10am ET)", time: moment.tz({ hour: 10, minute: 00 }, "America/New_York") },
 
 	// 09:00 AM CT - CME Fix
-	{ name: "CME 9am CT Fix", time: moment.tz({ hour: 09, minute: 00 }, "US/Central") },
+	{ name: "CME Fix (9am CT)", time: moment.tz({ hour: 09, minute: 00 }, "US/Central") },
 
 	// 02:00 PM CT - CME Fix
-	{ name: "CME 2pm CT Fix", time: moment.tz({ hour: 14, minute: 00 }, "US/Central") },
+	{ name: "CME Fix (2pm CT)", time: moment.tz({ hour: 14, minute: 00 }, "US/Central") },
 ];
 
 specialTime.sort(function(a, b) {
