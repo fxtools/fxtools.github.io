@@ -497,7 +497,7 @@ var loadReport = function(date) {
     
     $(".symbol").on("click", function() {
       var name = "EURO FX - CHICAGO MERCANTILE EXCHANGE",
-        symbol = $(this).val();
+        symbol = $(this).text();
       
       switch (symbol) {
         case "EUR": name = "EURO FX - CHICAGO MERCANTILE EXCHANGE"; break;
