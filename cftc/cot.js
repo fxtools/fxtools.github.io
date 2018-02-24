@@ -512,8 +512,7 @@ w(name, symbol);
       $("#symbol").val(name);
       $(selector).trigger("input");
     });
-  };
-  
+ 
   
   };
 };
