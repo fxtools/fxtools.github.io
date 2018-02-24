@@ -510,6 +510,13 @@ var loadReport = function(date) {
       }
 
       $("#symbol").val(name).trigger("input");
+      
+      try {
+        gtag("event", "clicked symbol", {
+          event_category: window.user,
+          event_label: symbol,
+        });
+      } catch (e) {}
     });
  
   
