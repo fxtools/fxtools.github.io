@@ -493,6 +493,28 @@ var loadReport = function(date) {
         });
       } catch (e) {}
     });
+    
+    
+    $(".symbol").on("click", function() {
+      var name = "EURO FX - CHICAGO MERCANTILE EXCHANGE",
+        symbol = $(this).val();
+      
+      switch (symbol) {
+        case "EUR": name = "EURO FX - CHICAGO MERCANTILE EXCHANGE"; break;
+        case "JPY": name = "JAPANESE YEN - CHICAGO MERCANTILE EXCHANGE"; break;
+        case "GBP": name = "BRITISH POUND STERLING - CHICAGO MERCANTILE EXCHANGE"; break;
+        case "AUD": name = "AUSTRALIAN DOLLAR - CHICAGO MERCANTILE EXCHANGE"; break;
+        case "CHF": name = "SWISS FRANC - CHICAGO MERCANTILE EXCHANGE"; break;
+        case "CAD": name = "CANADIAN DOLLAR - CHICAGO MERCANTILE EXCHANGE"; break;
+        case "NZD": name = "NEW ZEALAND DOLLAR - CHICAGO MERCANTILE EXCHANGE"; break;
+      }
+w(name, symbol);
+      $("#symbol").val(name);
+      $(selector).trigger("input");
+    });
+  };
+  
+  
   };
 };
 
