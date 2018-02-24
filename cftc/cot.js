@@ -508,9 +508,8 @@ var loadReport = function(date) {
         case "CAD": name = "CANADIAN DOLLAR - CHICAGO MERCANTILE EXCHANGE"; break;
         case "NZD": name = "NEW ZEALAND DOLLAR - CHICAGO MERCANTILE EXCHANGE"; break;
       }
-w(name, symbol);
-      $("#symbol").val(name);
-      $(selector).trigger("input");
+
+      $("#symbol").val(name).trigger("input");
     });
  
   
