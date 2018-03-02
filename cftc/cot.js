@@ -553,4 +553,4 @@ var loadReport = function(date) {
 //   }
 // );
 
-loadReport(DateTime.fromISO("2018-02-20"));
+loadReport(DateTime.fromISO("2018-02-27"));
