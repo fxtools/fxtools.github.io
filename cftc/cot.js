@@ -1,6 +1,7 @@
-var w = console.log;
-var DateTime = luxon.DateTime;
-var Interval = luxon.Interval;
+var w = console.log,
+  DateTime = luxon.DateTime,
+  Interval = luxon.Interval,
+  disqus_config = function() {};
 
 window.onerror = function(msg, url, line, col, error) {
   gtag("event", "exception", {
@@ -334,6 +335,7 @@ var calculateReport = function(rawReport) {
 
 var drawReport = function() {
   var report = window.currentReport;
+
   $("#name").text(report.name);
   $("#date").text(DateTime.fromISO(report.date).toLocaleString(DateTime.DATE_HUGE));
 
@@ -366,53 +368,22 @@ var drawReport = function() {
   calcMinMaxAndColors();
 };
 
-// d3.csv("cot-futures.csv", function(error, cotFutOnlyData) {
-//   if (error) throw error;
-
-//   var cotFutOnlyEuro = cotFutOnlyData.filter(
-//     row => row.name.indexOf("EURO FX - ") != -1
-//   )[0];
-
-//   w(cotFutOnlyEuro);
-
-//   // d3.csv("tff-fonly.csv", function(error, futOnlyData) {
-//   //   if (error) throw error;
-//   //   d3.csv("tff-combined.csv", function(error, combinedData) {
-//   //     if (error) throw error;
-//   //     var futOnlyEuro = futOnlyData.filter(
-//   //       row => row.name.indexOf("EURO FX - ") != -1
-//   //     )[0];
-//   //     var combinedEuro = combinedData.filter(
-//   //       row => row.name.indexOf("EURO FX - ") != -1
-//   //     )[0];
-//   //     drawReport(calculateReport(futOnlyEuro, combinedEuro));
-//   //   });
-//   // });
-// });
-
-// $.when(d3.csv("cot-futures.csv"), d3.csv("cot-combined.csv")).then(function() {
-//   w("all loaded?");
-// });
-
-// var bardata = "letter,frequency\nA,0.89\nB,0.71\nC,0.45";
-
-// d3.csvParseRows(bardata, function(data) {
-//   w(data);
-// });
-
 var loadReport = function(date) {
   var uri = "https://raw.githubusercontent.com/fxtools/cftc-cot/master/" + date.year + "/" + date.toISODate() + "/";
   $.when($.get(uri + "cot-futures.csv"), $.get(uri + "cot-combined.csv"), $.get(uri + "tff-futures.csv"), $.get(uri + "tff-combined.csv"), this).done(function(cotFutures, cotCombined, tffFutures, tffCombined, self) {
     var reports = {},
       cotHeader =
-        //'name,date1,date,CFTC_Code,exchanges,"CFTC_Code_1","CFTC_Code_2",oi_all_total,positions_all_noncom_long,positions_all_noncom_short,positions_all_noncom_spreading,positions_all_com_long,positions_all_com_short,positions_all_total_long,positions_all_total_short,positions_all_nonrep_long,positions_all_nonrep_short,oi_old_total,positions_old_noncom_long,positions_old_noncom_short,positions_old_noncom_spreading,positions_old_com_long,positions_old_com_short,positions_old_total_long,positions_old_total_short,positions_old_nonrep_long,positions_old_nonrep_short,oi_other_total,positions_other_noncom_long,positions_other_noncom_short,positions_other_noncom_spreading,positions_other_com_long,positions_other_com_short,positions_other_total_long,positions_other_total_short,positions_other_nonrep_long,positions_other_nonrep_short,oi_changes,changes_noncom_long,changes_noncom_short,changes_noncom_spreading,changes_com_long,changes_com_short,changes_total_long,changes_total_short,changes_nonrep_long,changes_nonrep_short,oi_all_percentages,percentages_all_noncom_long,percentages_all_noncom_short,percentages_all_noncom_spreading,percentages_all_com_long,percentages_all_com_short,percentages_all_percentages_long,percentages_all_percentages_short,percentages_all_nonrep_long,percentages_all_nonrep_short,oi_old_percentages,percentages_old_noncom_long,percentages_old_noncom_short,percentages_old_noncom_spreading,percentages_old_com_long,percentages_old_com_short,percentages_old_percentages_long,percentages_old_percentages_short,percentages_old_nonrep_long,percentages_old_nonrep_short,oi_other_percentages,percentages_other_noncom_long,percentages_other_noncom_short,percentages_other_noncom_spreading,percentages_other_com_long,percentages_other_com_short,percentages_other_percentages_long,percentages_other_percentages_short,percentages_other_nonrep_long,percentages_other_nonrep_short,oi_all_traders,traders_all_noncom_long,traders_all_noncom_short,traders_all_noncom_spreading,traders_all_com_long,traders_all_com_short,traders_all_traders_long,traders_all_traders_short,oi_old_traders,traders_old_noncom_long,traders_old_noncom_short,traders_old_noncom_spreading,traders_old_com_long,traders_old_com_short,traders_old_traders_long,traders_old_traders_short,oi_other_traders,traders_other_noncom_long,traders_other_noncom_short,traders_other_noncom_spreading,traders_other_com_long,traders_other_com_short,traders_other_traders_long,traders_other_traders_short,"Concentration-Gross LT =4 TDR-Long (All)","Concentration-Gross LT =4 TDR-Short (All)","Concentration-Gross LT =8 TDR-Long (All)","Concentration-Gross LT =8 TDR-Short (All)","Concentration-Net LT =4 TDR-Long (All)","Concentration-Net LT =4 TDR-Short (All)","Concentration-Net LT =8 TDR-Long (All)","Concentration-Net LT =8 TDR-Short (All)","Concentration-Gross LT =4 TDR-Long (Old)","Concentration-Gross LT =4 TDR-Short (Old)","Concentration-Gross LT =8 TDR-Long (Old)","Concentration-Gross LT =8 TDR-Short (Old)","Concentration-Net LT =4 TDR-Long (Old)","Concentration-Net LT =4 TDR-Short (Old)","Concentration-Net LT =8 TDR-Long (Old)","Concentration-Net LT =8 TDR-Short (Old)","Concentration-Gross LT =4 TDR-Long (Other)","Concentration-Gross LT =4 TDR-Short(Other)","Concentration-Gross LT =8 TDR-Long (Other)","Concentration-Gross LT =8 TDR-Short(Other)","Concentration-Net LT =4 TDR-Long (Other)","Concentration-Net LT =4 TDR-Short (Other)","Concentration-Net LT =8 TDR-Long (Other)","Concentration-Net LT =8 TDR-Short (Other)","Contract Units","CFTC Contract Market Code (Quotes)","CFTC Market Code in Initials (Quotes)","CFTC Commodity Code (Quotes)",END',
         'name,date1,date,CFTC_Code,exchanges,"CFTC_Code_1","CFTC_Code_2",oi_total,positions_noncom_long,positions_noncom_short,positions_noncom_spreading,positions_com_long,positions_com_short,positions_total_long,positions_total_short,positions_nonrep_long,positions_nonrep_short,oi_old_total,positions_old_noncom_long,positions_old_noncom_short,positions_old_noncom_spreading,positions_old_com_long,positions_old_com_short,positions_old_total_long,positions_old_total_short,positions_old_nonrep_long,positions_old_nonrep_short,oi_other_total,positions_other_noncom_long,positions_other_noncom_short,positions_other_noncom_spreading,positions_other_com_long,positions_other_com_short,positions_other_total_long,positions_other_total_short,positions_other_nonrep_long,positions_other_nonrep_short,oi_changes,changes_noncom_long,changes_noncom_short,changes_noncom_spreading,changes_com_long,changes_com_short,changes_total_long,changes_total_short,changes_nonrep_long,changes_nonrep_short,oi_percentages,percentages_noncom_long,percentages_noncom_short,percentages_noncom_spreading,percentages_com_long,percentages_com_short,percentages_percentages_long,percentages_percentages_short,percentages_nonrep_long,percentages_nonrep_short,oi_old_percentages,percentages_old_noncom_long,percentages_old_noncom_short,percentages_old_noncom_spreading,percentages_old_com_long,percentages_old_com_short,percentages_old_percentages_long,percentages_old_percentages_short,percentages_old_nonrep_long,percentages_old_nonrep_short,oi_other_percentages,percentages_other_noncom_long,percentages_other_noncom_short,percentages_other_noncom_spreading,percentages_other_com_long,percentages_other_com_short,percentages_other_percentages_long,percentages_other_percentages_short,percentages_other_nonrep_long,percentages_other_nonrep_short,oi_traders,traders_noncom_long,traders_noncom_short,traders_noncom_spreading,traders_com_long,traders_com_short,traders_traders_long,traders_traders_short,oi_old_traders,traders_old_noncom_long,traders_old_noncom_short,traders_old_noncom_spreading,traders_old_com_long,traders_old_com_short,traders_old_traders_long,traders_old_traders_short,oi_other_traders,traders_other_noncom_long,traders_other_noncom_short,traders_other_noncom_spreading,traders_other_com_long,traders_other_com_short,traders_other_traders_long,traders_other_traders_short,"Concentration-Gross LT =4 TDR-Long (All)","Concentration-Gross LT =4 TDR-Short (All)","Concentration-Gross LT =8 TDR-Long (All)","Concentration-Gross LT =8 TDR-Short (All)","Concentration-Net LT =4 TDR-Long (All)","Concentration-Net LT =4 TDR-Short (All)","Concentration-Net LT =8 TDR-Long (All)","Concentration-Net LT =8 TDR-Short (All)","Concentration-Gross LT =4 TDR-Long (Old)","Concentration-Gross LT =4 TDR-Short (Old)","Concentration-Gross LT =8 TDR-Long (Old)","Concentration-Gross LT =8 TDR-Short (Old)","Concentration-Net LT =4 TDR-Long (Old)","Concentration-Net LT =4 TDR-Short (Old)","Concentration-Net LT =8 TDR-Long (Old)","Concentration-Net LT =8 TDR-Short (Old)","Concentration-Gross LT =4 TDR-Long (Other)","Concentration-Gross LT =4 TDR-Short(Other)","Concentration-Gross LT =8 TDR-Long (Other)","Concentration-Gross LT =8 TDR-Short(Other)","Concentration-Net LT =4 TDR-Long (Other)","Concentration-Net LT =4 TDR-Short (Other)","Concentration-Net LT =8 TDR-Long (Other)","Concentration-Net LT =8 TDR-Short (Other)","Contract Units","CFTC Contract Market Code (Quotes)","CFTC Market Code in Initials (Quotes)","CFTC Commodity Code (Quotes)",END',
       tffHeader =
-        //'name,date1,date,CFTC_Code,exchanges,"CFTC_Code_1","CFTC_Code_2",oi_total,positions_dealer_long,positions_dealer_short,positions_dealer_spreading,positions_manager_long,positions_manager_short,positions_manager_spreading,positions_funds_long,positions_funds_short,positions_funds_spreading,positions_other_long,positions_other_short,positions_other_spreading,positions_total_long,positions_total_short,positions_nonrep_long,positions_nonrep_short,oi_total_changes,changes_dealer_long,changes_dealer_short,changes_dealer_spreading,changes_manager_long,changes_manager_short,changes_manager_spreading,changes_funds_long,changes_funds_short,changes_funds_spreading,changes_other_long,changes_other_short,changes_other_spreading,changes_total_long,changes_total_short,changes_nonrep_long,changes_nonrep_short,oi_total_percentages,percentages_dealer_long,percentages_dealer_short,percentages_dealer_spreading,percentages_manager_long,percentages_manager_short,percentages_manager_spreading,percentages_funds_long,percentages_funds_short,percentages_funds_spreading,percentages_other_long,percentages_other_short,percentages_other_spreading,percentages_total_long,percentages_total_short,percentages_nonrep_long,percentages_nonrep_short,total_traders,traders_dealer_long,traders_dealer_short,traders_dealer_spreading,traders_manager_long,traders_manager_short,traders_manager_spreading,traders_funds_long,traders_funds_short,traders_funds_spreading,traders_other_long,traders_other_short,traders_other_spreading,traders_total_long,traders_total_short,percentages_gross_held_by_4_or_less_long,percentages_gross_held_by_4_or_less_short,percentages_gross_held_by_8_or_less_long,percentages_gross_held_by_8_or_less_short,percentages_net_held_by_4_or_less_long,percentages_net_held_by_4_or_less_short,percentages_net_held_by_8_or_less_long,percentages_net_held_by_8_or_less_short,Contract_Units,"CFTC_Contract_Market_Code_Quotes","CFTC_Market_Code_Quotes","CFTC_Commodity_Code_Quotes","CFTC_SubGroup_Code","FutOnly_or_Combined",END';
         'name,date1,date,CFTC_Code,exchanges,"CFTC_Code_1","CFTC_Code_2",oi_total,positions_dealer_long,positions_dealer_short,positions_dealer_spreading,positions_manager_long,positions_manager_short,positions_manager_spreading,positions_funds_long,positions_funds_short,positions_funds_spreading,positions_other_long,positions_other_short,positions_other_spreading,positions_total_long,positions_total_short,positions_nonrep_long,positions_nonrep_short,oi_changes,changes_dealer_long,changes_dealer_short,changes_dealer_spreading,changes_manager_long,changes_manager_short,changes_manager_spreading,changes_funds_long,changes_funds_short,changes_funds_spreading,changes_other_long,changes_other_short,changes_other_spreading,changes_total_long,changes_total_short,changes_nonrep_long,changes_nonrep_short,oi_total_percentages,percentages_dealer_long,percentages_dealer_short,percentages_dealer_spreading,percentages_manager_long,percentages_manager_short,percentages_manager_spreading,percentages_funds_long,percentages_funds_short,percentages_funds_spreading,percentages_other_long,percentages_other_short,percentages_other_spreading,percentages_total_long,percentages_total_short,percentages_nonrep_long,percentages_nonrep_short,total_traders,traders_dealer_long,traders_dealer_short,traders_dealer_spreading,traders_manager_long,traders_manager_short,traders_manager_spreading,traders_funds_long,traders_funds_short,traders_funds_spreading,traders_other_long,traders_other_short,traders_other_spreading,traders_total_long,traders_total_short,percentages_gross_held_by_4_or_less_long,percentages_gross_held_by_4_or_less_short,percentages_gross_held_by_8_or_less_long,percentages_gross_held_by_8_or_less_short,percentages_net_held_by_4_or_less_long,percentages_net_held_by_4_or_less_short,percentages_net_held_by_8_or_less_long,percentages_net_held_by_8_or_less_short,Contract_Units,"CFTC_Contract_Market_Code_Quotes","CFTC_Market_Code_Quotes","CFTC_Commodity_Code_Quotes","CFTC_SubGroup_Code","FutOnly_or_Combined",END';
 
     var addRow = function(type, row) {
-      var name = $.trim(row.name);
+      var name = $.trim(row.name),
+        parts = name.split(" - "),
+        exchange = parts[parts.length - 1];
+
+      name = name.replace(" - " + exchange, "");
+
       if (name.length > 0) {
         if (!reports.hasOwnProperty(name)) {
           reports[name] = {};
@@ -444,8 +415,9 @@ var loadReport = function(date) {
     try {
       var rawReport = window.reports.where(r => r.key.indexOf(symbol) != -1).first().value;
     } catch (e) {
-        var rawReport = window.reports.where(r => r.key.indexOf("EURO FX") != -1).first().value;
+      var rawReport = window.reports.where(r => r.key.indexOf("EURO FX") != -1).first().value;
     }
+
     window.currentReport = calculateReport(rawReport);
     drawReport();
     window.currentReport.reportTypes.forEach(function(reportType) {
@@ -456,11 +428,11 @@ var loadReport = function(date) {
     });
   };
 
-  this.next = function() {
+  this.next = function(forex) {
     var symbol = localStorage.getItem("default-symbol");
     if (symbol == null) {
-      symbol = "EURO FX - CHICAGO MERCANTILE EXCHANGE";
-      // defaultSymbol = "BITCOIN-USD - CBOE FUTURES EXCHANGE";
+      symbol = "EURO FX";
+      // defaultSymbol = "BITCOIN-USD";
       localStorage.setItem("default-symbol", symbol);
     }
 
@@ -493,24 +465,42 @@ var loadReport = function(date) {
         });
       } catch (e) {}
     });
-    
-    
+
     $(".symbol").on("click", function() {
-      var name = "EURO FX - CHICAGO MERCANTILE EXCHANGE",
+      var name = "EURO FX",
         symbol = $(this).text();
-      
+
       switch (symbol) {
-        case "EUR": name = "EURO FX - CHICAGO MERCANTILE EXCHANGE"; break;
-        case "JPY": name = "JAPANESE YEN - CHICAGO MERCANTILE EXCHANGE"; break;
-        case "GBP": name = "BRITISH POUND STERLING - CHICAGO MERCANTILE EXCHANGE"; break;
-        case "AUD": name = "AUSTRALIAN DOLLAR - CHICAGO MERCANTILE EXCHANGE"; break;
-        case "CHF": name = "SWISS FRANC - CHICAGO MERCANTILE EXCHANGE"; break;
-        case "CAD": name = "CANADIAN DOLLAR - CHICAGO MERCANTILE EXCHANGE"; break;
-        case "NZD": name = "NEW ZEALAND DOLLAR - CHICAGO MERCANTILE EXCHANGE"; break;
+        case "EUR":
+          name = "EURO FX";
+          break;
+        case "JPY":
+          name = "JAPANESE YEN";
+          break;
+        case "GBP":
+          name = "BRITISH POUND STERLING";
+          break;
+        case "AUD":
+          name = "AUSTRALIAN DOLLAR";
+          break;
+        case "CHF":
+          name = "SWISS FRANC";
+          break;
+        case "CAD":
+          name = "CANADIAN DOLLAR";
+          break;
+        case "NZD":
+          name = "NEW ZEALAND DOLLAR";
+          break;
+        case "DX":
+          name = "U.S. DOLLAR INDEX";
+          break;
       }
 
-      $("#symbol").val(name).trigger("input");
-      
+      $("#symbol")
+        .val(name)
+        .trigger("input");
+
       try {
         gtag("event", "clicked symbol", {
           event_category: window.user,
@@ -518,39 +508,65 @@ var loadReport = function(date) {
         });
       } catch (e) {}
     });
- 
-  
   };
 };
 
-// $("table td").hover(
-//   function() {
-//     $("table td:nth-child(" + ($(this).index() + 1) + ")").addClass("hover");
+var today = DateTime.utc().plus({ hours: 2 }),
+  day = today,
+  knownDays = [];
 
-//     var parts = $(this)
-//       .attr("id")
-//       .split("_");
+try {
+  day = DateTime.fromISO(document.location.href.match(/day=(\d{4}-\d{2}-\d{2})/)[1]);
+} catch (e) {}
 
-//     // var cot = $("#futures_positions_noncom_long:visible").length > 0;
-//     // var tff = $("#futures_positions_dealer_long:visible").length > 0;
+$.get("https://raw.githubusercontent.com/fxtools/cftc-cot/master/known-days.txt", function(data) {
+  var knownDays = Enumerable.from(data.split("\n"))
+    .where(d => d.length > 0)
+    .select(d => DateTime.fromISO(d))
+    .orderBy(d => d);
 
-//     // var visibility = cot && tff ? "both" : cot ? "cot" : "tff";
-//     // var spreading = $(".spreading:visible").length > 0 ? "with-spreading" : "without-spreading";
-//     // var reportType = parts[0];
-//     // var row = parts[1];
+  var prev = knownDays.where(d => d < day).lastOrDefault();
+  var next = knownDays.where(d => d > day).firstOrDefault();
 
-//     // window.currentReport.reportTypes.forEach(function(reportType) {
-//     //   window.currentReport.rows.forEach(function(row) {
-//     //     ,(visibility, spreading, reportType, row);
-//     //   });
-//     // });
-//   },
-//   function() {
-//     $("table td:nth-child(" + ($(this).index() + 1) + ")").removeClass("hover");
-//     // $(".,d")
-//     //   .css("background", "")
-//     //   .removeClass(",d");
-//   }
-// );
+  if (prev) {
+    $("#prev")
+      .attr("href", "?day=" + prev.toISODate())
+      .show();
+  }
+  if (next) {
+    $("#next")
+      .attr("href", "?day=" + next.toISODate())
+      .show();
 
-loadReport(DateTime.fromISO("2018-02-27"));
+    var weeksOld = Math.floor(today.diff(day, "weeks").toObject().weeks) - 1;
+    var oldReportText = weeksOld == 1 ? "This report is from last week." : "This report is " + weeksOld + " weeks old.";
+
+    $("#jumpToCurrentDay")
+      .attr("href", "?day=" + knownDays.last().toISODate())
+      .text(oldReportText + " Click here for the latest report.")
+      .show();
+    $("#subNavi").show();
+  }
+
+  disqus_config = function() {
+    this.page.url = document.location.origin + document.location.pathname + "?day=" + dt.toISODate();
+    this.page.identifier = "cot-" + dt.toISODate();
+  };
+
+  var d = document,
+    s1 = d.createElement("script");
+  s1.src = "//fx-tools.disqus.com/count.js";
+  s1.setAttribute("data-timestamp", +new Date());
+  s1.setAttribute("async", "async");
+  d.body.appendChild(s1);
+
+  $("#commentLink").on("click", function() {
+    var s2 = d.createElement("script");
+    s2.src = "//fx-tools.disqus.com/embed.js";
+    s2.setAttribute("data-timestamp", +new Date());
+    d.body.appendChild(s2);
+    $(this).unbind("click");
+  });
+
+  loadReport(day);
+});
