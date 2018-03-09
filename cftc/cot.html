@@ -186,43 +186,55 @@
 						<i class="fas fa-home"></i>
 					</a>
 				</li>
-				<li title="jump to previous day">
+				<li title="jump to previous report">
 					<a id="prev" style="display: none;" href="javascript:void(0);">
 						<i class="fas fa-angle-double-left"></i>
 					</a>
 				</li>
 				<li id="date">
 				</li>
-				<li title="jump to next day">
+				<li title="jump to next report">
 					<a id="next" style="display: none;" href="javascript:void(0);">
 						<i class="fas fa-angle-double-right"></i>
 					</a>
 				</li>
-				<!-- <li>
+
+				<li>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				</li>
+				<!-- 
 				<li id="settings">
 					<a href="javascript:void(0);">
 						<i class="fas fa-cogs" style="margin-left: 0px"></i>
 					</a>
 				</li>
+				-->
 				<li>
-					<a id="commentLink" href="#disqus_thread" onclick='var d = document, s = d.createElement("script"); s.src = "https://fx-tools.disqus.com/embed.js"; s.setAttribute("data-timestamp", +new Date()); d.body.appendChild(s); this.onclick="";'>
-						0
+					<a id="commentLink" href="#disqus_thread">
 						<i class="fas fa-comments"></i>
 					</a>
 				</li>
+				<!-- 
 				<li>
 					<a href="javascript:void(0);" id="tour" onclick="javascript: startTour();">
 						<i class="fas fa-question"></i>
 					</a>
-				</li> -->
+				</li>
+				-->
 			</ul>
 
 		</header>
 
+		<header id="subNavi">
+			<ul>
+				<li>
+					<a id="jumpToCurrentDay" href="javascript:void(0);">jump to latest report</a>
+				</li>
+			</ul>
+		</header>
+
 		<section>
-			
+
 			<a class="symbol" href="javascript:void(0);">EUR</a>
 			<a class="symbol" href="javascript:void(0);">JPY</a>
 			<a class="symbol" href="javascript:void(0);">GBP</a>
@@ -230,10 +242,12 @@
 			<a class="symbol" href="javascript:void(0);">CAD</a>
 			<a class="symbol" href="javascript:void(0);">CHF</a>
 			<a class="symbol" href="javascript:void(0);">NZD</a>
-			
-			<br/><br/>
-			
+
+			<br/>
+			<br/>
+
 			<select id="symbol"></select>
+
 			<br/>
 			<br/>
 
@@ -636,31 +650,6 @@
 						<td class="both" id="options_percentages_nonrep_long"></td>
 						<td class="both" id="options_percentages_nonrep_short"></td>
 					</tr>
-					<tr id="options_traders">
-						<th>traders</th>
-						<td class="cot" id="options_traders_noncom_long"> </td>
-						<td class="cot" id="options_traders_noncom_short"> </td>
-						<td class="cot" id="options_traders_noncom_spreading"> </td>
-						<th class="cot spacer"> </th>
-						<td class="cot" id="options_traders_com_long"> </td>
-						<td class="cot" id="options_traders_com_short"> </td>
-						<th class="cot spacer"> </th>
-						<td class="tff" id="options_traders_dealer_long"> </td>
-						<td class="tff" id="options_traders_dealer_short"> </td>
-						<td class="tff" id="options_traders_dealer_spreading"> </td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="options_traders_manager_long"> </td>
-						<td class="tff" id="options_traders_manager_short"> </td>
-						<td class="tff" id="options_traders_manager_spreading"> </td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="options_traders_funds_long"> </td>
-						<td class="tff" id="options_traders_funds_short"> </td>
-						<td class="tff" id="options_traders_funds_spreading"> </td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="options_traders_other_long"> </td>
-						<td class="tff" id="options_traders_other_short"> </td>
-						<td class="tff" id="options_traders_other_spreading"> </td>
-					</tr>
 				</tbody>
 			</table>
 
@@ -668,6 +657,10 @@
 			<button id="no-spreading">remove spreading column</button>
 			<button id="switch-report-types">switch report types</button>
 
+		</section>
+
+		<section id="comments">
+			<div id="disqus_thread"></div>
 		</section>
 
 	</center>
@@ -686,7 +679,6 @@
 	<script src="/js/luxon/luxon.min.js"></script>
 	<script src="/js/billboard.js/billboard.min.js"></script>
 	<script src="cot.js"></script>
-
 
 </body>
 
