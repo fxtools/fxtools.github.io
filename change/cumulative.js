@@ -1,8 +1,9 @@
 // https://www.oanda.com/forex-trading/analysis/currency-heatmap
 
-var w = console.log;
-var DateTime = luxon.DateTime;
-var Interval = luxon.Interval;
+var w = console.log,
+  DateTime = luxon.DateTime,
+  Interval = luxon.Interval,
+  disqus_config = function() {};
 
 window.onerror = function(msg, url, line, col, error) {
   gtag("event", "exception", {
@@ -618,9 +619,9 @@ var loadData = function(enabled) {
     document.getElementById("next").href = "?day=" + dt.plus({ days: +1 }).toISODate();
   }
 
-  var disqus_config = function() {
+  disqus_config = function() {
     this.page.url = document.location.origin + document.location.pathname + "?day=" + dt.toISODate();
-    this.page.identifier = dt.toISODate(); // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    this.page.identifier = "change-cumulative-" + dt.toISODate();
   };
 
   var uri = "https://raw.githubusercontent.com/fxtools/quote_percentages/master/" + dt.year + "/" + dt.toISODate() + "/";
