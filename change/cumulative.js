@@ -2,7 +2,8 @@
 
 var w = console.log,
   DateTime = luxon.DateTime,
-  Interval = luxon.Interval;
+  Interval = luxon.Interval,
+  disqus_config = function() {};
 
 window.onerror = function(msg, url, line, col, error) {
   gtag("event", "exception", {
@@ -618,16 +619,11 @@ var loadData = function(enabled) {
     document.getElementById("next").href = "?day=" + dt.plus({ days: +1 }).toISODate();
   }
 
-  var disqus_config = function() {
+  disqus_config = function() {
     this.page.url = document.location.origin + document.location.pathname + "?day=" + dt.toISODate();
     this.page.identifier = "change-cumulative-" + dt.toISODate();
   };
   
-  var disqus_config = function() {
-    this.page.url = document.location.origin + document.location.pathname + "?day=" + dt.toISODate();
-    this.page.identifier = "change-cumulative-" + dt.toISODate();
-  };
-
   var d = document,
     s1 = d.createElement("script");
   s1.src = "//fx-tools.disqus.com/count.js";
