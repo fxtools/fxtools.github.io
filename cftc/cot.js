@@ -525,6 +525,10 @@ $.get("https://raw.githubusercontent.com/fxtools/cftc-cot/master/known-days.txt"
     .select(d => DateTime.fromISO(d))
     .orderBy(d => d);
 
+  if (!knownDays.singleOrDefault(d => d.equals(day))) {
+    day = knownDays.last();
+  }
+
   var prev = knownDays.where(d => d < day).lastOrDefault();
   var next = knownDays.where(d => d > day).firstOrDefault();
 
@@ -533,6 +537,7 @@ $.get("https://raw.githubusercontent.com/fxtools/cftc-cot/master/known-days.txt"
       .attr("href", "?day=" + prev.toISODate())
       .show();
   }
+
   if (next) {
     $("#next")
       .attr("href", "?day=" + next.toISODate())
