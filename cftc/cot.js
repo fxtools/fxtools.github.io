@@ -543,12 +543,12 @@ $.get("https://raw.githubusercontent.com/fxtools/cftc-cot/master/known-days.txt"
       .attr("href", "?day=" + next.toISODate())
       .show();
 
-    var weeksOld = Math.floor(today.diff(day, "weeks").toObject().weeks) - 1;
+    var weeksOld = Math.floor(today.diff(day, "weeks").toObject().weeks);
     var oldReportText = weeksOld == 1 ? "This report is from last week." : "This report is " + weeksOld + " weeks old.";
 
     $("#jumpToCurrentDay")
       .attr("href", "?day=" + knownDays.last().toISODate())
-      .text(oldReportText + " Click here for the latest report.")
+      .text(oldReportText + " Click here for latest report.")
       .show();
     $("#subNavi").show();
   }
