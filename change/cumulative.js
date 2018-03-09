@@ -2,8 +2,7 @@
 
 var w = console.log,
   DateTime = luxon.DateTime,
-  Interval = luxon.Interval,
-  disqus_config = function() {};
+  Interval = luxon.Interval;
 
 window.onerror = function(msg, url, line, col, error) {
   gtag("event", "exception", {
@@ -619,10 +618,30 @@ var loadData = function(enabled) {
     document.getElementById("next").href = "?day=" + dt.plus({ days: +1 }).toISODate();
   }
 
-  disqus_config = function() {
+  var disqus_config = function() {
     this.page.url = document.location.origin + document.location.pathname + "?day=" + dt.toISODate();
     this.page.identifier = "change-cumulative-" + dt.toISODate();
   };
+  
+  var disqus_config = function() {
+    this.page.url = document.location.origin + document.location.pathname + "?day=" + dt.toISODate();
+    this.page.identifier = "change-cumulative-" + dt.toISODate();
+  };
+
+  var d = document,
+    s1 = d.createElement("script");
+  s1.src = "//fx-tools.disqus.com/count.js";
+  s1.setAttribute("data-timestamp", +new Date());
+  s1.setAttribute("async", "async");
+  d.body.appendChild(s1);
+
+  $("#commentLink").on("click", function() {
+    var s2 = d.createElement("script");
+    s2.src = "//fx-tools.disqus.com/embed.js";
+    s2.setAttribute("data-timestamp", +new Date());
+    d.body.appendChild(s2);
+    $(this).unbind("click");
+  });
 
   var uri = "https://raw.githubusercontent.com/fxtools/quote_percentages/master/" + dt.year + "/" + dt.toISODate() + "/";
 
