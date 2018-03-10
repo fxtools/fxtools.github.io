@@ -687,6 +687,6 @@ $("#cogs").on("click", function() {
   }
 });
 
-
 $("td[id*=_positions_]").attr("title", "position");
 $("td[id*=_changes_]").attr("title", "change");
+$(".spreading").attr("title", "spreading");
