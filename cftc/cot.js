@@ -30,12 +30,13 @@ window.user = localStorage.getItem("user");
 var calcMinMaxAndColors = function(report) {
   var report = window.currentReport;
 
-  // { cot: {}, tff: {}, both: {} }
+  // { cot: {}, tff: {}, merged: {} }
 
   // initialize result data structure
   var colors = {},
+    widths = {},
     minMaxMatrix = {},
-    visibilities = ["cot", "tff", "both"],
+    visibilities = ["cot", "tff", "merged"],
     spreadings = ["with-spreading", "without-spreading"];
 
   // maybe i should use an multi-dim-array to build a matrix? naaaa...
@@ -81,7 +82,7 @@ var calcMinMaxAndColors = function(report) {
                   add(spreading, values, target);
                 }
               } else {
-                // if both
+                // if merged
                 add(spreading, values, target);
               }
             }
@@ -93,29 +94,23 @@ var calcMinMaxAndColors = function(report) {
 
   visibilities.forEach(function(visibility) {
     colors[visibility] = {};
-
+    widths[visibility] = {};
     spreadings.forEach(function(spreading) {
       colors[visibility][spreading] = {};
+      widths[visibility][spreading] = {};
 
       report.reportTypes.forEach(function(reportType) {
         colors[visibility][spreading][reportType] = {};
+        widths[visibility][spreading][reportType] = {};
 
         report.rows.forEach(function(row) {
           var mm = minMaxMatrix[visibility][spreading][reportType][row];
 
-          // colors[visibility][spreading][reportType][row] = d3
-          //   .scaleLinear()
-          //   // .domain([mm.max, mm.min])
-          //   // .range(["green", "red"]);
-          //   .domain([mm.max, 0, mm.min])
-          //   .range(["green", "white", "red"]);
-          // // .domain([mm.max, mm.max / 10, 0, mm.min / 10, mm.min])
-          // // .range(["green", "lightgreen", "white", "lightcoral", "red"]);
-
           var color = d3
             .scaleLinear()
             .domain([Math.max(0, Math.max(mm.max, -1 * mm.min)), 0, Math.min(0, Math.min(-1 * mm.max, mm.min))])
-            .range(["green", "white", "red"]);
+            // .range(["green", "white", "red"]);
+            .range(["green", "lightgray", "red"]);
 
           colors[visibility][spreading][reportType][row] = color;
         });
@@ -135,7 +130,7 @@ var formatAllCells = function() {
     if (d.id.indexOf("percentages") != -1) {
       d.innerText = value.toFixed(1) + "%";
     } else {
-      d.innerText = value.toLocaleString();
+      d.innerText = Math.round(value / 1000).toLocaleString() + "k";
     }
   });
 };
@@ -147,93 +142,21 @@ var colorize = function(visibility, spreading, reportType, row) {
 
   cells.each(function(i, d) {
     var value = +(withoutSpreading && d.hasAttribute("gross") ? d.getAttribute("gross") : d.getAttribute("value"));
-    $(this)
-      .css("background", color(value))
-      .addClass(",d");
+
+    // $(this).css("background", "radial-gradient(ellipse, " + color(value) + " 5%, transparent 100%");
+    $(this).css("color", color(value));
+    // .css("color", "white");
+    // .css("color", color(value));
+    //.css("text-shadow", "0 0 3px " + color(value) + ", 0 0 3px " + color(value))
+    // .addClass(",d");
   });
 };
-
-// ******************************************* //
-// ******************************************* //
-// ******************************************* //
-
-var showHideVisibility = function(visibility) {
-  if (visibility == "cot") {
-    $(".cot").show();
-    $(".tff").hide();
-    $(".report_type_caption").attr("colspan", 10);
-  } else if (visibility == "tff") {
-    $(".cot").hide();
-    $(".tff").show();
-    $(".report_type_caption").attr("colspan", 18);
-  } else if (visibility == "both") {
-    $(".report_type_caption").attr("colspan", 25);
-    $(".cot").show();
-    $(".tff").show();
-  }
-};
-
-$("#no-spreading").on("click", function() {
-  var cot = $("#futures_positions_noncom_long:visible").length > 0;
-  var tff = $("#futures_positions_dealer_long:visible").length > 0;
-  var visibility = cot && tff ? "both" : cot ? "cot" : "tff";
-
-  var cells = $("td[id$='_spreading'],.spreading");
-  var ths = $("th.shrink");
-
-  if (ths.attr("colspan") == 3) {
-    cells.hide();
-    ths.attr("colspan", 2);
-    $("td[gross]").each((i, d) => $(d).text(d.getAttribute("gross")));
-    $("#combined_report").hide();
-    $("#options_only_report").show();
-    if (visibility == "tff") {
-      $("td.cot[id$='_spreading'],.cot.spreading").hide();
-    } else if (visibility == "cot") {
-      $("td.tff[id$='_spreading'],.tff.spreading").hide();
-    }
-  } else {
-    cells.show();
-    ths.attr("colspan", 3);
-    $("td[gross]").each((i, d) => $(d).text(d.getAttribute("value")));
-    $("#combined_report").show();
-    $("#options_only_report").hide();
-    if (visibility == "tff") {
-      $("td.cot[id$='_spreading'],.cot.spreading").hide();
-    } else if (visibility == "cot") {
-      $("td.tff[id$='_spreading'],.tff.spreading").hide();
-    }
-  }
-
-  formatAllCells();
-});
-
-$("#switch-report-types").on("click", function() {
-  var cot = $("#futures_positions_noncom_long:visible").length > 0;
-  var tff = $("#futures_positions_dealer_long:visible").length > 0;
-
-  var visibility = cot && tff ? "both" : cot ? "cot" : "tff";
-
-  if (visibility == "both") {
-    visibility = "tff";
-  } else if (visibility == "tff") {
-    visibility = "cot";
-  } else if (visibility == "cot") {
-    visibility = "both";
-  }
-
-  showHideVisibility(visibility);
-});
-
-// ******************************************* //
-// ******************************************* //
-// ******************************************* //
 
 var calculateReport = function(rawReport) {
   var rows = ["positions", "changes", "percentages", "traders"],
     reportTypes = ["futures", "combined", "options"],
     opponents = ["com", "noncom", "nonrep", "dealer", "manager", "funds", "other"],
-    valueNames = ["long", "short", "spreading"];
+    valueNames = ["net", "long", "short", "spreading"];
 
   // ************************************************************************
   // data
@@ -279,6 +202,7 @@ var calculateReport = function(rawReport) {
         });
 
         if (row == "positions" || row == "changes") {
+          report[row][opponent][rawReport.key].net = report[row][opponent][rawReport.key].long - report[row][opponent][rawReport.key].short;
           report[row][opponent][rawReport.key].grossLong = report[row][opponent][rawReport.key].long + report[row][opponent][rawReport.key].spreading;
           report[row][opponent][rawReport.key].grossShort = report[row][opponent][rawReport.key].short + report[row][opponent][rawReport.key].spreading;
         } else if (row == "percentages") {
@@ -299,10 +223,14 @@ var calculateReport = function(rawReport) {
 
       // add options
       if (row == "positions" || row == "changes") {
+        var long = report[row][opponent]["combined"].long - report[row][opponent]["futures"].long;
+        var short = report[row][opponent]["combined"].short - report[row][opponent]["futures"].short;
+
         report[row][opponent]["options"] = {
-          long: report[row][opponent]["combined"].long - report[row][opponent]["futures"].long,
-          short: report[row][opponent]["combined"].short - report[row][opponent]["futures"].short,
-          spreading: report[row][opponent]["combined"].spreading - report[row][opponent]["futures"].spreading,
+          net: long - short,
+          long: long,
+          short: short,
+          // spreading: report[row][opponent]["combined"].spreading - report[row][opponent]["futures"].spreading,
           grossLong: report[row][opponent]["combined"].grossLong - report[row][opponent]["futures"].grossLong,
           grossShort: report[row][opponent]["combined"].grossShort - report[row][opponent]["futures"].grossShort,
         };
@@ -310,6 +238,8 @@ var calculateReport = function(rawReport) {
         var total = report.oi.total.options;
         var positions = report["positions"][opponent]["options"];
         report[row][opponent]["options"] = {};
+
+        report[row][opponent]["options"].net = 0;
 
         if (total == 0) {
           report[row][opponent]["options"].long = 0;
@@ -336,13 +266,20 @@ var calculateReport = function(rawReport) {
 var drawReport = function() {
   var report = window.currentReport;
 
+  try {
+    gtag("event", "cot: " + report.name, {
+      event_category: day.toISODate(),
+      event_label: window.user,
+    });
+  } catch (e) {}
+
   $("#name").text(report.name);
   $("#date").text(DateTime.fromISO(report.date).toLocaleString(DateTime.DATE_HUGE));
 
   // set report headers
   Object.keys(report.oi).forEach(function(key) {
     Object.keys(report.oi[key]).forEach(function(reportType) {
-      $("#" + reportType + "_oi_" + key).text(report.oi[key][reportType].toLocaleString());
+      $("#" + reportType + "_oi_" + key).text(Math.round(report.oi[key][reportType] / 1000).toLocaleString() + "k");
     });
   });
 
@@ -353,11 +290,13 @@ var drawReport = function() {
         Object.keys(report[row][opponent][reportType]).forEach(function(valueName) {
           var id = "#" + reportType + "_" + row + "_" + opponent + "_" + valueName;
           var value = report[row][opponent][reportType][valueName];
+
           if (valueName.indexOf("gross") != -1) {
             $(id.replace("gross", "").toLowerCase()).attr("gross", value);
           } else {
-            $(id).attr("value", value);
-            $(id).text(value.toLocaleString());
+            $(id)
+              .attr("value", value)
+              .text(Math.round(value / 1000).toLocaleString() + "k");
           }
         });
       });
@@ -389,6 +328,7 @@ var loadReport = function(date) {
           reports[name] = {};
         }
         reports[name][type] = row;
+        row.name = name;
       }
     };
 
@@ -411,7 +351,7 @@ var loadReport = function(date) {
   });
 
   this.drawSelectedSymbol = function(symbol) {
-    //var symbol = $("#symbol").val();
+    var symbol = $("#symbol").val();
     try {
       var rawReport = window.reports.where(r => r.key.indexOf(symbol) != -1).first().value;
     } catch (e) {
@@ -420,50 +360,176 @@ var loadReport = function(date) {
 
     window.currentReport = calculateReport(rawReport);
     drawReport();
+    showHide();
     window.currentReport.reportTypes.forEach(function(reportType) {
       // window.currentReport.rows.forEach(function(row) {
-      ["positions", "changes"].forEach(function(row) {
+      //["positions", "changes"].forEach(function(row) {
+      ["changes"].forEach(function(row) {
         colorize("tff", "without-spreading", reportType, row);
       });
     });
   };
 
-  this.next = function(forex) {
-    var symbol = localStorage.getItem("default-symbol");
-    if (symbol == null) {
-      symbol = "EURO FX";
-      // defaultSymbol = "BITCOIN-USD";
-      localStorage.setItem("default-symbol", symbol);
+  // ############################
+  // ############################
+  // ############################
+  this.showHide = function() {
+    $("#selected-report-type").text($("#report").val());
+    $("#selected-columns").text($("#columns").val());
+
+    $("tr[id$=_percentages]").hide();
+    $("tr[id$=_traders]").hide();
+
+    var showCot = $("#report").val() != "financial";
+    var showTff = $("#report").val() != "legacy";
+    var showNet = $("#columns").val() == "net";
+
+    var showSpreading = $("#columns").val() == "long & short & spreading";
+
+    var opponents = 0;
+    var columns = 0;
+    var columnsSpreadingMalus = 0;
+
+    // hide all
+    $("table > tbody > tr > *").hide();
+
+    // show first column
+    $("table > tbody > tr > th:first-child").show();
+
+    // hide rows
+    // //$("tr[id$=_positions]").hide();
+    $("tr[id$=_percentages]").hide();
+    $("tr[id$=_traders]").hide();
+
+    $("th.total").show();
+    $("th.total.spacer").show();
+    $("#futures_oi_total").show();
+    $("#futures_oi_changes").show();
+    $("#options_oi_total").show();
+    $("#options_oi_changes").show();
+    $("#combined_oi_total").show();
+    $("#combined_oi_changes").show();
+
+    // show opponents
+    if (showCot) {
+      $("th.cot.shrink").show();
+      $("th.cot.spacer").show();
+      opponents += 2;
+    }
+    if (showTff) {
+      $("th.tff.shrink").show();
+      $("th.tff.spacer").show();
+      opponents += 4;
+    }
+    $("th.merged.shrink").show();
+
+    opponents += 1;
+
+    if (showNet) {
+      $(".total.rowshrink").attr("rowspan", 1);
+      $("#column_headers").hide();
+      if (showCot) {
+        $("th.cot:contains('net')").show();
+        $("td.cot[id$=net]").show();
+      }
+      if (showTff) {
+        $("th.tff:contains('net')").show();
+        $("td.tff[id$=net]").show();
+      }
+      $("th.merged:contains('net')").show();
+      $("td.merged[id$=net]").show();
+
+      columns++;
+    } else {
+      $(".total.rowshrink").attr("rowspan", 2);
+      $("#column_headers").show();
+      if (showCot) {
+        $("th.cot:contains('long')").show();
+        $("td.cot[id$=long]").show();
+        $("th.cot:contains('short')").show();
+        $("td.cot[id$=short]").show();
+      }
+      if (showTff) {
+        $("th.tff:contains('long')").show();
+        $("td.tff[id$=long]").show();
+        $("th.tff:contains('short')").show();
+        $("td.tff[id$=short]").show();
+      }
+      $("th.merged:contains('long')").show();
+      $("td.merged[id$=long]").show();
+      $("th.merged:contains('short')").show();
+      $("td.merged[id$=short]").show();
+
+      columns++;
+      columns++;
+
+      if (showSpreading) {
+        if (showCot) {
+          $("th.cot:contains('sprd')").show();
+          $("td.cot[id$=spreading]").show();
+          columnsSpreadingMalus++;
+        }
+        if (showTff) {
+          $("th.tff:contains('sprd')").show();
+          $("td.tff[id$=spreading]").show();
+        }
+        $("th.merged:contains('sprd')").show();
+        $("td.merged[id$=spreading]").show();
+
+        columns++;
+        columnsSpreadingMalus++;
+      }
     }
 
+    var allColumns = opponents * columns - columnsSpreadingMalus;
+
+    $(".shrink").attr("colspan", columns);
+    $(".shrink.no-spreading").attr("colspan", columns - (showSpreading ? 1 : 0));
+    //$(".report_type_caption").attr("colspan", 1 + allColumns);
+  };
+
+  this.next = function() {
     var names = window.reports.select(r => r.key).forEach(function(name, i) {
       $("#symbol").append(
         $("<option>", {
           value: name,
           text: name,
-          selected: name == symbol,
         })
       );
     });
 
-    $("#switch-report-types").click();
-    $("#no-spreading").click();
+    $("#columns, #report, #symbol").on("input", function() {
+      localStorage.setItem("settings_report", $("#report").val());
+      localStorage.setItem("settings_columns", $("#columns").val());
+      localStorage.setItem("settings_symbol", $("#symbol").val());
 
-    $("#switch-report-types").hide();
-    $("#no-spreading").hide();
+      showHide();
+    });
 
-    drawSelectedSymbol(symbol);
+    if (localStorage.getItem("settings_report")) {
+      $("#report").val(localStorage.getItem("settings_report"));
+    } else {
+      $("#report").val("financial");
+    }
+    if (localStorage.getItem("settings_columns")) {
+      $("#columns").val(localStorage.getItem("settings_columns"));
+    } else {
+      $("#columns").val("net");
+    }
+    if (localStorage.getItem("settings_symbol")) {
+      $("#symbol").val(localStorage.getItem("settings_symbol"));
+    } else {
+      $("#symbol").val("EURO FX");
+    }
+
+    drawSelectedSymbol();
+
+    // ############################
+    // ############################
+    // ############################
 
     $("#symbol").on("input", function() {
-      var symbol = $("#symbol").val();
-      localStorage.setItem("default-symbol", symbol);
-      drawSelectedSymbol(symbol);
-      try {
-        gtag("event", "changed symbol", {
-          event_category: window.user,
-          event_label: symbol,
-        });
-      } catch (e) {}
+      drawSelectedSymbol();
     });
 
     $(".symbol").on("click", function() {
@@ -471,6 +537,7 @@ var loadReport = function(date) {
         symbol = $(this).text();
 
       switch (symbol) {
+        default:
         case "EUR":
           name = "EURO FX";
           break;
@@ -500,13 +567,49 @@ var loadReport = function(date) {
       $("#symbol")
         .val(name)
         .trigger("input");
+    });
 
-      try {
-        gtag("event", "clicked symbol", {
-          event_category: window.user,
-          event_label: symbol,
-        });
-      } catch (e) {}
+    $("body").on("contextmenu", function(e, b, c) {
+      e.preventDefault();
+      switch ($("#report").val()) {
+        default:
+        case "merged":
+          $("#report")
+            .val("financial")
+            .trigger("input");
+          return;
+        case "financial":
+          $("#report")
+            .val("legacy")
+            .trigger("input");
+          return;
+        case "legacy":
+          $("#report")
+            .val("merged")
+            .trigger("input");
+          return;
+      }
+    });
+
+    $("body").on("click", function() {
+      switch ($("#columns").val()) {
+        default:
+        case "net":
+          $("#columns")
+            .val("long & short")
+            .trigger("input");
+          return;
+        case "long & short":
+          $("#columns")
+            .val("long & short & spreading")
+            .trigger("input");
+          return;
+        case "long & short & spreading":
+          $("#columns")
+            .val("net")
+            .trigger("input");
+          return;
+      }
     });
   };
 };
@@ -574,4 +677,12 @@ $.get("https://raw.githubusercontent.com/fxtools/cftc-cot/master/known-days.txt"
   });
 
   loadReport(day);
+});
+
+$("#cogs").on("click", function() {
+  if ($("#settings:visible").length > 0) {
+    $("#settings").hide();
+  } else {
+    $("#settings").show();
+  }
 });
