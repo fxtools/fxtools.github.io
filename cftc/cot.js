@@ -686,3 +686,7 @@ $("#cogs").on("click", function() {
     $("#settings").show();
   }
 });
+
+
+$("td[id*=_positions_]").attr("title", "position");
+$("td[id*=_changes_]").attr("title", "change");
