@@ -223,16 +223,17 @@ var calculateReport = function(rawReport) {
 
       // add options
       if (row == "positions" || row == "changes") {
-        var long = report[row][opponent]["combined"].long - report[row][opponent]["futures"].long;
-        var short = report[row][opponent]["combined"].short - report[row][opponent]["futures"].short;
+        //var long = report[row][opponent]["combined"].long - report[row][opponent]["futures"].long;
+        //var short = report[row][opponent]["combined"].short - report[row][opponent]["futures"].short;
+        var grossLong = report[row][opponent]["combined"].grossLong - report[row][opponent]["futures"].grossLong;
+        var grossShort = report[row][opponent]["combined"].grossShort - report[row][opponent]["futures"].grossShort;
 
         report[row][opponent]["options"] = {
-          net: long - short,
-          long: long,
-          short: short,
-          // spreading: report[row][opponent]["combined"].spreading - report[row][opponent]["futures"].spreading,
-          grossLong: report[row][opponent]["combined"].grossLong - report[row][opponent]["futures"].grossLong,
-          grossShort: report[row][opponent]["combined"].grossShort - report[row][opponent]["futures"].grossShort,
+          net: grossLong - grossShort,
+          long: grossLong,
+          short: grossShort,
+          grossLong: grossLong,
+          grossShort: grossShort,
         };
       } else if (row == "percentages") {
         var total = report.oi.total.options;
