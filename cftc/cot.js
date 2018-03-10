@@ -569,48 +569,48 @@ var loadReport = function(date) {
         .trigger("input");
     });
 
-    $("body").on("contextmenu", function(e, b, c) {
-      e.preventDefault();
-      switch ($("#report").val()) {
-        default:
-        case "merged":
-          $("#report")
-            .val("financial")
-            .trigger("input");
-          return;
-        case "financial":
-          $("#report")
-            .val("legacy")
-            .trigger("input");
-          return;
-        case "legacy":
-          $("#report")
-            .val("merged")
-            .trigger("input");
-          return;
-      }
-    });
+    // $("body").on("contextmenu", function(ev) {
+    //   ev.preventDefault();
+    //   switch ($("#report").val()) {
+    //     default:
+    //     case "merged":
+    //       $("#report")
+    //         .val("financial")
+    //         .trigger("input");
+    //       return;
+    //     case "financial":
+    //       $("#report")
+    //         .val("legacy")
+    //         .trigger("input");
+    //       return;
+    //     case "legacy":
+    //       $("#report")
+    //         .val("merged")
+    //         .trigger("input");
+    //       return;
+    //   }
+    // });
 
-    $("body").on("click", function() {
-      switch ($("#columns").val()) {
-        default:
-        case "net":
-          $("#columns")
-            .val("long & short")
-            .trigger("input");
-          return;
-        case "long & short":
-          $("#columns")
-            .val("long & short & spreading")
-            .trigger("input");
-          return;
-        case "long & short & spreading":
-          $("#columns")
-            .val("net")
-            .trigger("input");
-          return;
-      }
-    });
+    // $("body").on("click", function() {
+    //   switch ($("#columns").val()) {
+    //     default:
+    //     case "net":
+    //       $("#columns")
+    //         .val("long & short")
+    //         .trigger("input");
+    //       return;
+    //     case "long & short":
+    //       $("#columns")
+    //         .val("long & short & spreading")
+    //         .trigger("input");
+    //       return;
+    //     case "long & short & spreading":
+    //       $("#columns")
+    //         .val("net")
+    //         .trigger("input");
+    //       return;
+    //   }
+    // });
   };
 };
 
