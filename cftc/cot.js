@@ -565,7 +565,7 @@ var loadReport = function(date) {
     });
 
     // settings: report type
-    var matchRep = document.location.href.match(/rep=(financial|legacy|merged)/);
+    var matchRep = document.location.href.match(/rep(?:ort){0,1}=(financial|legacy|merged)/);
     if (matchRep) {
       localStorage.setItem("settings_report", matchRep[1]);
     }
@@ -576,7 +576,7 @@ var loadReport = function(date) {
     }
 
     // settings: columns
-    var matchCol = document.location.href.match(/col=(n|ls+)/);
+    var matchCol = document.location.href.match(/col(?:umn){0,1}=(n|ls+)/);
     if (matchCol) {
       var col = "net";
       switch (matchCol[1]) {
