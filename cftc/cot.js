@@ -23,6 +23,29 @@ if (!localStorage.getItem("user")) {
 }
 window.user = localStorage.getItem("user");
 
+var formatNumber = function(value) {
+  var format = "k",
+    abbr = "";
+
+  switch (format) {
+    case "b":
+      value = Math.round(value / 1000 / 1000 / 1000);
+      abbr = "b";
+      break;
+    case "m":
+      value = Math.round(value / 1000 / 1000);
+      abbr = "m";
+      break;
+    case "k":
+      value = Math.round(value / 1000);
+      abbr = "k";
+      break;
+  }
+
+  // return value == 0 ? "" : value.toLocaleString() + abbr;
+  return value.toLocaleString() + abbr;
+};
+
 // ******************************************* //
 // ******************************************* //
 // ******************************************* //
@@ -110,7 +133,7 @@ var calcMinMaxAndColors = function(report) {
             .scaleLinear()
             .domain([Math.max(0, Math.max(mm.max, -1 * mm.min)), 0, Math.min(0, Math.min(-1 * mm.max, mm.min))])
             // .range(["green", "white", "red"]);
-            .range(["green", "lightgray", "red"]);
+            .range(["green", "rgb(150, 150, 150)", "red"]);
 
           colors[visibility][spreading][reportType][row] = color;
         });
@@ -130,7 +153,7 @@ var formatAllCells = function() {
     if (d.id.indexOf("percentages") != -1) {
       d.innerText = value.toFixed(1) + "%";
     } else {
-      d.innerText = Math.round(value / 1000).toLocaleString() + "k";
+      d.innerText = formatNumber(value);
     }
   });
 };
@@ -223,17 +246,16 @@ var calculateReport = function(rawReport) {
 
       // add options
       if (row == "positions" || row == "changes") {
-        //var long = report[row][opponent]["combined"].long - report[row][opponent]["futures"].long;
-        //var short = report[row][opponent]["combined"].short - report[row][opponent]["futures"].short;
-        var grossLong = report[row][opponent]["combined"].grossLong - report[row][opponent]["futures"].grossLong;
-        var grossShort = report[row][opponent]["combined"].grossShort - report[row][opponent]["futures"].grossShort;
+        var long = report[row][opponent]["combined"].long - report[row][opponent]["futures"].long;
+        var short = report[row][opponent]["combined"].short - report[row][opponent]["futures"].short;
 
         report[row][opponent]["options"] = {
-          net: grossLong - grossShort,
-          long: grossLong,
-          short: grossShort,
-          grossLong: grossLong,
-          grossShort: grossShort,
+          net: long - short,
+          long: long,
+          short: short,
+          // spreading: report[row][opponent]["combined"].spreading - report[row][opponent]["futures"].spreading,
+          grossLong: report[row][opponent]["combined"].grossLong - report[row][opponent]["futures"].grossLong,
+          grossShort: report[row][opponent]["combined"].grossShort - report[row][opponent]["futures"].grossShort,
         };
       } else if (row == "percentages") {
         var total = report.oi.total.options;
@@ -280,7 +302,7 @@ var drawReport = function() {
   // set report headers
   Object.keys(report.oi).forEach(function(key) {
     Object.keys(report.oi[key]).forEach(function(reportType) {
-      $("#" + reportType + "_oi_" + key).text(Math.round(report.oi[key][reportType] / 1000).toLocaleString() + "k");
+      $("#" + reportType + "_oi_" + key).text(formatNumber(report.oi[key][reportType]));
     });
   });
 
@@ -297,7 +319,7 @@ var drawReport = function() {
           } else {
             $(id)
               .attr("value", value)
-              .text(Math.round(value / 1000).toLocaleString() + "k");
+              .text(formatNumber(value));
           }
         });
       });
@@ -378,9 +400,6 @@ var loadReport = function(date) {
     $("#selected-report-type").text($("#report").val());
     $("#selected-columns").text($("#columns").val());
 
-    $("tr[id$=_percentages]").hide();
-    $("tr[id$=_traders]").hide();
-
     var showCot = $("#report").val() != "financial";
     var showTff = $("#report").val() != "legacy";
     var showNet = $("#columns").val() == "net";
@@ -391,43 +410,38 @@ var loadReport = function(date) {
     var columns = 0;
     var columnsSpreadingMalus = 0;
 
-    // hide all
+    // // hide all
     $("table > tbody > tr > *").hide();
 
     // show first column
     $("table > tbody > tr > th:first-child").show();
 
     // hide rows
-    // //$("tr[id$=_positions]").hide();
-    $("tr[id$=_percentages]").hide();
-    $("tr[id$=_traders]").hide();
+    // $("tr[id$=_percentages]").hide();
+    // $("tr[id$=_traders]").hide();
 
-    $("th.total").show();
-    $("th.total.spacer").show();
-    $("#futures_oi_total").show();
-    $("#futures_oi_changes").show();
-    $("#options_oi_total").show();
-    $("#options_oi_changes").show();
-    $("#combined_oi_total").show();
-    $("#combined_oi_changes").show();
+    // $("th.total").show();
+    // $("#futures_oi_total").show();
+    // $("#futures_oi_changes").show();
+    // $("#options_oi_total").show();
+    // $("#options_oi_changes").show();
+    // $("#combined_oi_total").show();
+    // $("#combined_oi_changes").show();
 
     // show opponents
     if (showCot) {
-      $("th.cot.shrink").show();
-      $("th.cot.spacer").show();
+      $("th.cot").show();
       opponents += 2;
     }
     if (showTff) {
-      $("th.tff.shrink").show();
-      $("th.tff.spacer").show();
+      $("th.tff").show();
       opponents += 4;
     }
-    $("th.merged.shrink").show();
+    $("th.merged").show();
 
     opponents += 1;
 
     if (showNet) {
-      $(".total.rowshrink").attr("rowspan", 1);
       $("#column_headers").hide();
       if (showCot) {
         $("th.cot:contains('net')").show();
@@ -442,8 +456,8 @@ var loadReport = function(date) {
 
       columns++;
     } else {
-      $(".total.rowshrink").attr("rowspan", 2);
       $("#column_headers").show();
+      $("th:contains('net')").hide();
       if (showCot) {
         $("th.cot:contains('long')").show();
         $("td.cot[id$=long]").show();
@@ -479,6 +493,9 @@ var loadReport = function(date) {
 
         columns++;
         columnsSpreadingMalus++;
+      } else {
+        $("th:contains('sprd')").hide();
+        $("td[id$=spreading]").hide();
       }
     }
 
@@ -487,6 +504,22 @@ var loadReport = function(date) {
     $(".shrink").attr("colspan", columns);
     $(".shrink.no-spreading").attr("colspan", columns - (showSpreading ? 1 : 0));
     //$(".report_type_caption").attr("colspan", 1 + allColumns);
+
+    $("#opponents_names *").css("min-width", 0);
+    $("#column_headers *").css("min-width", 0);
+    if (showNet) {
+      $("#opponents_names *").css("white-space", "nowrap");
+    }
+    var colHeaders = showNet ? $("#opponents_names *") : $("#column_headers *");
+    var maxWidth = Math.max.apply(
+      Math,
+      colHeaders
+        .map(function() {
+          return $(this).width();
+        })
+        .get()
+    );
+    colHeaders.css("min-width", maxWidth);
   };
 
   this.next = function() {
@@ -566,6 +599,20 @@ var loadReport = function(date) {
       }
 
       $("#symbol")
+        .val(name)
+        .trigger("input");
+    });
+
+    $(".report").on("click", function() {
+      var name = $(this).text();
+      $("#report")
+        .val(name)
+        .trigger("input");
+    });
+
+    $(".columns").on("click", function() {
+      var name = $(this).text();
+      $("#columns")
         .val(name)
         .trigger("input");
     });
