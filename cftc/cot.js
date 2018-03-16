@@ -678,24 +678,21 @@ $.get("https://raw.githubusercontent.com/fxtools/cftc-cot/master/known-days.txt"
     $("#subNavi").show();
   }
 
+  $("title").text("CoT " + day.toISODate());
+
   disqus_config = function() {
-    this.page.url = document.location.origin + document.location.pathname + "?day=" + dt.toISODate();
-    this.page.identifier = "cot-" + dt.toISODate();
+    this.page.shortname = "fx-tools";
+    this.page.identifier = "cot-" + day.toISODate();
+    this.page.url = document.location.origin + document.location.pathname + "?day=" + day.toISODate();
+    this.page.title = $("title").text();
+    this.page.category_id = "cot";
   };
 
-  var d = document,
-    s1 = d.createElement("script");
-  s1.src = "//fx-tools.disqus.com/count.js";
-  s1.setAttribute("data-timestamp", +new Date());
-  s1.setAttribute("async", "async");
-  d.body.appendChild(s1);
+  // $("head").append($("<script id='dsq-count-scr' src='//fx-tools.disqus.com/count.js' async></script>"));
+  $("head").append($("<script id='dsq-count-scr' src='//fx-tools.disqus.com/count.js' async></script>"));
 
   $("#commentLink").on("click", function() {
-    var s2 = d.createElement("script");
-    s2.src = "//fx-tools.disqus.com/embed.js";
-    s2.setAttribute("data-timestamp", +new Date());
-    d.body.appendChild(s2);
-    $(this).unbind("click");
+    $("head").append($("<script src='https://fx-tools.disqus.com/embed.js' data-timestamp=" + new Date() + "></script>"));
   });
 
   loadReport(day);
