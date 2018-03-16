@@ -680,15 +680,17 @@ $.get("https://raw.githubusercontent.com/fxtools/cftc-cot/master/known-days.txt"
 
   $("title").text("CoT " + day.toISODate());
 
+  var url = document.location.origin + document.location.pathname + "?day=" + day.toISODate() + "#disqus_thread";
+  $("#commentLink").attr("href", url);
+
   disqus_config = function() {
     this.page.shortname = "fx-tools";
     this.page.identifier = "cot-" + day.toISODate();
-    this.page.url = document.location.origin + document.location.pathname + "?day=" + day.toISODate();
+    this.page.url = url;
     this.page.title = $("title").text();
     this.page.category_id = "cot";
   };
 
-  // $("head").append($("<script id='dsq-count-scr' src='//fx-tools.disqus.com/count.js' async></script>"));
   $("head").append($("<script id='dsq-count-scr' src='//fx-tools.disqus.com/count.js' async></script>"));
 
   $("#commentLink").on("click", function() {
