@@ -693,6 +693,7 @@ $.get("https://raw.githubusercontent.com/fxtools/cftc-cot/master/known-days.txt"
 
   $("#commentLink").on("click", function() {
     $("head").append($("<script src='https://fx-tools.disqus.com/embed.js' data-timestamp=" + new Date() + "></script>"));
+    $(this).unbind("click");
   });
 
   loadReport(day);
