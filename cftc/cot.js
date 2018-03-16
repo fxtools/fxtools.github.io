@@ -425,7 +425,7 @@ var loadReport = function(date) {
 
     try {
       gtag("event", $("#columns").val(), {
-        event_category: "cot: " + $("#symbol").val() + ", " + $("#report").val(),
+        event_category: "cot: " + $("#report").val() + ", " + $("#symbol").val(),
         event_label: window.user,
       });
     } catch (e) {}
