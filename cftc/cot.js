@@ -46,6 +46,30 @@ var formatNumber = function(value) {
   return value.toLocaleString() + abbr;
 };
 
+var matchSymbol = function(symbol) {
+  symbol = symbol.toUpperCase();
+  switch (symbol) {
+    default:
+      return symbol;
+    case "EUR":
+      return "EURO FX";
+    case "JPY":
+      return "JAPANESE YEN";
+    case "GBP":
+      return "BRITISH POUND STERLING";
+    case "AUD":
+      return "AUSTRALIAN DOLLAR";
+    case "CHF":
+      return "SWISS FRANC";
+    case "CAD":
+      return "CANADIAN DOLLAR";
+    case "NZD":
+      return "NEW ZEALAND DOLLAR";
+    case "DX":
+      return "U.S. DOLLAR INDEX";
+  }
+};
+
 // ******************************************* //
 // ******************************************* //
 // ******************************************* //
@@ -540,15 +564,41 @@ var loadReport = function(date) {
       showHide();
     });
 
+    // settings: report type
+    var matchRep = document.location.href.match(/rep=(financial|legacy|merged)/);
+    if (matchRep) {
+      localStorage.setItem("settings_report", matchRep[1]);
+    }
     if (localStorage.getItem("settings_report")) {
       $("#report").val(localStorage.getItem("settings_report"));
     } else {
       $("#report").val("financial");
     }
+
+    // settings: columns
+    var matchCol = document.location.href.match(/col=(n|ls+)/);
+    if (matchCol) {
+      var col = "net";
+      switch (matchCol[1]) {
+        case "ls":
+          col = "long & short";
+          break;
+        case "lss":
+          col = "long & short & spreading";
+          break;
+      }
+      localStorage.setItem("settings_columns", col);
+    }
     if (localStorage.getItem("settings_columns")) {
       $("#columns").val(localStorage.getItem("settings_columns"));
     } else {
       $("#columns").val("net");
+    }
+
+    // settings: symbol
+    var matchSym = document.location.href.match(/sym(?:bol){0,1}=(\w{2,3})/);
+    if (matchSym) {
+      localStorage.setItem("settings_symbol", matchSymbol(matchSym[1]));
     }
     if (localStorage.getItem("settings_symbol")) {
       $("#symbol").val(localStorage.getItem("settings_symbol"));
@@ -567,98 +617,22 @@ var loadReport = function(date) {
     });
 
     $(".symbol").on("click", function() {
-      var name = "EURO FX",
-        symbol = $(this).text();
-
-      switch (symbol) {
-        default:
-        case "EUR":
-          name = "EURO FX";
-          break;
-        case "JPY":
-          name = "JAPANESE YEN";
-          break;
-        case "GBP":
-          name = "BRITISH POUND STERLING";
-          break;
-        case "AUD":
-          name = "AUSTRALIAN DOLLAR";
-          break;
-        case "CHF":
-          name = "SWISS FRANC";
-          break;
-        case "CAD":
-          name = "CANADIAN DOLLAR";
-          break;
-        case "NZD":
-          name = "NEW ZEALAND DOLLAR";
-          break;
-        case "DX":
-          name = "U.S. DOLLAR INDEX";
-          break;
-      }
-
       $("#symbol")
-        .val(name)
+        .val(matchSymbol($(this).text()))
         .trigger("input");
     });
 
     $(".report").on("click", function() {
-      var name = $(this).text();
       $("#report")
-        .val(name)
+        .val($(this).text())
         .trigger("input");
     });
 
     $(".columns").on("click", function() {
-      var name = $(this).text();
       $("#columns")
-        .val(name)
+        .val($(this).text())
         .trigger("input");
     });
-
-    // $("body").on("contextmenu", function(ev) {
-    //   ev.preventDefault();
-    //   switch ($("#report").val()) {
-    //     default:
-    //     case "merged":
-    //       $("#report")
-    //         .val("financial")
-    //         .trigger("input");
-    //       return;
-    //     case "financial":
-    //       $("#report")
-    //         .val("legacy")
-    //         .trigger("input");
-    //       return;
-    //     case "legacy":
-    //       $("#report")
-    //         .val("merged")
-    //         .trigger("input");
-    //       return;
-    //   }
-    // });
-
-    // $("body").on("click", function() {
-    //   switch ($("#columns").val()) {
-    //     default:
-    //     case "net":
-    //       $("#columns")
-    //         .val("long & short")
-    //         .trigger("input");
-    //       return;
-    //     case "long & short":
-    //       $("#columns")
-    //         .val("long & short & spreading")
-    //         .trigger("input");
-    //       return;
-    //     case "long & short & spreading":
-    //       $("#columns")
-    //         .val("net")
-    //         .trigger("input");
-    //       return;
-    //   }
-    // });
   };
 };
 
