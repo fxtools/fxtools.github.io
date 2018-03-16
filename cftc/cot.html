@@ -32,6 +32,29 @@
 			vertical-align: top;
 			padding: 10px 10px 10px 10px;
 		}
+
+		td[id*=total],
+		.total {
+			display: none !important;
+		}
+
+		td[id*=percentages],
+		td[id*=traders] {
+			display: none !important;
+		}
+
+		.fg {
+			background-color: #F0F0F0;
+			border-right: 1px solid white;
+		}
+
+		.bg {
+			border-right: 1px solid #F0F0F0;
+		}
+
+		section>dl>*>a {
+			white-space: nowrap;
+		}
 	</style>
 </head>
 
@@ -129,224 +152,184 @@
 			<br/>
 
 			<table border="0" id="">
+				<colgroup>
+					<col width="*" />
+				</colgroup>
+
 				<tbody>
 					<tr id="opponents_names">
-						<th class="spacer" width="10%"></th>
-						<th class="total rowshrink" rowspan="2" width="10%" title="Total Open Interest"> Total </th>
-						<th class="total spacer"></th>
-						<th class="cot shrink" colspan="4" width="10%" title="Non-Commercial"> Non Com </th>
-						<th class="cot spacer"></th>
-						<th class="cot shrink no-spreading" colspan="3" width="10%" title="Commercial"> Com </th>
-						<th class="cot spacer"></th>
-						<th class="tff shrink" colspan="4" width="10%" title="Dealer/Intermediary"> Dealer </th>
-						<th class="tff spacer"></th>
-						<th class="tff shrink" colspan="4" width="10%" title="Asset Manager/Institutional"> Manager </th>
-						<th class="tff spacer"></th>
-						<th class="tff shrink" colspan="4" width="10%" title="Leveraged Funds"> Funds </th>
-						<th class="tff spacer"></th>
-						<th class="tff shrink" colspan="4" width="10%" title="Other Reportables"> Other Rep </th>
-						<th class="tff spacer"></th>
-						<th class="merged shrink no-spreading" colspan="3" width="10%" title="Nonreportable"> Non Rep </th>
+						<th rowspan="2" class="spacer"></th>
+						<th colspan="4" id="header_total" class="bg total rowshrink" title="Total Open Interest"> Total </th>
+						<th colspan="4" id="header_noncom" class="fg cot shrink" title="Noncommercial"> Non Com </th>
+						<th colspan="3" id="header_com" class="bg cot shrink no-spreading" title="Commercial"> Com </th>
+						<th colspan="4" id="header_dealer" class="fg tff shrink" title="Dealer/Intermediary"> Dealer </th>
+						<th colspan="4" id="header_manager" class="bg tff shrink" title="Asset Manager/Institutional"> Manager </th>
+						<th colspan="4" id="header_funds" class="fg tff shrink" title="Leveraged Funds"> Funds </th>
+						<th colspan="4" id="header_other" class="bg tff shrink" title="Other Reportables"> Other Rep </th>
+						<th colspan="3" id="header_nonrep" class="fg merged shrink no-spreading" colspan="3" title="Nonreportable"> Non Rep </th>
 					</tr>
 					<tr id="column_headers">
-						<th></th>
-						<th class="total spacer"></th>
-						<th class="cot">net</th>
-						<th class="cot">long</th>
-						<th class="cot">short</th>
-						<th class="cot spreading">sprd</th>
-						<th class="cot spacer"></th>
-						<th class="cot">net</th>
-						<th class="cot">long</th>
-						<th class="cot">short</th>
-						<th class="cot spacer"></th>
-						<th class="tff">net</th>
-						<th class="tff">long</th>
-						<th class="tff">short</th>
-						<th class="tff spreading">sprd</th>
-						<th class="tff spacer"></th>
-						<th class="tff">net</th>
-						<th class="tff">long</th>
-						<th class="tff">short</th>
-						<th class="tff spreading">sprd</th>
-						<th class="tff spacer"></th>
-						<th class="tff">net</th>
-						<th class="tff">long</th>
-						<th class="tff">short</th>
-						<th class="tff spreading">sprd</th>
-						<th class="tff spacer"></th>
-						<th class="tff">net</th>
-						<th class="tff">long</th>
-						<th class="tff">short</th>
-						<th class="tff spreading">sprd</th>
-						<th class="tff spacer"></th>
-						<th class="merged">net</th>
-						<th class="merged">long</th>
-						<th class="merged">short</th>
+						<th class="bg total">net</th>
+						<th class="bg total">long</th>
+						<th class="bg total">short</th>
+						<th class="bg total spreading">sprd</th>
+						<th class="fg cot">net</th>
+						<th class="fg cot">long</th>
+						<th class="fg cot">short</th>
+						<th class="fg cot spreading">sprd</th>
+						<th class="bg cot">net</th>
+						<th class="bg cot">long</th>
+						<th class="bg cot">short</th>
+						<th class="fg tff">net</th>
+						<th class="fg tff">long</th>
+						<th class="fg tff">short</th>
+						<th class="fg tff spreading">sprd</th>
+						<th class="bg tff">net</th>
+						<th class="bg tff">long</th>
+						<th class="bg tff">short</th>
+						<th class="bg tff spreading">sprd</th>
+						<th class="fg tff">net</th>
+						<th class="fg tff">long</th>
+						<th class="fg tff">short</th>
+						<th class="fg tff spreading">sprd</th>
+						<th class="bg tff">net</th>
+						<th class="bg tff">long</th>
+						<th class="bg tff">short</th>
+						<th class="bg tff spreading">sprd</th>
+						<th class="fg merged">net</th>
+						<th class="fg merged">long</th>
+						<th class="fg merged">short</th>
 					</tr>
 				</tbody>
 
 
 
-
-
-
-
-
-
-
-
-
-
 				<tbody id="futures_only_report">
-					<!-- <tr>
-						<th></th>
-						<th class="report_type_caption" colspan="32">
-							<span>Futures</span>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<span>open interest:</span>
-							<span id="futures_oi_total"></span>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<span>change:</span>
-							<span id="futures_oi_changes"></span>
-						</th>
-					</tr> -->
 					<tr id="futures_positions">
 						<th rowspan="2">Futures</th>
-						<td class="total" id="futures_oi_total"></td>
-						<th class="total spacer"></th>
-						<td class="cot" id="futures_positions_noncom_net"></td>
-						<td class="cot" id="futures_positions_noncom_long"></td>
-						<td class="cot" id="futures_positions_noncom_short"></td>
-						<td class="cot" id="futures_positions_noncom_spreading"></td>
-						<th class="cot spacer"></th>
-						<td class="cot" id="futures_positions_com_net"></td>
-						<td class="cot" id="futures_positions_com_long"></td>
-						<td class="cot" id="futures_positions_com_short"></td>
-						<th class="cot spacer"></th>
-						<td class="tff" id="futures_positions_dealer_net"></td>
-						<td class="tff" id="futures_positions_dealer_long"></td>
-						<td class="tff" id="futures_positions_dealer_short"></td>
-						<td class="tff" id="futures_positions_dealer_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="futures_positions_manager_net"></td>
-						<td class="tff" id="futures_positions_manager_long"></td>
-						<td class="tff" id="futures_positions_manager_short"></td>
-						<td class="tff" id="futures_positions_manager_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="futures_positions_funds_net"></td>
-						<td class="tff" id="futures_positions_funds_long"></td>
-						<td class="tff" id="futures_positions_funds_short"></td>
-						<td class="tff" id="futures_positions_funds_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="futures_positions_other_net"></td>
-						<td class="tff" id="futures_positions_other_long"></td>
-						<td class="tff" id="futures_positions_other_short"></td>
-						<td class="tff" id="futures_positions_other_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="merged" id="futures_positions_nonrep_net"></td>
-						<td class="merged" id="futures_positions_nonrep_long"></td>
-						<td class="merged" id="futures_positions_nonrep_short"></td>
+						<td class="bg total" id="futures_positions_total_net"></td>
+						<td class="bg total" id="futures_positions_total_long"></td>
+						<td class="bg total" id="futures_positions_total_short"></td>
+						<td class="bg total" id="futures_positions_total_spreading"></td>
+						<td class="fg cot" id="futures_positions_noncom_net"></td>
+						<td class="fg cot" id="futures_positions_noncom_long"></td>
+						<td class="fg cot" id="futures_positions_noncom_short"></td>
+						<td class="fg cot" id="futures_positions_noncom_spreading"></td>
+						<td class="bg cot" id="futures_positions_com_net"></td>
+						<td class="bg cot" id="futures_positions_com_long"></td>
+						<td class="bg cot" id="futures_positions_com_short"></td>
+						<td class="fg tff" id="futures_positions_dealer_net"></td>
+						<td class="fg tff" id="futures_positions_dealer_long"></td>
+						<td class="fg tff" id="futures_positions_dealer_short"></td>
+						<td class="fg tff" id="futures_positions_dealer_spreading"></td>
+						<td class="bg tff" id="futures_positions_manager_net"></td>
+						<td class="bg tff" id="futures_positions_manager_long"></td>
+						<td class="bg tff" id="futures_positions_manager_short"></td>
+						<td class="bg tff" id="futures_positions_manager_spreading"></td>
+						<td class="fg tff" id="futures_positions_funds_net"></td>
+						<td class="fg tff" id="futures_positions_funds_long"></td>
+						<td class="fg tff" id="futures_positions_funds_short"></td>
+						<td class="fg tff" id="futures_positions_funds_spreading"></td>
+						<td class="bg tff" id="futures_positions_other_net"></td>
+						<td class="bg tff" id="futures_positions_other_long"></td>
+						<td class="bg tff" id="futures_positions_other_short"></td>
+						<td class="bg tff" id="futures_positions_other_spreading"></td>
+						<td class="fg merged" id="futures_positions_nonrep_net"></td>
+						<td class="fg merged" id="futures_positions_nonrep_long"></td>
+						<td class="fg merged" id="futures_positions_nonrep_short"></td>
 					</tr>
 					<tr id="futures_changes">
-						<td class="total" id="futures_oi_changes"></td>
-						<th class="total spacer"></th>
-						<td class="cot" id="futures_changes_noncom_net"></td>
-						<td class="cot" id="futures_changes_noncom_long"></td>
-						<td class="cot" id="futures_changes_noncom_short"></td>
-						<td class="cot" id="futures_changes_noncom_spreading"></td>
-						<th class="cot spacer"></th>
-						<td class="cot" id="futures_changes_com_net"></td>
-						<td class="cot" id="futures_changes_com_long"></td>
-						<td class="cot" id="futures_changes_com_short"></td>
-						<th class="cot spacer"></th>
-						<td class="tff" id="futures_changes_dealer_net"></td>
-						<td class="tff" id="futures_changes_dealer_long"></td>
-						<td class="tff" id="futures_changes_dealer_short"></td>
-						<td class="tff" id="futures_changes_dealer_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="futures_changes_manager_net"></td>
-						<td class="tff" id="futures_changes_manager_long"></td>
-						<td class="tff" id="futures_changes_manager_short"></td>
-						<td class="tff" id="futures_changes_manager_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="futures_changes_funds_net"></td>
-						<td class="tff" id="futures_changes_funds_long"></td>
-						<td class="tff" id="futures_changes_funds_short"></td>
-						<td class="tff" id="futures_changes_funds_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="futures_changes_other_net"></td>
-						<td class="tff" id="futures_changes_other_long"></td>
-						<td class="tff" id="futures_changes_other_short"></td>
-						<td class="tff" id="futures_changes_other_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="merged" id="futures_changes_nonrep_net"></td>
-						<td class="merged" id="futures_changes_nonrep_long"></td>
-						<td class="merged" id="futures_changes_nonrep_short"></td>
+						<td class="bg total" id="futures_changes_total_net"></td>
+						<td class="bg total" id="futures_changes_total_long"></td>
+						<td class="bg total" id="futures_changes_total_short"></td>
+						<td class="bg total" id="futures_changes_total_spreading"></td>
+						<td class="fg cot" id="futures_changes_noncom_net"></td>
+						<td class="fg cot" id="futures_changes_noncom_long"></td>
+						<td class="fg cot" id="futures_changes_noncom_short"></td>
+						<td class="fg cot" id="futures_changes_noncom_spreading"></td>
+						<td class="bg cot" id="futures_changes_com_net"></td>
+						<td class="bg cot" id="futures_changes_com_long"></td>
+						<td class="bg cot" id="futures_changes_com_short"></td>
+						<td class="fg tff" id="futures_changes_dealer_net"></td>
+						<td class="fg tff" id="futures_changes_dealer_long"></td>
+						<td class="fg tff" id="futures_changes_dealer_short"></td>
+						<td class="fg tff" id="futures_changes_dealer_spreading"></td>
+						<td class="bg tff" id="futures_changes_manager_net"></td>
+						<td class="bg tff" id="futures_changes_manager_long"></td>
+						<td class="bg tff" id="futures_changes_manager_short"></td>
+						<td class="bg tff" id="futures_changes_manager_spreading"></td>
+						<td class="fg tff" id="futures_changes_funds_net"></td>
+						<td class="fg tff" id="futures_changes_funds_long"></td>
+						<td class="fg tff" id="futures_changes_funds_short"></td>
+						<td class="fg tff" id="futures_changes_funds_spreading"></td>
+						<td class="bg tff" id="futures_changes_other_net"></td>
+						<td class="bg tff" id="futures_changes_other_long"></td>
+						<td class="bg tff" id="futures_changes_other_short"></td>
+						<td class="bg tff" id="futures_changes_other_spreading"></td>
+						<td class="fg merged" id="futures_changes_nonrep_net"></td>
+						<td class="fg merged" id="futures_changes_nonrep_long"></td>
+						<td class="fg merged" id="futures_changes_nonrep_short"></td>
 					</tr>
 					<tr id="futures_percentages">
-						<td class="cot" id="futures_percentages_noncom_net"></td>
-						<td class="cot" id="futures_percentages_noncom_long"></td>
-						<td class="cot" id="futures_percentages_noncom_short"></td>
-						<td class="cot" id="futures_percentages_noncom_spreading"></td>
-						<th class="cot spacer"></th>
-						<td class="cot" id="futures_percentages_com_net"></td>
-						<td class="cot" id="futures_percentages_com_long"></td>
-						<td class="cot" id="futures_percentages_com_short"></td>
-						<th class="cot spacer"></th>
-						<td class="tff" id="futures_percentages_dealer_net"></td>
-						<td class="tff" id="futures_percentages_dealer_long"></td>
-						<td class="tff" id="futures_percentages_dealer_short"></td>
-						<td class="tff" id="futures_percentages_dealer_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="futures_percentages_manager_net"></td>
-						<td class="tff" id="futures_percentages_manager_long"></td>
-						<td class="tff" id="futures_percentages_manager_short"></td>
-						<td class="tff" id="futures_percentages_manager_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="futures_percentages_funds_net"></td>
-						<td class="tff" id="futures_percentages_funds_long"></td>
-						<td class="tff" id="futures_percentages_funds_short"></td>
-						<td class="tff" id="futures_percentages_funds_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="futures_percentages_other_net"></td>
-						<td class="tff" id="futures_percentages_other_long"></td>
-						<td class="tff" id="futures_percentages_other_short"></td>
-						<td class="tff" id="futures_percentages_other_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="merged" id="futures_percentages_nonrep_net"></td>
-						<td class="merged" id="futures_percentages_nonrep_long"></td>
-						<td class="merged" id="futures_percentages_nonrep_short"></td>
+						<td class="bg total" id="futures_percentages_total_net"></td>
+						<td class="bg total" id="futures_percentages_total_long"></td>
+						<td class="bg total" id="futures_percentages_total_short"></td>
+						<td class="bg total" id="futures_percentages_total_spreading"></td>
+						<td class="fg cot" id="futures_percentages_noncom_net"></td>
+						<td class="fg cot" id="futures_percentages_noncom_long"></td>
+						<td class="fg cot" id="futures_percentages_noncom_short"></td>
+						<td class="fg cot" id="futures_percentages_noncom_spreading"></td>
+						<td class="bg cot" id="futures_percentages_com_net"></td>
+						<td class="bg cot" id="futures_percentages_com_long"></td>
+						<td class="bg cot" id="futures_percentages_com_short"></td>
+						<td class="fg tff" id="futures_percentages_dealer_net"></td>
+						<td class="fg tff" id="futures_percentages_dealer_long"></td>
+						<td class="fg tff" id="futures_percentages_dealer_short"></td>
+						<td class="fg tff" id="futures_percentages_dealer_spreading"></td>
+						<td class="bg tff" id="futures_percentages_manager_net"></td>
+						<td class="bg tff" id="futures_percentages_manager_long"></td>
+						<td class="bg tff" id="futures_percentages_manager_short"></td>
+						<td class="bg tff" id="futures_percentages_manager_spreading"></td>
+						<td class="fg tff" id="futures_percentages_funds_net"></td>
+						<td class="fg tff" id="futures_percentages_funds_long"></td>
+						<td class="fg tff" id="futures_percentages_funds_short"></td>
+						<td class="fg tff" id="futures_percentages_funds_spreading"></td>
+						<td class="bg tff" id="futures_percentages_other_net"></td>
+						<td class="bg tff" id="futures_percentages_other_long"></td>
+						<td class="bg tff" id="futures_percentages_other_short"></td>
+						<td class="bg tff" id="futures_percentages_other_spreading"></td>
+						<td class="fg merged" id="futures_percentages_nonrep_net"></td>
+						<td class="fg merged" id="futures_percentages_nonrep_long"></td>
+						<td class="fg merged" id="futures_percentages_nonrep_short"></td>
 					</tr>
 					<tr id="futures_traders">
-						<td class="cot" id="futures_traders_noncom_net"></td>
-						<td class="cot" id="futures_traders_noncom_long"></td>
-						<td class="cot" id="futures_traders_noncom_short"></td>
-						<td class="cot" id="futures_traders_noncom_spreading"></td>
-						<th class="cot spacer"></th>
-						<td class="cot" id="futures_traders_com_net"></td>
-						<td class="cot" id="futures_traders_com_long"></td>
-						<td class="cot" id="futures_traders_com_short"></td>
-						<th class="cot spacer"></th>
-						<td class="tff" id="futures_traders_dealer_net"></td>
-						<td class="tff" id="futures_traders_dealer_long"></td>
-						<td class="tff" id="futures_traders_dealer_short"></td>
-						<td class="tff" id="futures_traders_dealer_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="futures_traders_manager_net"></td>
-						<td class="tff" id="futures_traders_manager_long"></td>
-						<td class="tff" id="futures_traders_manager_short"></td>
-						<td class="tff" id="futures_traders_manager_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="futures_traders_funds_net"></td>
-						<td class="tff" id="futures_traders_funds_long"></td>
-						<td class="tff" id="futures_traders_funds_short"></td>
-						<td class="tff" id="futures_traders_funds_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="futures_traders_other_net"></td>
-						<td class="tff" id="futures_traders_other_long"></td>
-						<td class="tff" id="futures_traders_other_short"></td>
-						<td class="tff" id="futures_traders_other_spreading"></td>
+						<td class="bg total" id="futures_traders_total_net"></td>
+						<td class="bg total" id="futures_traders_total_long"></td>
+						<td class="bg total" id="futures_traders_total_short"></td>
+						<td class="bg total" id="futures_traders_total_spreading"></td>
+						<td class="fg cot" id="futures_traders_noncom_net"></td>
+						<td class="fg cot" id="futures_traders_noncom_long"></td>
+						<td class="fg cot" id="futures_traders_noncom_short"></td>
+						<td class="fg cot" id="futures_traders_noncom_spreading"></td>
+						<td class="bg cot" id="futures_traders_com_net"></td>
+						<td class="bg cot" id="futures_traders_com_long"></td>
+						<td class="bg cot" id="futures_traders_com_short"></td>
+						<td class="fg tff" id="futures_traders_dealer_net"></td>
+						<td class="fg tff" id="futures_traders_dealer_long"></td>
+						<td class="fg tff" id="futures_traders_dealer_short"></td>
+						<td class="fg tff" id="futures_traders_dealer_spreading"></td>
+						<td class="bg tff" id="futures_traders_manager_net"></td>
+						<td class="bg tff" id="futures_traders_manager_long"></td>
+						<td class="bg tff" id="futures_traders_manager_short"></td>
+						<td class="bg tff" id="futures_traders_manager_spreading"></td>
+						<td class="fg tff" id="futures_traders_funds_net"></td>
+						<td class="fg tff" id="futures_traders_funds_long"></td>
+						<td class="fg tff" id="futures_traders_funds_short"></td>
+						<td class="fg tff" id="futures_traders_funds_spreading"></td>
+						<td class="bg tff" id="futures_traders_other_net"></td>
+						<td class="bg tff" id="futures_traders_other_long"></td>
+						<td class="bg tff" id="futures_traders_other_short"></td>
+						<td class="bg tff" id="futures_traders_other_spreading"></td>
 					</tr>
 				</tbody>
 
@@ -369,111 +352,106 @@
 					</tr> -->
 					<tr id="options_positions">
 						<th rowspan="2">Options</th>
-						<td class="total" id="options_oi_total"></td>
-						<th class="total spacer"></th>
-						<td class="cot" id="options_positions_noncom_net"></td>
-						<td class="cot" id="options_positions_noncom_long"></td>
-						<td class="cot" id="options_positions_noncom_short"></td>
-						<td class="cot" id="options_positions_noncom_spreading"></td>
-						<th class="cot spacer"></th>
-						<td class="cot" id="options_positions_com_net"></td>
-						<td class="cot" id="options_positions_com_long"></td>
-						<td class="cot" id="options_positions_com_short"></td>
-						<th class="cot spacer"></th>
-						<td class="tff" id="options_positions_dealer_net"></td>
-						<td class="tff" id="options_positions_dealer_long"></td>
-						<td class="tff" id="options_positions_dealer_short"></td>
-						<td class="tff" id="options_positions_dealer_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="options_positions_manager_net"></td>
-						<td class="tff" id="options_positions_manager_long"></td>
-						<td class="tff" id="options_positions_manager_short"></td>
-						<td class="tff" id="options_positions_manager_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="options_positions_funds_net"></td>
-						<td class="tff" id="options_positions_funds_long"></td>
-						<td class="tff" id="options_positions_funds_short"></td>
-						<td class="tff" id="options_positions_funds_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="options_positions_other_net"></td>
-						<td class="tff" id="options_positions_other_long"></td>
-						<td class="tff" id="options_positions_other_short"></td>
-						<td class="tff" id="options_positions_other_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="merged" id="options_positions_nonrep_net"></td>
-						<td class="merged" id="options_positions_nonrep_long"></td>
-						<td class="merged" id="options_positions_nonrep_short"></td>
+						<td class="bg total" id="options_positions_total_net"></td>
+						<td class="bg total" id="options_positions_total_long"></td>
+						<td class="bg total" id="options_positions_total_short"></td>
+						<td class="bg total" id="options_positions_total_spreading"></td>
+						<td class="fg cot" id="options_positions_noncom_net"></td>
+						<td class="fg cot" id="options_positions_noncom_long"></td>
+						<td class="fg cot" id="options_positions_noncom_short"></td>
+						<td class="fg cot" id="options_positions_noncom_spreading"></td>
+						<td class="bg cot" id="options_positions_com_net"></td>
+						<td class="bg cot" id="options_positions_com_long"></td>
+						<td class="bg cot" id="options_positions_com_short"></td>
+						<td class="fg tff" id="options_positions_dealer_net"></td>
+						<td class="fg tff" id="options_positions_dealer_long"></td>
+						<td class="fg tff" id="options_positions_dealer_short"></td>
+						<td class="fg tff" id="options_positions_dealer_spreading"></td>
+						<td class="bg tff" id="options_positions_manager_net"></td>
+						<td class="bg tff" id="options_positions_manager_long"></td>
+						<td class="bg tff" id="options_positions_manager_short"></td>
+						<td class="bg tff" id="options_positions_manager_spreading"></td>
+						<td class="fg tff" id="options_positions_funds_net"></td>
+						<td class="fg tff" id="options_positions_funds_long"></td>
+						<td class="fg tff" id="options_positions_funds_short"></td>
+						<td class="fg tff" id="options_positions_funds_spreading"></td>
+						<td class="bg tff" id="options_positions_other_net"></td>
+						<td class="bg tff" id="options_positions_other_long"></td>
+						<td class="bg tff" id="options_positions_other_short"></td>
+						<td class="bg tff" id="options_positions_other_spreading"></td>
+						<td class="fg merged" id="options_positions_nonrep_net"></td>
+						<td class="fg merged" id="options_positions_nonrep_long"></td>
+						<td class="fg merged" id="options_positions_nonrep_short"></td>
 					</tr>
 					<tr id="options_changes">
-						<td class="total" id="options_oi_changes"></td>
-						<th class="total spacer"></th>
-						<td class="cot" id="options_changes_noncom_net"></td>
-						<td class="cot" id="options_changes_noncom_long"></td>
-						<td class="cot" id="options_changes_noncom_short"></td>
-						<td class="cot" id="options_changes_noncom_spreading"></td>
-						<th class="cot spacer"></th>
-						<td class="cot" id="options_changes_com_net"></td>
-						<td class="cot" id="options_changes_com_long"></td>
-						<td class="cot" id="options_changes_com_short"></td>
-						<th class="cot spacer"></th>
-						<td class="tff" id="options_changes_dealer_net"></td>
-						<td class="tff" id="options_changes_dealer_long"></td>
-						<td class="tff" id="options_changes_dealer_short"></td>
-						<td class="tff" id="options_changes_dealer_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="options_changes_manager_net"></td>
-						<td class="tff" id="options_changes_manager_long"></td>
-						<td class="tff" id="options_changes_manager_short"></td>
-						<td class="tff" id="options_changes_manager_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="options_changes_funds_net"></td>
-						<td class="tff" id="options_changes_funds_long"></td>
-						<td class="tff" id="options_changes_funds_short"></td>
-						<td class="tff" id="options_changes_funds_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="options_changes_other_net"></td>
-						<td class="tff" id="options_changes_other_long"></td>
-						<td class="tff" id="options_changes_other_short"></td>
-						<td class="tff" id="options_changes_other_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="merged" id="options_changes_nonrep_net"></td>
-						<td class="merged" id="options_changes_nonrep_long"></td>
-						<td class="merged" id="options_changes_nonrep_short"></td>
+						<td class="bg total" id="options_changes_total_net"></td>
+						<td class="bg total" id="options_changes_total_long"></td>
+						<td class="bg total" id="options_changes_total_short"></td>
+						<td class="bg total" id="options_changes_total_spreading"></td>
+						<td class="fg cot" id="options_changes_noncom_net"></td>
+						<td class="fg cot" id="options_changes_noncom_long"></td>
+						<td class="fg cot" id="options_changes_noncom_short"></td>
+						<td class="fg cot" id="options_changes_noncom_spreading"></td>
+						<td class="bg cot" id="options_changes_com_net"></td>
+						<td class="bg cot" id="options_changes_com_long"></td>
+						<td class="bg cot" id="options_changes_com_short"></td>
+						<td class="fg tff" id="options_changes_dealer_net"></td>
+						<td class="fg tff" id="options_changes_dealer_long"></td>
+						<td class="fg tff" id="options_changes_dealer_short"></td>
+						<td class="fg tff" id="options_changes_dealer_spreading"></td>
+						<td class="bg tff" id="options_changes_manager_net"></td>
+						<td class="bg tff" id="options_changes_manager_long"></td>
+						<td class="bg tff" id="options_changes_manager_short"></td>
+						<td class="bg tff" id="options_changes_manager_spreading"></td>
+						<td class="fg tff" id="options_changes_funds_net"></td>
+						<td class="fg tff" id="options_changes_funds_long"></td>
+						<td class="fg tff" id="options_changes_funds_short"></td>
+						<td class="fg tff" id="options_changes_funds_spreading"></td>
+						<td class="bg tff" id="options_changes_other_net"></td>
+						<td class="bg tff" id="options_changes_other_long"></td>
+						<td class="bg tff" id="options_changes_other_short"></td>
+						<td class="bg tff" id="options_changes_other_spreading"></td>
+						<td class="fg merged" id="options_changes_nonrep_net"></td>
+						<td class="fg merged" id="options_changes_nonrep_long"></td>
+						<td class="fg merged" id="options_changes_nonrep_short"></td>
 					</tr>
 					<tr id="options_percentages">
-						<td class="cot" id="options_percentages_noncom_net"></td>
-						<td class="cot" id="options_percentages_noncom_long"></td>
-						<td class="cot" id="options_percentages_noncom_short"></td>
-						<td class="cot" id="options_percentages_noncom_spreading"></td>
-						<th class="cot spacer"></th>
-						<td class="cot" id="options_percentages_com_net"></td>
-						<td class="cot" id="options_percentages_com_long"></td>
-						<td class="cot" id="options_percentages_com_short"></td>
-						<th class="cot spacer"></th>
-						<td class="tff" id="options_percentages_dealer_net"></td>
-						<td class="tff" id="options_percentages_dealer_long"></td>
-						<td class="tff" id="options_percentages_dealer_short"></td>
-						<td class="tff" id="options_percentages_dealer_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="options_percentages_manager_net"></td>
-						<td class="tff" id="options_percentages_manager_long"></td>
-						<td class="tff" id="options_percentages_manager_short"></td>
-						<td class="tff" id="options_percentages_manager_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="options_percentages_funds_net"></td>
-						<td class="tff" id="options_percentages_funds_long"></td>
-						<td class="tff" id="options_percentages_funds_short"></td>
-						<td class="tff" id="options_percentages_funds_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="options_percentages_other_net"></td>
-						<td class="tff" id="options_percentages_other_long"></td>
-						<td class="tff" id="options_percentages_other_short"></td>
-						<td class="tff" id="options_percentages_other_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="merged" id="options_percentages_nonrep_net"></td>
-						<td class="merged" id="options_percentages_nonrep_long"></td>
-						<td class="merged" id="options_percentages_nonrep_short"></td>
+						<td class="bg total" id="options_percentages_total_net"></td>
+						<td class="bg total" id="options_percentages_total_long"></td>
+						<td class="bg total" id="options_percentages_total_short"></td>
+						<td class="bg total" id="options_percentages_total_spreading"></td>
+						<td class="fg cot" id="options_percentages_noncom_net"></td>
+						<td class="fg cot" id="options_percentages_noncom_long"></td>
+						<td class="fg cot" id="options_percentages_noncom_short"></td>
+						<td class="fg cot" id="options_percentages_noncom_spreading"></td>
+						<td class="bg cot" id="options_percentages_com_net"></td>
+						<td class="bg cot" id="options_percentages_com_long"></td>
+						<td class="bg cot" id="options_percentages_com_short"></td>
+						<td class="fg tff" id="options_percentages_dealer_net"></td>
+						<td class="fg tff" id="options_percentages_dealer_long"></td>
+						<td class="fg tff" id="options_percentages_dealer_short"></td>
+						<td class="fg tff" id="options_percentages_dealer_spreading"></td>
+						<td class="bg tff" id="options_percentages_manager_net"></td>
+						<td class="bg tff" id="options_percentages_manager_long"></td>
+						<td class="bg tff" id="options_percentages_manager_short"></td>
+						<td class="bg tff" id="options_percentages_manager_spreading"></td>
+						<td class="fg tff" id="options_percentages_funds_net"></td>
+						<td class="fg tff" id="options_percentages_funds_long"></td>
+						<td class="fg tff" id="options_percentages_funds_short"></td>
+						<td class="fg tff" id="options_percentages_funds_spreading"></td>
+						<td class="bg tff" id="options_percentages_other_net"></td>
+						<td class="bg tff" id="options_percentages_other_long"></td>
+						<td class="bg tff" id="options_percentages_other_short"></td>
+						<td class="bg tff" id="options_percentages_other_spreading"></td>
+						<td class="fg merged" id="options_percentages_nonrep_net"></td>
+						<td class="fg merged" id="options_percentages_nonrep_long"></td>
+						<td class="fg merged" id="options_percentages_nonrep_short"></td>
 					</tr>
+
+					<!-- <td class="bg total" id="options_traders_total_net"></td>
+					<td class="bg total" id="options_traders_total_long"></td>
+					<td class="bg total" id="options_traders_total_short"></td>
+					<td class="bg total" id="options_traders_total_spreading"></td> -->
 				</tbody>
 
 
@@ -498,173 +476,180 @@
 					</tr> -->
 					<tr id="combined_positions">
 						<th rowspan="2">Combined</th>
-						<td class="total" id="combined_oi_total"></td>
-						<th class="total spacer"></th>
-						<td class="cot" id="combined_positions_noncom_net"></td>
-						<td class="cot" id="combined_positions_noncom_long"></td>
-						<td class="cot" id="combined_positions_noncom_short"></td>
-						<td class="cot" id="combined_positions_noncom_spreading"></td>
-						<th class="cot spacer"></th>
-						<td class="cot" id="combined_positions_com_net"></td>
-						<td class="cot" id="combined_positions_com_long"></td>
-						<td class="cot" id="combined_positions_com_short"></td>
-						<th class="cot spacer"></th>
-						<td class="tff" id="combined_positions_dealer_net"></td>
-						<td class="tff" id="combined_positions_dealer_long"></td>
-						<td class="tff" id="combined_positions_dealer_short"></td>
-						<td class="tff" id="combined_positions_dealer_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="combined_positions_manager_net"></td>
-						<td class="tff" id="combined_positions_manager_long"></td>
-						<td class="tff" id="combined_positions_manager_short"></td>
-						<td class="tff" id="combined_positions_manager_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="combined_positions_funds_net"></td>
-						<td class="tff" id="combined_positions_funds_long"></td>
-						<td class="tff" id="combined_positions_funds_short"></td>
-						<td class="tff" id="combined_positions_funds_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="combined_positions_other_net"></td>
-						<td class="tff" id="combined_positions_other_long"></td>
-						<td class="tff" id="combined_positions_other_short"></td>
-						<td class="tff" id="combined_positions_other_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="merged" id="combined_positions_nonrep_net"></td>
-						<td class="merged" id="combined_positions_nonrep_long"></td>
-						<td class="merged" id="combined_positions_nonrep_short"></td>
+						<td class="bg total" id="combined_positions_total_net"></td>
+						<td class="bg total" id="combined_positions_total_long"></td>
+						<td class="bg total" id="combined_positions_total_short"></td>
+						<td class="bg total" id="combined_positions_total_spreading"></td>
+						<td class="fg cot" id="combined_positions_noncom_net"></td>
+						<td class="fg cot" id="combined_positions_noncom_long"></td>
+						<td class="fg cot" id="combined_positions_noncom_short"></td>
+						<td class="fg cot" id="combined_positions_noncom_spreading"></td>
+						<td class="bg cot" id="combined_positions_com_net"></td>
+						<td class="bg cot" id="combined_positions_com_long"></td>
+						<td class="bg cot" id="combined_positions_com_short"></td>
+						<td class="fg tff" id="combined_positions_dealer_net"></td>
+						<td class="fg tff" id="combined_positions_dealer_long"></td>
+						<td class="fg tff" id="combined_positions_dealer_short"></td>
+						<td class="fg tff" id="combined_positions_dealer_spreading"></td>
+						<td class="bg tff" id="combined_positions_manager_net"></td>
+						<td class="bg tff" id="combined_positions_manager_long"></td>
+						<td class="bg tff" id="combined_positions_manager_short"></td>
+						<td class="bg tff" id="combined_positions_manager_spreading"></td>
+						<td class="fg tff" id="combined_positions_funds_net"></td>
+						<td class="fg tff" id="combined_positions_funds_long"></td>
+						<td class="fg tff" id="combined_positions_funds_short"></td>
+						<td class="fg tff" id="combined_positions_funds_spreading"></td>
+						<td class="bg tff" id="combined_positions_other_net"></td>
+						<td class="bg tff" id="combined_positions_other_long"></td>
+						<td class="bg tff" id="combined_positions_other_short"></td>
+						<td class="bg tff" id="combined_positions_other_spreading"></td>
+						<td class="fg merged" id="combined_positions_nonrep_net"></td>
+						<td class="fg merged" id="combined_positions_nonrep_long"></td>
+						<td class="fg merged" id="combined_positions_nonrep_short"></td>
 					</tr>
 					<tr id="combined_changes">
-						<td class="total" id="combined_oi_changes"></td>
-						<th class="total spacer"></th>
-						<td class="cot" id="combined_changes_noncom_net"></td>
-						<td class="cot" id="combined_changes_noncom_long"></td>
-						<td class="cot" id="combined_changes_noncom_short"></td>
-						<td class="cot" id="combined_changes_noncom_spreading"></td>
-						<th class="cot spacer"></th>
-						<td class="cot" id="combined_changes_com_net"></td>
-						<td class="cot" id="combined_changes_com_long"></td>
-						<td class="cot" id="combined_changes_com_short"></td>
-						<th class="cot spacer"></th>
-						<td class="tff" id="combined_changes_dealer_net"></td>
-						<td class="tff" id="combined_changes_dealer_long"></td>
-						<td class="tff" id="combined_changes_dealer_short"></td>
-						<td class="tff" id="combined_changes_dealer_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="combined_changes_manager_net"></td>
-						<td class="tff" id="combined_changes_manager_long"></td>
-						<td class="tff" id="combined_changes_manager_short"></td>
-						<td class="tff" id="combined_changes_manager_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="combined_changes_funds_net"></td>
-						<td class="tff" id="combined_changes_funds_long"></td>
-						<td class="tff" id="combined_changes_funds_short"></td>
-						<td class="tff" id="combined_changes_funds_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="combined_changes_other_net"></td>
-						<td class="tff" id="combined_changes_other_long"></td>
-						<td class="tff" id="combined_changes_other_short"></td>
-						<td class="tff" id="combined_changes_other_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="merged" id="combined_changes_nonrep_net"></td>
-						<td class="merged" id="combined_changes_nonrep_long"></td>
-						<td class="merged" id="combined_changes_nonrep_short"></td>
+						<td class="bg total" id="combined_changes_total_net"></td>
+						<td class="bg total" id="combined_changes_total_long"></td>
+						<td class="bg total" id="combined_changes_total_short"></td>
+						<td class="bg total" id="combined_changes_total_spreading"></td>
+						<td class="fg cot" id="combined_changes_noncom_net"></td>
+						<td class="fg cot" id="combined_changes_noncom_long"></td>
+						<td class="fg cot" id="combined_changes_noncom_short"></td>
+						<td class="fg cot" id="combined_changes_noncom_spreading"></td>
+						<td class="bg cot" id="combined_changes_com_net"></td>
+						<td class="bg cot" id="combined_changes_com_long"></td>
+						<td class="bg cot" id="combined_changes_com_short"></td>
+						<td class="fg tff" id="combined_changes_dealer_net"></td>
+						<td class="fg tff" id="combined_changes_dealer_long"></td>
+						<td class="fg tff" id="combined_changes_dealer_short"></td>
+						<td class="fg tff" id="combined_changes_dealer_spreading"></td>
+						<td class="bg tff" id="combined_changes_manager_net"></td>
+						<td class="bg tff" id="combined_changes_manager_long"></td>
+						<td class="bg tff" id="combined_changes_manager_short"></td>
+						<td class="bg tff" id="combined_changes_manager_spreading"></td>
+						<td class="fg tff" id="combined_changes_funds_net"></td>
+						<td class="fg tff" id="combined_changes_funds_long"></td>
+						<td class="fg tff" id="combined_changes_funds_short"></td>
+						<td class="fg tff" id="combined_changes_funds_spreading"></td>
+						<td class="bg tff" id="combined_changes_other_net"></td>
+						<td class="bg tff" id="combined_changes_other_long"></td>
+						<td class="bg tff" id="combined_changes_other_short"></td>
+						<td class="bg tff" id="combined_changes_other_spreading"></td>
+						<td class="fg merged" id="combined_changes_nonrep_net"></td>
+						<td class="fg merged" id="combined_changes_nonrep_long"></td>
+						<td class="fg merged" id="combined_changes_nonrep_short"></td>
 					</tr>
 					<tr id="combined_percentages">
-						<td class="cot" id="combined_percentages_noncom_net"></td>
-						<td class="cot" id="combined_percentages_noncom_long"></td>
-						<td class="cot" id="combined_percentages_noncom_short"></td>
-						<td class="cot" id="combined_percentages_noncom_spreading"></td>
-						<th class="cot spacer"></th>
-						<td class="cot" id="combined_percentages_com_net"></td>
-						<td class="cot" id="combined_percentages_com_long"></td>
-						<td class="cot" id="combined_percentages_com_short"></td>
-						<th class="cot spacer"></th>
-						<td class="tff" id="combined_percentages_dealer_net"></td>
-						<td class="tff" id="combined_percentages_dealer_long"></td>
-						<td class="tff" id="combined_percentages_dealer_short"></td>
-						<td class="tff" id="combined_percentages_dealer_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="combined_percentages_manager_net"></td>
-						<td class="tff" id="combined_percentages_manager_long"></td>
-						<td class="tff" id="combined_percentages_manager_short"></td>
-						<td class="tff" id="combined_percentages_manager_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="combined_percentages_funds_net"></td>
-						<td class="tff" id="combined_percentages_funds_long"></td>
-						<td class="tff" id="combined_percentages_funds_short"></td>
-						<td class="tff" id="combined_percentages_funds_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="combined_percentages_other_net"></td>
-						<td class="tff" id="combined_percentages_other_long"></td>
-						<td class="tff" id="combined_percentages_other_short"></td>
-						<td class="tff" id="combined_percentages_other_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="merged" id="combined_percentages_nonrep_net"></td>
-						<td class="merged" id="combined_percentages_nonrep_long"></td>
-						<td class="merged" id="combined_percentages_nonrep_short"></td>
+						<td class="bg total" id="combined_percentages_total_net"></td>
+						<td class="bg total" id="combined_percentages_total_long"></td>
+						<td class="bg total" id="combined_percentages_total_short"></td>
+						<td class="bg total" id="combined_percentages_total_spreading"></td>
+						<td class="fg cot" id="combined_percentages_noncom_net"></td>
+						<td class="fg cot" id="combined_percentages_noncom_long"></td>
+						<td class="fg cot" id="combined_percentages_noncom_short"></td>
+						<td class="fg cot" id="combined_percentages_noncom_spreading"></td>
+						<td class="bg cot" id="combined_percentages_com_net"></td>
+						<td class="bg cot" id="combined_percentages_com_long"></td>
+						<td class="bg cot" id="combined_percentages_com_short"></td>
+						<td class="fg tff" id="combined_percentages_dealer_net"></td>
+						<td class="fg tff" id="combined_percentages_dealer_long"></td>
+						<td class="fg tff" id="combined_percentages_dealer_short"></td>
+						<td class="fg tff" id="combined_percentages_dealer_spreading"></td>
+						<td class="bg tff" id="combined_percentages_manager_net"></td>
+						<td class="bg tff" id="combined_percentages_manager_long"></td>
+						<td class="bg tff" id="combined_percentages_manager_short"></td>
+						<td class="bg tff" id="combined_percentages_manager_spreading"></td>
+						<td class="fg tff" id="combined_percentages_funds_net"></td>
+						<td class="fg tff" id="combined_percentages_funds_long"></td>
+						<td class="fg tff" id="combined_percentages_funds_short"></td>
+						<td class="fg tff" id="combined_percentages_funds_spreading"></td>
+						<td class="bg tff" id="combined_percentages_other_net"></td>
+						<td class="bg tff" id="combined_percentages_other_long"></td>
+						<td class="bg tff" id="combined_percentages_other_short"></td>
+						<td class="bg tff" id="combined_percentages_other_spreading"></td>
+						<td class="fg merged" id="combined_percentages_nonrep_net"></td>
+						<td class="fg merged" id="combined_percentages_nonrep_long"></td>
+						<td class="fg merged" id="combined_percentages_nonrep_short"></td>
 					</tr>
 					<tr id="combined_traders">
-						<td class="cot" id="combined_traders_noncom_net"></td>
-						<td class="cot" id="combined_traders_noncom_long"></td>
-						<td class="cot" id="combined_traders_noncom_short"></td>
-						<td class="cot" id="combined_traders_noncom_spreading"></td>
-						<th class="cot spacer"></th>
-						<td class="cot" id="combined_traders_com_net"></td>
-						<td class="cot" id="combined_traders_com_long"></td>
-						<td class="cot" id="combined_traders_com_short"></td>
-						<th class="cot spacer"></th>
-						<td class="tff" id="combined_traders_dealer_net"></td>
-						<td class="tff" id="combined_traders_dealer_long"></td>
-						<td class="tff" id="combined_traders_dealer_short"></td>
-						<td class="tff" id="combined_traders_dealer_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="combined_traders_manager_net"></td>
-						<td class="tff" id="combined_traders_manager_long"></td>
-						<td class="tff" id="combined_traders_manager_short"></td>
-						<td class="tff" id="combined_traders_manager_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="combined_traders_funds_net"></td>
-						<td class="tff" id="combined_traders_funds_long"></td>
-						<td class="tff" id="combined_traders_funds_short"></td>
-						<td class="tff" id="combined_traders_funds_spreading"></td>
-						<th class="tff spacer"></th>
-						<td class="tff" id="combined_traders_other_net"></td>
-						<td class="tff" id="combined_traders_other_long"></td>
-						<td class="tff" id="combined_traders_other_short"></td>
-						<td class="tff" id="combined_traders_other_spreading"></td>
+						<td class="bg total" id="combined_traders_total_net"></td>
+						<td class="bg total" id="combined_traders_total_long"></td>
+						<td class="bg total" id="combined_traders_total_short"></td>
+						<td class="bg total" id="combined_traders_total_spreading"></td>
+						<td class="fg cot" id="combined_traders_noncom_net"></td>
+						<td class="fg cot" id="combined_traders_noncom_long"></td>
+						<td class="fg cot" id="combined_traders_noncom_short"></td>
+						<td class="fg cot" id="combined_traders_noncom_spreading"></td>
+						<td class="bg cot" id="combined_traders_com_net"></td>
+						<td class="bg cot" id="combined_traders_com_long"></td>
+						<td class="bg cot" id="combined_traders_com_short"></td>
+						<td class="fg tff" id="combined_traders_dealer_net"></td>
+						<td class="fg tff" id="combined_traders_dealer_long"></td>
+						<td class="fg tff" id="combined_traders_dealer_short"></td>
+						<td class="fg tff" id="combined_traders_dealer_spreading"></td>
+						<td class="bg tff" id="combined_traders_manager_net"></td>
+						<td class="bg tff" id="combined_traders_manager_long"></td>
+						<td class="bg tff" id="combined_traders_manager_short"></td>
+						<td class="bg tff" id="combined_traders_manager_spreading"></td>
+						<td class="fg tff" id="combined_traders_funds_net"></td>
+						<td class="fg tff" id="combined_traders_funds_long"></td>
+						<td class="fg tff" id="combined_traders_funds_short"></td>
+						<td class="fg tff" id="combined_traders_funds_spreading"></td>
+						<td class="bg tff" id="combined_traders_other_net"></td>
+						<td class="bg tff" id="combined_traders_other_long"></td>
+						<td class="bg tff" id="combined_traders_other_short"></td>
+						<td class="bg tff" id="combined_traders_other_spreading"></td>
 					</tr>
 				</tbody>
 			</table>
 		</section>
 
 		<section>
-			Symbols:
-			<a class="symbol" href="javascript:void(0);">EUR</a> |
-			<a class="symbol" href="javascript:void(0);">JPY</a> |
-			<a class="symbol" href="javascript:void(0);">GBP</a> |
-			<a class="symbol" href="javascript:void(0);">AUD</a> |
-			<a class="symbol" href="javascript:void(0);">CAD</a> |
-			<a class="symbol" href="javascript:void(0);">CHF</a> |
-			<a class="symbol" href="javascript:void(0);">NZD</a>
-			<!-- <br/>
-			<br/> Left click to switch report types.
-			<br/> Right click to switch columns. -->
+			<dl>
+				<dt>Symbols:</dt>
+				<dd>
+					<a class="symbol" href="javascript:void(0);">EUR</a> •
+					<a class="symbol" href="javascript:void(0);">JPY</a> •
+					<a class="symbol" href="javascript:void(0);">GBP</a> •
+					<a class="symbol" href="javascript:void(0);">AUD</a> •
+					<a class="symbol" href="javascript:void(0);">CAD</a> •
+					<a class="symbol" href="javascript:void(0);">CHF</a> •
+					<a class="symbol" href="javascript:void(0);">NZD</a>
+				</dd>
+				<dt>Reports:</dt>
+				<dd>
+					<a class="report" href="javascript:void(0);">financial</a> •
+					<a class="report" href="javascript:void(0);">legacy</a> •
+					<a class="report" href="javascript:void(0);">merged</a>
+				</dd>
+				<dt>Columns:</dt>
+				<dd>
+					<a class="columns" href="javascript:void(0);">net</a> •
+					<a class="columns" href="javascript:void(0);">long & short</a> •
+					<a class="columns" href="javascript:void(0);">long & short & spreading</a>
+				</dd>
+			</dl>
 		</section>
 
 		<section>
-			<br/> CFTC:
-			<a target="_blank" href="http://www.cftc.gov/MarketReports/CommitmentsofTraders/ReleaseSchedule/index.htm">Release Schedule</a>
-			|
-			<a target="_blank" href="http://www.cftc.gov/marketreports/commitmentsoftraders/index.htm">Current Reports</a>
-			|
-			<a target="_blank" href="http://www.cftc.gov/MarketReports/CommitmentsofTraders/HistoricalViewable/index.htm">Old Reports</a>
-			<br/>
-			<br/> Explanatory Notes:
-			<a target="_blank" href="http://www.cftc.gov/MarketReports/CommitmentsofTraders/ExplanatoryNotes/index.htm">Legacy</a>
-			|
-			<a target="_blank" href="http://www.cftc.gov/marketreports/commitmentsoftraders/ssLINK/disaggregatedcotexplanatorynot">Disaggregated</a>
-			|
-			<a target="_blank" href="http://www.cftc.gov/marketreports/commitmentsoftraders/ssLINK/tfmexplanatorynotes">Traders in Financial Futures</a>
+			<dl class="flexbox">
+				<dt>CFTC Links:</dt>
+				<dd>
+					<a target="_blank" href="http://www.cftc.gov/MarketReports/CommitmentsofTraders/ReleaseSchedule/index.htm">Release Schedule</a>
+					•
+					<a target="_blank" href="http://www.cftc.gov/marketreports/commitmentsoftraders/index.htm">Current Reports</a>
+					•
+					<a target="_blank" href="http://www.cftc.gov/MarketReports/CommitmentsofTraders/HistoricalViewable/index.htm">Old Reports</a>
+				</dd>
+				<dt>Explanatory Notes:</dt>
+				<dd>
+					<a target="_blank" href="http://www.cftc.gov/MarketReports/CommitmentsofTraders/ExplanatoryNotes/index.htm">Legacy</a>
+					•
+					<a target="_blank" href="http://www.cftc.gov/marketreports/commitmentsoftraders/ssLINK/disaggregatedcotexplanatorynot">Disaggregated</a>
+					•
+					<a target="_blank" href="http://www.cftc.gov/marketreports/commitmentsoftraders/ssLINK/tfmexplanatorynotes">Traders in Financial Futures</a>
+				</dd>
+			</dl>
 		</section>
 
 		<section id="comments">
@@ -675,7 +660,7 @@
 
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112925276-1"></script>
 	<script>
-		window.dataLayer = window.dataLayer || [];
+		window.dataLayer = window.dataLayer ••[];
 		function gtag() { dataLayer.push(arguments); }
 		gtag('js', new Date());
 		gtag('config', 'UA-112925276-1');
