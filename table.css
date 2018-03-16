@@ -5,12 +5,12 @@ dl {
   margin: 10px;
 }
 dl dt {
-  flex: 0 0 40%;
+  flex: 0 0 30%;
   text-align: right;
   margin: 2px;
 }
 dl dd {
-  flex: 0 0 40%;
+  flex: 0 0 60%;
   text-align: left;
   margin: 2px;
 }
@@ -41,7 +41,8 @@ table > tbody:last-child {
 th {
   text-align: center;
   color: #039;
-  padding: 0px 5px 5px 0px;
+  p-adding: 0px 5px 5px 0px;
+  padding: 5px;
 }
 
 td {
