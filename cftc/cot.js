@@ -691,7 +691,7 @@ $.get("https://raw.githubusercontent.com/fxtools/cftc-cot/master/known-days.txt"
     w(this.page);
   };
 
-  $("head").append($("<script id='dsq-count-scr' src='//fx-tools.disqus.com/count.js' async></script>"));
+  //$("head").append($("<script id='dsq-count-scr' src='//fx-tools.disqus.com/count.js' async></script>"));
 
   // $("#commentLink").on("click", function() {
   $("head").append($("<script src='https://fx-tools.disqus.com/embed.js' data-timestamp=" + new Date() + "></script>"));
