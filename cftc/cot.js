@@ -313,13 +313,6 @@ var calculateReport = function(rawReport) {
 var drawReport = function() {
   var report = window.currentReport;
 
-  try {
-    gtag("event", "cot: " + report.name, {
-      event_category: day.toISODate(),
-      event_label: window.user,
-    });
-  } catch (e) {}
-
   $("#name").text(report.name);
   $("#date").text(DateTime.fromISO(report.date).toLocaleString(DateTime.DATE_HUGE));
 
@@ -429,6 +422,13 @@ var loadReport = function(date) {
     var showNet = $("#columns").val() == "net";
 
     var showSpreading = $("#columns").val() == "long & short & spreading";
+
+    try {
+      gtag("event", $("#report").val() + " " + $("#columns").val(), {
+        event_category: "cot-show: " + $("#symbol").val(),
+        event_label: day.toISODate() + " - " + window.user,
+      });
+    } catch (e) {}
 
     var opponents = 0;
     var columns = 0;
