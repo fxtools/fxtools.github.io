@@ -5,12 +5,12 @@ dl {
   margin: 10px;
 }
 dl dt {
-  flex: 0 0 30%;
+  flex: 0 0 45%;
   text-align: right;
   margin: 2px;
 }
 dl dd {
-  flex: 0 0 60%;
+  flex: 0 0 45%;
   text-align: left;
   margin: 2px;
 }
