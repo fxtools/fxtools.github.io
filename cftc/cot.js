@@ -424,9 +424,9 @@ var loadReport = function(date) {
     var showSpreading = $("#columns").val() == "long & short & spreading";
 
     try {
-      gtag("event", $("#report").val() + ", " + $("#columns").val(), {
-        event_category: "cot: " + $("#symbol").val(),
-        event_label: day.toISODate() + ", " + window.user,
+      gtag("event", $("#columns").val(), {
+        event_category: "cot: " + $("#symbol").val() + ", " + $("#report").val(),
+        event_label: window.user,
       });
     } catch (e) {}
 
