@@ -619,25 +619,17 @@ var loadData = function(enabled) {
     document.getElementById("next").href = "?day=" + dt.plus({ days: +1 }).toISODate();
   }
 
-  disqus_config = function() {
-    this.page.url = document.location.origin + document.location.pathname + "?day=" + dt.toISODate();
-    this.page.identifier = "change-cumulative-" + dt.toISODate();
-  };
-  
-  var d = document,
-    s1 = d.createElement("script");
-  s1.src = "//fx-tools.disqus.com/count.js";
-  s1.setAttribute("data-timestamp", +new Date());
-  s1.setAttribute("async", "async");
-  d.body.appendChild(s1);
+  $("title").text("FX Change " + day.toISODate());
 
-  $("#commentLink").on("click", function() {
-    var s2 = d.createElement("script");
-    s2.src = "//fx-tools.disqus.com/embed.js";
-    s2.setAttribute("data-timestamp", +new Date());
-    d.body.appendChild(s2);
-    $(this).unbind("click");
-  });
+  disqus_config = function() {
+    this.page.shortname = "fx-tools";
+    this.page.identifier = "change-" + day.toISODate();
+    //this.page.url = document.location.origin + document.location.pathname + "?day=" + day.toISODate();
+    this.page.title = $("title").text();
+    this.page.category_id = "change";
+    w(this.page);
+  };
+  $("head").append($("<script src='https://fx-tools.disqus.com/embed.js' data-timestamp=" + new Date() + "></script>"));
 
   var uri = "https://raw.githubusercontent.com/fxtools/quote_percentages/master/" + dt.year + "/" + dt.toISODate() + "/";
 
