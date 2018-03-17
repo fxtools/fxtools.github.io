@@ -93,8 +93,8 @@ var calcMinMaxAndColors = function(report) {
       target.max = Math.max(target.max, values.long, values.short, values.spreading);
       target.min = Math.min(target.min, values.long, values.short, values.spreading);
     } else if (spreading == "without-spreading") {
-      target.max = Math.max(target.max, values.grossLong, values.grossShort);
-      target.min = Math.min(target.min, values.grossLong, values.grossShort);
+      target.max = Math.max(target.max, values.long_gross, values.short_gross);
+      target.min = Math.min(target.min, values.long_gross, values.short_gross);
     }
   };
 
@@ -254,22 +254,21 @@ var calculateReport = function(rawReport) {
 
         if (row == "positions" || row == "changes") {
           report[row][opponent][rawReport.key].net = report[row][opponent][rawReport.key].long - report[row][opponent][rawReport.key].short;
-          report[row][opponent][rawReport.key].grossLong = report[row][opponent][rawReport.key].long + report[row][opponent][rawReport.key].spreading;
-          report[row][opponent][rawReport.key].grossShort = report[row][opponent][rawReport.key].short + report[row][opponent][rawReport.key].spreading;
+          report[row][opponent][rawReport.key].long_gross = report[row][opponent][rawReport.key].long + report[row][opponent][rawReport.key].spreading;
+          report[row][opponent][rawReport.key].short_gross = report[row][opponent][rawReport.key].short + report[row][opponent][rawReport.key].spreading;
         } else if (row == "percentages") {
-          // var total = report.oi.total[rawReport.key];
           var total = report.total.positions[rawReport.key];
           var positions = report["positions"][opponent][rawReport.key];
           if (total == 0) {
-            report[row][opponent][rawReport.key].grossLong = 0;
-            report[row][opponent][rawReport.key].grossShort = 0;
+            report[row][opponent][rawReport.key].long_gross = 0;
+            report[row][opponent][rawReport.key].short_gross = 0;
           } else {
-            report[row][opponent][rawReport.key].grossLong = +(positions.grossLong / total * 100).toFixed(1);
-            report[row][opponent][rawReport.key].grossShort = +(positions.grossShort / total * 100).toFixed(1);
+            report[row][opponent][rawReport.key].long_gross = +(positions.long_gross / total * 100).toFixed(1);
+            report[row][opponent][rawReport.key].short_gross = +(positions.short_gross / total * 100).toFixed(1);
           }
         } else if (row == "traders") {
-          report[row][opponent][rawReport.key].grossLong = Math.max(report[row][opponent][rawReport.key].long, report[row][opponent][rawReport.key].spreading);
-          report[row][opponent][rawReport.key].grossShort = Math.max(report[row][opponent][rawReport.key].short, report[row][opponent][rawReport.key].spreading);
+          report[row][opponent][rawReport.key].long_gross = Math.max(report[row][opponent][rawReport.key].long, report[row][opponent][rawReport.key].spreading);
+          report[row][opponent][rawReport.key].short_gross = Math.max(report[row][opponent][rawReport.key].short, report[row][opponent][rawReport.key].spreading);
         }
       });
 
@@ -283,8 +282,8 @@ var calculateReport = function(rawReport) {
           long: long,
           short: short,
           // spreading: report[row][opponent]["combined"].spreading - report[row][opponent]["futures"].spreading,
-          grossLong: report[row][opponent]["combined"].grossLong - report[row][opponent]["futures"].grossLong,
-          grossShort: report[row][opponent]["combined"].grossShort - report[row][opponent]["futures"].grossShort,
+          long_gross: report[row][opponent]["combined"].long_gross - report[row][opponent]["futures"].long_gross,
+          short_gross: report[row][opponent]["combined"].short_gross - report[row][opponent]["futures"].short_gross,
         };
       } else if (row == "percentages") {
         var total = report.total.positions.options;
@@ -297,14 +296,14 @@ var calculateReport = function(rawReport) {
           report[row][opponent]["options"].long = 0;
           report[row][opponent]["options"].short = 0;
           report[row][opponent]["options"].spreading = 0;
-          report[row][opponent]["options"].grossShort = 0;
-          report[row][opponent]["options"].grossLong = 0;
+          report[row][opponent]["options"].short_gross = 0;
+          report[row][opponent]["options"].long_gross = 0;
         } else {
           report[row][opponent]["options"].long = +(positions.long / total * 100).toFixed(1);
           report[row][opponent]["options"].short = +(positions.short / total * 100).toFixed(1);
           report[row][opponent]["options"].spreading = +(positions.spreading / total * 100).toFixed(1);
-          report[row][opponent]["options"].grossShort = +(positions.grossShort / total * 100).toFixed(1);
-          report[row][opponent]["options"].grossLong = +(positions.grossLong / total * 100).toFixed(1);
+          report[row][opponent]["options"].short_gross = +(positions.short_gross / total * 100).toFixed(1);
+          report[row][opponent]["options"].long_gross = +(positions.long_gross / total * 100).toFixed(1);
         }
       } else if (row == "traders") {
         // there are no traders for OptOnly
@@ -320,18 +319,6 @@ var drawReport = function() {
 
   $("#name").text(report.name);
   $("#date").text(DateTime.fromISO(report.date).toLocaleString(DateTime.DATE_HUGE));
-
-  // // set report headers
-  // Object.keys(report.oi).forEach(function(key) {
-  //   Object.keys(report.oi[key]).forEach(function(reportType) {
-  //     $("#" + reportType + "_oi_" + key).text(formatNumber(report.oi[key][reportType]));
-  //   });
-  // });
-
-  // total: {
-  //   positions: {
-  //     net: {
-  //       futures: +rawReport.cotFutures.oi_total,
 
   Object.keys(report.total).forEach(function(key) {
     Object.keys(report.total[key]).forEach(function(reportType) {
@@ -351,13 +338,9 @@ var drawReport = function() {
           var id = "#" + reportType + "_" + row + "_" + opponent + "_" + valueName;
           var value = report[row][opponent][reportType][valueName];
 
-          if (valueName.indexOf("gross") != -1) {
-            $(id.replace("gross", "").toLowerCase()).attr("gross", value);
-          } else {
-            $(id)
-              .attr("value", value)
-              .text(formatNumber(value));
-          }
+          $(id)
+            .attr("value", value)
+            .text(formatNumber(value));
         });
       });
     });
@@ -471,7 +454,6 @@ var loadReport = function(date) {
     // $("#options_oi_changes").show();
     // $("#combined_oi_total").show();
     // $("#combined_oi_changes").show();
-    // futures_positions_total_net;
 
     // show opponents
     if (showCot) {
@@ -503,17 +485,38 @@ var loadReport = function(date) {
     } else {
       $("#column_headers").show();
       $("th:contains('net')").hide();
+
       if (showCot) {
         $("th.cot:contains('long')").show();
-        $("td.cot[id$=long]").show();
         $("th.cot:contains('short')").show();
+
+        $("td.cot[id$=long]").show();
         $("td.cot[id$=short]").show();
+        $("td.cot[id$=long_gross]").show();
+        $("td.cot[id$=short_gross]").show();
+
+        if (!showSpreading) {
+          $("td.cot[id$=_spreading]").each(function(i, d) {
+            $("#" + d.id.replace("_spreading", "_long")).hide();
+            $("#" + d.id.replace("_spreading", "_short")).hide();
+          });
+        }
       }
       if (showTff) {
         $("th.tff:contains('long')").show();
-        $("td.tff[id$=long]").show();
         $("th.tff:contains('short')").show();
+
+        $("td.tff[id$=long]").show();
         $("td.tff[id$=short]").show();
+        $("td.tff[id$=long_gross]").show();
+        $("td.tff[id$=short_gross]").show();
+
+        if (!showSpreading) {
+          $("td.tff[id$=_spreading]").each(function(i, d) {
+            $("#" + d.id.replace("_spreading", "_long")).hide();
+            $("#" + d.id.replace("_spreading", "_short")).hide();
+          });
+        }
       }
       $("th.merged:contains('long')").show();
       $("td.merged[id$=long]").show();
@@ -524,6 +527,9 @@ var loadReport = function(date) {
       columns++;
 
       if (showSpreading) {
+        $("td[id$=long_gross]").hide();
+        $("td[id$=short_gross]").hide();
+
         if (showCot) {
           $("th.cot:contains('sprd')").show();
           $("td.cot[id$=spreading]").show();
@@ -539,6 +545,8 @@ var loadReport = function(date) {
         columns++;
         columnsSpreadingMalus++;
       } else {
+        // $("td[id$=_gross]").hide();
+
         $("th:contains('sprd')").hide();
         $("td[id$=spreading]").hide();
       }
@@ -548,12 +556,14 @@ var loadReport = function(date) {
 
     $(".shrink").attr("colspan", columns);
     $(".shrink.no-spreading").attr("colspan", columns - (showSpreading ? 1 : 0));
+    //$(".report_type_caption").attr("colspan", 1 + allColumns);
 
+    $(".total").hide();
     $("#header_total")
       .attr("colspan", 1)
       .show();
     $("td[id$=_total_net]").show();
-    $("th.total:contains('net')").show();
+    $("th.total:contains('oi')").show();
 
     $("#opponents_names *").css("min-width", 0);
     $("#column_headers *").css("min-width", 0);
