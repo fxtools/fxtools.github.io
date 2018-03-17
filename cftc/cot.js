@@ -215,16 +215,20 @@ var calculateReport = function(rawReport) {
     reportTypes: reportTypes,
     name: rawReport.cotFutures.name,
     date: rawReport.cotFutures.date,
-    oi: {
-      total: {
-        futures: +rawReport.cotFutures.oi_total,
-        combined: +rawReport.cotCombined.oi_total,
-        options: rawReport.cotCombined.oi_total - rawReport.cotFutures.oi_total,
+    total: {
+      positions: {
+        net: {
+          futures: +rawReport.cotFutures.oi_total,
+          combined: +rawReport.cotCombined.oi_total,
+          options: rawReport.cotCombined.oi_total - rawReport.cotFutures.oi_total,
+        },
       },
       changes: {
-        futures: +rawReport.cotFutures.oi_changes,
-        combined: +rawReport.cotCombined.oi_changes,
-        options: rawReport.cotCombined.oi_changes - rawReport.cotFutures.oi_changes,
+        net: {
+          futures: +rawReport.cotFutures.oi_changes,
+          combined: +rawReport.cotCombined.oi_changes,
+          options: rawReport.cotCombined.oi_changes - rawReport.cotFutures.oi_changes,
+        },
       },
     },
   };
@@ -253,7 +257,8 @@ var calculateReport = function(rawReport) {
           report[row][opponent][rawReport.key].grossLong = report[row][opponent][rawReport.key].long + report[row][opponent][rawReport.key].spreading;
           report[row][opponent][rawReport.key].grossShort = report[row][opponent][rawReport.key].short + report[row][opponent][rawReport.key].spreading;
         } else if (row == "percentages") {
-          var total = report.oi.total[rawReport.key];
+          // var total = report.oi.total[rawReport.key];
+          var total = report.total.positions[rawReport.key];
           var positions = report["positions"][opponent][rawReport.key];
           if (total == 0) {
             report[row][opponent][rawReport.key].grossLong = 0;
@@ -282,7 +287,7 @@ var calculateReport = function(rawReport) {
           grossShort: report[row][opponent]["combined"].grossShort - report[row][opponent]["futures"].grossShort,
         };
       } else if (row == "percentages") {
-        var total = report.oi.total.options;
+        var total = report.total.positions.options;
         var positions = report["positions"][opponent]["options"];
         report[row][opponent]["options"] = {};
 
@@ -316,10 +321,25 @@ var drawReport = function() {
   $("#name").text(report.name);
   $("#date").text(DateTime.fromISO(report.date).toLocaleString(DateTime.DATE_HUGE));
 
-  // set report headers
-  Object.keys(report.oi).forEach(function(key) {
-    Object.keys(report.oi[key]).forEach(function(reportType) {
-      $("#" + reportType + "_oi_" + key).text(formatNumber(report.oi[key][reportType]));
+  // // set report headers
+  // Object.keys(report.oi).forEach(function(key) {
+  //   Object.keys(report.oi[key]).forEach(function(reportType) {
+  //     $("#" + reportType + "_oi_" + key).text(formatNumber(report.oi[key][reportType]));
+  //   });
+  // });
+
+  // total: {
+  //   positions: {
+  //     net: {
+  //       futures: +rawReport.cotFutures.oi_total,
+
+  Object.keys(report.total).forEach(function(key) {
+    Object.keys(report.total[key]).forEach(function(reportType) {
+      Object.keys(report.total[key][reportType]).forEach(function(instrument) {
+        var k = "#" + instrument + "_" + key + "_" + "total" + "_" + "net";
+        var v = report.total[key][reportType][instrument];
+        $(k).text(formatNumber(v));
+      });
     });
   });
 
@@ -451,6 +471,7 @@ var loadReport = function(date) {
     // $("#options_oi_changes").show();
     // $("#combined_oi_total").show();
     // $("#combined_oi_changes").show();
+    // futures_positions_total_net;
 
     // show opponents
     if (showCot) {
@@ -527,7 +548,12 @@ var loadReport = function(date) {
 
     $(".shrink").attr("colspan", columns);
     $(".shrink.no-spreading").attr("colspan", columns - (showSpreading ? 1 : 0));
-    //$(".report_type_caption").attr("colspan", 1 + allColumns);
+
+    $("#header_total")
+      .attr("colspan", 1)
+      .show();
+    $("td[id$=_total_net]").show();
+    $("th.total:contains('net')").show();
 
     $("#opponents_names *").css("min-width", 0);
     $("#column_headers *").css("min-width", 0);
@@ -680,23 +706,14 @@ $.get("https://raw.githubusercontent.com/fxtools/cftc-cot/master/known-days.txt"
 
   $("title").text("CoT " + day.toISODate());
 
-  $("#commentLink").attr("data-disqus-identifier", "cot-" + day.toISODate());
-
   disqus_config = function() {
     this.page.shortname = "fx-tools";
     this.page.identifier = "cot-" + day.toISODate();
     //this.page.url = document.location.origin + document.location.pathname + "?day=" + day.toISODate();
     this.page.title = $("title").text();
     this.page.category_id = "cot";
-    w(this.page);
   };
-
-  //$("head").append($("<script id='dsq-count-scr' src='//fx-tools.disqus.com/count.js' async></script>"));
-
-  // $("#commentLink").on("click", function() {
   $("head").append($("<script src='https://fx-tools.disqus.com/embed.js' data-timestamp=" + new Date() + "></script>"));
-  $(this).unbind("click");
-  // });
 
   loadReport(day);
 });
