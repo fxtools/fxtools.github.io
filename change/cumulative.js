@@ -619,6 +619,7 @@ var loadData = function(enabled) {
     document.getElementById("next").href = "?day=" + dt.plus({ days: +1 }).toISODate();
   }
 
+  var day = dt;
   $("title").text("FX Change " + day.toISODate());
 
   disqus_config = function() {
@@ -627,7 +628,6 @@ var loadData = function(enabled) {
     //this.page.url = document.location.origin + document.location.pathname + "?day=" + day.toISODate();
     this.page.title = $("title").text();
     this.page.category_id = "change";
-    w(this.page);
   };
   $("head").append($("<script src='https://fx-tools.disqus.com/embed.js' data-timestamp=" + new Date() + "></script>"));
 
