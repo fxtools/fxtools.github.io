@@ -631,15 +631,14 @@ var loadData = function(enabled) {
   };
   $.getScript("https://fx-tools.disqus.com/count.js");
   $("#commentLink").on("click", function() {
+    var disqus_identifier = "change-" + day.toISODate();
+    var disqus_title = $("title").text();
+    var disqus_url = "https://fxtools.github.io/change/cumulative.html?day=" + day.toISODate();
     $.getScript("https://fx-tools.disqus.com/embed.js");
   });
   //$("head").append($("<script src='https://fx-tools.disqus.com/embed.js' data-timestamp=" + new Date() + "></script>"));
 /*  
   <script id="dsq-count-scr" src="" async></script>
-        var disqus_identifier = "change-" + day.toISODate();
-        var disqus_title = $("title").text();
-        var disqus_url = "https://fxtools.github.io/change/cumulative.html?day=" + day.toISODate();
-
         var dsq = document.createElement('script');
           dsq.type = 'text/javascript';
           dsq.async = true;
