@@ -721,7 +721,7 @@ $.get("https://raw.githubusercontent.com/fxtools/cftc-cot/master/known-days.txt"
 
   disqus_title = "FX CoT " + day.toISODate();
   disqus_identifier = "cot-" + day.toISODate();
-  disqus_url = "https://fxtools.github.io/cftc/cot.html?day=" + day.toISODate();
+  disqus_url = "https://fxtools.github.io/cftc/cot.html?day=" + day.toISODate() + "#disqus_thread";
 
   $("title").text(disqus_title);  
   $("#commentLink")
