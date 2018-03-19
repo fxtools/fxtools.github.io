@@ -1,7 +1,11 @@
 var w = console.log,
   DateTime = luxon.DateTime,
   Interval = luxon.Interval,
-  disqus_config = function() {};
+  disqus_shortname = "fx-tools",
+  disqus_domain = "disqus.com",
+  disqus_title = "FX CoT",
+  disqus_category_id = "cot",
+  disqus_identifier = "";
 
 window.onerror = function(msg, url, line, col, error) {
   gtag("event", "exception", {
@@ -714,17 +718,18 @@ $.get("https://raw.githubusercontent.com/fxtools/cftc-cot/master/known-days.txt"
     $("#subNavi").show();
   }
 
-  $("title").text("CoT " + day.toISODate());
-
-  disqus_config = function() {
-    this.page.shortname = "fx-tools";
-    this.page.identifier = "cot-" + day.toISODate();
-    //this.page.url = document.location.origin + document.location.pathname + "?day=" + day.toISODate();
-    this.page.title = $("title").text();
-    this.page.category_id = "cot";
-  };
-  $("head").append($("<script src='https://fx-tools.disqus.com/embed.js' data-timestamp=" + new Date() + "></script>"));
-
+  disqus_title = "FX CoT " + day.toISODate();
+  disqus_identifier = "cot-" + day.toISODate();
+  
+  $("title").text(disqus_title);  
+  $("#commentLink")
+    .attr("data-disqus-identifier", disqus_identifier)
+    .on("click", function() {
+      $(this).unbind("click");
+      $.getScript("https://fx-tools.disqus.com/embed.js");    
+    });
+  $.getScript("https://fx-tools.disqus.com/count.js");
+  
   loadReport(day);
 });
 
