@@ -598,27 +598,24 @@ var loadData = function(enabled) {
   try {
     dt = DateTime.fromISO(document.location.href.match(/day=(\d{4}-\d{2}-\d{2})/)[1]);
   } catch (e) {
-    document.location.href = document.location.pathname + "?day=" + today.toISODate();
+    document.location.href = "?day=" + today.toISODate();
     return;
   }
 
   if (dt.toISODate() == today.toISODate()) {
     window.runCheckTime = true;
   } else {
-    document.getElementById("jumpToCurrentDay").href = document.location.origin + document.location.pathname;
-    // "?day=" + dt.toISODate();
-    document.getElementById("subNavi").style.display = "block";
+    document.getElementById("jumpToCurrentDay").href = "?day=" + today.toISODate();
+    $("#subNavi").show();
   }
 
   if (dt > DateTime.fromISO("2018-01-30")) {
-    document.getElementById("prev").style.display = "block";
     document.getElementById("prev").href = "?day=" + dt.plus({ days: -1 }).toISODate();
   }
 
   document.getElementById("date").innerText = dt.toISODate();
 
   if (dt < today) {
-    document.getElementById("next").style.display = "block";
     document.getElementById("next").href = "?day=" + dt.plus({ days: +1 }).toISODate();
   }
 
