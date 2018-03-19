@@ -5,6 +5,7 @@ var w = console.log,
   disqus_domain = "disqus.com",
   disqus_title = "FX CoT",
   disqus_category_id = "cot",
+  disqus_url = "https://fxtools.github.io/cftc/cot.html",
   disqus_identifier = "";
 
 window.onerror = function(msg, url, line, col, error) {
@@ -720,10 +721,12 @@ $.get("https://raw.githubusercontent.com/fxtools/cftc-cot/master/known-days.txt"
 
   disqus_title = "FX CoT " + day.toISODate();
   disqus_identifier = "cot-" + day.toISODate();
-  
+  disqus_url = "https://fxtools.github.io/cftc/cot.html?day=" + day.toISODate();
+
   $("title").text(disqus_title);  
   $("#commentLink")
     .attr("data-disqus-identifier", disqus_identifier)
+    .attr("href", disqus_url)
     .on("click", function() {
       $(this).unbind("click");
       $.getScript("https://fx-tools.disqus.com/embed.js");    
