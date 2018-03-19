@@ -622,6 +622,7 @@ var loadData = function(enabled) {
   var day = dt;
   $("title").text("FX Change " + day.toISODate());
 
+  /*
   disqus_config = function() {
     this.page.shortname = "fx-tools";
     this.page.identifier = "change-" + day.toISODate();
@@ -630,6 +631,14 @@ var loadData = function(enabled) {
     this.page.category_id = "change";
   };
   $("head").append($("<script src='https://fx-tools.disqus.com/embed.js' data-timestamp=" + new Date() + "></script>"));
+  */
+        var disqus_identifier = "change-" + day.toISODate();
+        var disqus_title = $("title").text();
+        var dsq = document.createElement('script');
+          dsq.type = 'text/javascript';
+          dsq.async = true;
+          dsq.src = 'https://fx-tools.disqus.com/embed.js';
+        document.getElementsByTagName('head')[0].appendChild(dsq);
 
   var uri = "https://raw.githubusercontent.com/fxtools/quote_percentages/master/" + dt.year + "/" + dt.toISODate() + "/";
 
