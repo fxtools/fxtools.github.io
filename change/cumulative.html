@@ -106,6 +106,11 @@
 			bottom: 0px;
 			margin: 5px;
 		}
+		
+		a[id="prev"][href="javascript:void(0);"],
+		a[id="next"][href="javascript:void(0);"] {
+			color: #272b38;
+		}
 	</style>
 	<link type="text/css" rel="stylesheet" href="/default.css">
 	<link type="text/css" rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
@@ -125,14 +130,14 @@
 					</a>
 				</li>
 				<li title="jump to previous day">
-					<a id="prev" style="display: none;" href="javascript:void(0);">
+					<a id="prev" href="javascript:void(0);">
 						<i class="fas fa-angle-double-left"></i>
 					</a>
 				</li>
 				<li id="date">
 				</li>
 				<li title="jump to next day">
-					<a id="next" style="display: none;" href="javascript:void(0);">
+					<a id="next" href="javascript:void(0);">
 						<i class="fas fa-angle-double-right"></i>
 					</a>
 				</li>
