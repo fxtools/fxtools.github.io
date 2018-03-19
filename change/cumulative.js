@@ -643,16 +643,16 @@ var loadData = function(enabled) {
   $(document).keydown(function(e) {
     switch(e.which) {
       case 37: // left
-        document.location.href = "?day=" + dt.plus({ days: -1 }).toISODate();
-        break;
-      case 38: // up
-        document.location.href = "?day=" + today.toISODate();
+        document.getElementById("prev").click();
         break;
       case 39: // right
-        document.location.href = "?day=" + dt.plus({ days: +1 }).toISODate();
+        document.getElementById("next").click();
+        break;
+      case 38: // up
+        document.getElementById("jumpToCurrentDay").click();
         break;
       case 40: // down
-        document.location.href = "?day=" + today.toISODate();
+        document.getElementById("jumpToCurrentDay").click();
         break;
       default: return;
     }
