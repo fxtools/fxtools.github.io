@@ -5,6 +5,13 @@ var w = console.log,
   Interval = luxon.Interval,
   disqus_config = function() {};
 
+  var disqus_shortname = "fx-tools";
+  var disqus_domain = "fx-tools.disqus.com";
+  var disqus_url = "https://fxtools.github.io/change/cumulative.html";
+  var disqus_title = "FX Change";
+  var disqus_identifier = "";
+  var disqus_category_id = "change";
+
 window.onerror = function(msg, url, line, col, error) {
   gtag("event", "exception", {
     description: "[" + error + "] " + msg + " in " + url + "[" + line + ":" + col + "]",
@@ -621,11 +628,12 @@ var loadData = function(enabled) {
 
   var day = dt;
 
-  var disqus_shortname = "fx-tools";
-  var disqus_url = "https://fxtools.github.io/change/cumulative.html?day=" + day.toISODate();
-  var disqus_title = "FX Change " + day.toISODate();
-  var disqus_identifier = "change-" + day.toISODate();
-  var disqus_category_id = "change";
+  disqus_shortname = "fx-tools";
+  disqus_domain = "fx-tools.disqus.com";
+  disqus_url = "https://fxtools.github.io/change/cumulative.html?day=" + day.toISODate();
+  disqus_title = "FX Change " + day.toISODate();
+  disqus_identifier = "change-" + day.toISODate();
+  disqus_category_id = "change";
   
   $("title").text(disqus_title);
   
@@ -652,10 +660,6 @@ var loadData = function(enabled) {
     europe: { raw: {}, filtered: [] },
     america: { raw: {}, filtered: [] },
   };
-
-  // $.getJSON("names.json", function(json) {
-  //   w(json);
-  // });
 
   $.when($.getJSON("names.json"), getFailSafe(uriA), getFailSafe(uriB), getFailSafe(uriC)).done(function(namesObj, asia, europe, america) {
     window.names = namesObj[0];
