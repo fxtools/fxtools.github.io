@@ -796,7 +796,7 @@ $("#settings").on("click", function() {
 });
 
 $(window).on("resize scroll", function(){
-  $("#time").right(0).bottom(0);
+  $("#time").css("right", "0px").css("bottom", "0px");
 });
 
 update();
