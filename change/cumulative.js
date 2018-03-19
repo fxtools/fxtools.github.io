@@ -629,7 +629,7 @@ var loadData = function(enabled) {
     this.page.title = $("title").text();
     this.page.category_id = "change";
   };
-  $.getScript("https://fx-tools.disqus.com/count.js");
+  $.getScript("https://fx-tools.disqus.com/count-data.js?1=" + day.toISODate());
   $("#commentLink").on("click", function() {
     var disqus_identifier = "change-" + day.toISODate();
     var disqus_title = $("title").text();
