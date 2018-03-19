@@ -683,7 +683,8 @@ var today = DateTime.utc().plus({ hours: 2 }),
 
 try {
   day = DateTime.fromISO(document.location.href.match(/day=(\d{4}-\d{2}-\d{2})/)[1]);
-} catch (e) {}
+} catch (e) {
+}
 
 $.get("https://raw.githubusercontent.com/fxtools/cftc-cot/master/known-days.txt", function(data) {
   var knownDays = Enumerable.from(data.split("\n"))
@@ -691,10 +692,18 @@ $.get("https://raw.githubusercontent.com/fxtools/cftc-cot/master/known-days.txt"
     .select(d => DateTime.fromISO(d))
     .orderBy(d => d);
 
+  try {
+    day = DateTime.fromISO(document.location.href.match(/day=(\d{4}-\d{2}-\d{2})/)[1]);
+  } catch (e) {
+    day = knownDays.last();
+    document.location.href = "?day=" + today.toISODate();
+    return;
+  }
+  
   if (!knownDays.singleOrDefault(d => d.equals(day))) {
     day = knownDays.last();
   }
-
+ 
   var prev = knownDays.where(d => d < day).lastOrDefault();
   var next = knownDays.where(d => d > day).firstOrDefault();
 
