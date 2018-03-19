@@ -787,22 +787,15 @@ var nextTick = function() {
     setTimeout(checkTimeLoop, nextTick());
   };
 
-// $("section").on("click", function() {
-//   if ($(this)[0].id != "filter") {
-//     $("#filter").hide();
-//   }
-// });
-
 $("#settings").on("click", function() {
   if ($("#filter:visible").length > 0) {
     $("#filter").hide();
   } else {
     $("#filter").show();
   }
-  //onclick="var el = document.getElementById('filter'); el.classList.contains('hide') ? el.classList.remove('hide') : el.classList.add('hide');"
 });
 
-$(window).on("resize, scroll", function(){
+$(window).on("resize scroll", function(){
   $("#time").right(0).bottom(0);
 });
 
