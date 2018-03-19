@@ -5,7 +5,7 @@ var w = console.log,
   disqus_domain = "disqus.com",
   disqus_title = "FX CoT",
   disqus_category_id = "cot",
-  disqus_url = "https://fxtools.github.io/cftc/cot.html",
+  disqus_url = "https://fxtools.github.io/cftc/cot.html#disqus_thread",
   disqus_identifier = "";
 
 window.onerror = function(msg, url, line, col, error) {
