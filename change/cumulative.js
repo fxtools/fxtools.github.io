@@ -640,6 +640,24 @@ var loadData = function(enabled) {
     });
   $.getScript("https://fx-tools.disqus.com/count.js");
 
+  $(document).keydown(function(e) {
+    switch(e.which) {
+      case 37: // left
+        document.location.href = "?day=" + dt.plus({ days: -1 }).toISODate();
+        break;
+      case 38: // up
+        break;
+      case 39: // right
+        document.location.href = "?day=" + dt.plus({ days: +1 }).toISODate();
+        break;
+      case 40: // down
+        break;
+      default: return;
+    }
+    e.preventDefault(); // prevent the default action (scroll / move caret)
+  });
+
+  
   var uri = "https://raw.githubusercontent.com/fxtools/quote_percentages/master/" + dt.year + "/" + dt.toISODate() + "/";
 
   var uriA = uri + "asian%20session.tsv?" + Date.now();
