@@ -629,9 +629,14 @@ var loadData = function(enabled) {
     this.page.title = $("title").text();
     this.page.category_id = "change";
   };
-  $.getScript("https://fx-tools.disqus.com/count-data.js?1=change-" + day.toISODate());
+  $("#commentLink").attr("data-disqus-identifier", "change-" + day.toISODate());
+
+  //$.getScript("https://fx-tools.disqus.com/count-data.js?1=change-" + day.toISODate());
+  $.getScript("https://fx-tools.disqus.com/count.js");
+  
   $("#commentLink").on("click", function() {
-    $.getScript("https://fx-tools.disqus.com/embed.js");
+    $(this).unbind("click");
+    $.getScript("https://fx-tools.disqus.com/embed.js");    
   });
   //$("head").append($("<script src='https://fx-tools.disqus.com/embed.js' data-timestamp=" + new Date() + "></script>"));
 /*  
