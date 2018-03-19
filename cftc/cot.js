@@ -728,6 +728,25 @@ $.get("https://raw.githubusercontent.com/fxtools/cftc-cot/master/known-days.txt"
     $("#subNavi").show();
   }
 
+  $(document).keydown(function(e) {
+    switch(e.which) {
+      case 37: // left
+        document.getElementById("prev").click();
+        break;
+      case 39: // right
+        document.getElementById("next").click();
+        break;
+      case 38: // up
+        document.getElementById("jumpToCurrentDay").click();
+        break;
+      case 40: // down
+        document.getElementById("jumpToCurrentDay").click();
+        break;
+      default: return;
+    }
+    e.preventDefault(); // prevent the default action (scroll / move caret)
+  });
+  
   disqus_title = "FX CoT " + day.toISODate();
   disqus_identifier = "cot-" + day.toISODate();
   disqus_url = "https://fxtools.github.io/cftc/cot.html?day=" + day.toISODate() + "#disqus_thread";
