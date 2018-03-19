@@ -620,16 +620,18 @@ var loadData = function(enabled) {
   }
 
   var day = dt;
-  $("title").text("FX Change " + day.toISODate());
 
-  disqus_config = function() {
-    this.page.shortname = "fx-tools";
-    this.page.identifier = "change-" + day.toISODate();
-    //this.page.url = "https://fxtools.github.io/change/cumulative.html?day=" + day.toISODate();
-    this.page.title = $("title").text();
-    this.page.category_id = "change";
-  };
-  $("#commentLink").attr("data-disqus-identifier", "change-" + day.toISODate());
+  var disqus_shortname = "fx-tools";
+  var disqus_url = "https://fxtools.github.io/change/cumulative.html?day=" + day.toISODate();
+  var disqus_title = "FX Change " + day.toISODate();
+  var disqus_identifier = "change-" + day.toISODate();
+  var disqus_category_id = "change";
+  
+  $("title").text(disqus_title);
+  
+  $("#commentLink")
+    .attr("data-disqus-identifier", disqus_identifier)
+    .attr("href", disqus_url);
 
   //$.getScript("https://fx-tools.disqus.com/count-data.js?1=change-" + day.toISODate());
   $.getScript("https://fx-tools.disqus.com/count.js");
@@ -638,15 +640,7 @@ var loadData = function(enabled) {
     $(this).unbind("click");
     $.getScript("https://fx-tools.disqus.com/embed.js");    
   });
-  //$("head").append($("<script src='https://fx-tools.disqus.com/embed.js' data-timestamp=" + new Date() + "></script>"));
-/*  
-  <script id="dsq-count-scr" src="" async></script>
-        var dsq = document.createElement('script');
-          dsq.type = 'text/javascript';
-          dsq.async = true;
-          dsq.src = 'https://fx-tools.disqus.com/embed.js';
-        document.getElementsByTagName('head')[0].appendChild(dsq);
-*/
+
   var uri = "https://raw.githubusercontent.com/fxtools/quote_percentages/master/" + dt.year + "/" + dt.toISODate() + "/";
 
   var uriA = uri + "asian%20session.tsv?" + Date.now();
