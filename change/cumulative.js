@@ -621,7 +621,7 @@ var loadData = function(enabled) {
 
   var day = dt;
   $("title").text("FX Change " + day.toISODate());
-
+/*
   disqus_config = function() {
     this.page.shortname = "fx-tools";
     this.page.identifier = "change-" + day.toISODate();
@@ -630,7 +630,7 @@ var loadData = function(enabled) {
     this.page.category_id = "change";
   };
   //$("head").append($("<script src='https://fx-tools.disqus.com/embed.js' data-timestamp=" + new Date() + "></script>"));
-
+*/
         var disqus_identifier = "change-" + day.toISODate();
         var disqus_title = $("title").text();
         //var disqus_url = "https://fxtools.github.io/change/cumulative.html?day=" + day.toISODate();
