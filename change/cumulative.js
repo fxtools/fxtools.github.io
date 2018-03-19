@@ -802,7 +802,7 @@ $("#settings").on("click", function() {
   //onclick="var el = document.getElementById('filter'); el.classList.contains('hide') ? el.classList.remove('hide') : el.classList.add('hide');"
 });
 
-$(window).on('resize', function(){
+$(window).on("resize, scroll", function(){
   $("#time").right(0).bottom(0);
 });
 
