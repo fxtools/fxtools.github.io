@@ -795,9 +795,5 @@ $("#settings").on("click", function() {
   }
 });
 
-$(window).on("resize scroll", function(){
-  $("#time").css("right", "0px").css("bottom", "0px");
-});
-
 update();
 setTimeout(checkTimeLoop, nextTick());
