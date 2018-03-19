@@ -7,7 +7,6 @@ var w = console.log,
   disqus_domain = "disqus.com",
   disqus_title = "FX Change",
   disqus_category_id = "change",
-  //disqus_url = "https://fxtools.github.io/change/cumulative.html",
   disqus_identifier = "";
 
 
@@ -627,21 +626,17 @@ var loadData = function(enabled) {
 
   var day = dt;
 
-  //disqus_url = "https://fxtools.github.io/change/cumulative.html?day=" + day.toISODate() + "#disqus_thread";
   disqus_title = "FX Change " + day.toISODate();
   disqus_identifier = "change-" + day.toISODate();
-  
+
   $("title").text(disqus_title);
-  
-  $("#commentLink").attr("data-disqus-identifier", disqus_identifier);
-    //.attr("href", disqus_url);
-  
+  $("#commentLink")
+    .attr("data-disqus-identifier", disqus_identifier)
+    .on("click", function() {
+      $(this).unbind("click");
+      $.getScript("https://fx-tools.disqus.com/embed.js");
+    });
   $.getScript("https://fx-tools.disqus.com/count.js");
-  
-  $("#commentLink").on("click", function() {
-    $(this).unbind("click");
-    $.getScript("https://fx-tools.disqus.com/embed.js");    
-  });
 
   var uri = "https://raw.githubusercontent.com/fxtools/quote_percentages/master/" + dt.year + "/" + dt.toISODate() + "/";
 
