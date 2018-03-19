@@ -646,11 +646,13 @@ var loadData = function(enabled) {
         document.location.href = "?day=" + dt.plus({ days: -1 }).toISODate();
         break;
       case 38: // up
+        document.location.href = "?day=" + today.toISODate();
         break;
       case 39: // right
         document.location.href = "?day=" + dt.plus({ days: +1 }).toISODate();
         break;
       case 40: // down
+        document.location.href = "?day=" + today.toISODate();
         break;
       default: return;
     }
