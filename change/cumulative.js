@@ -629,8 +629,9 @@ var loadData = function(enabled) {
   var day = dt;
 
   disqus_shortname = "fx-tools";
-  disqus_domain = "fx-tools.disqus.com";
-  disqus_url = "https://fxtools.github.io/change/cumulative.html?day=" + day.toISODate();
+  //disqus_domain = "fx-tools.disqus.com";
+  disqus_domain = "disqus.com";
+  disqus_url = "https://fxtools.github.io/change/cumulative.html?day=" + day.toISODate() + "#disqus_thread";
   disqus_title = "FX Change " + day.toISODate();
   disqus_identifier = "change-" + day.toISODate();
   disqus_category_id = "change";
@@ -640,8 +641,7 @@ var loadData = function(enabled) {
   $("#commentLink")
     .attr("data-disqus-identifier", disqus_identifier)
     .attr("href", disqus_url);
-
-  //$.getScript("https://fx-tools.disqus.com/count-data.js?1=change-" + day.toISODate());
+  
   $.getScript("https://fx-tools.disqus.com/count.js");
   
   $("#commentLink").on("click", function() {
