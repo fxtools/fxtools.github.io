@@ -597,7 +597,10 @@ var loadData = function(enabled) {
 
   try {
     dt = DateTime.fromISO(document.location.href.match(/day=(\d{4}-\d{2}-\d{2})/)[1]);
-  } catch (e) {}
+  } catch (e) {
+    document.location.href = document.location.pathname + "?day=" + today.toISODate();
+    return;
+  }
 
   if (dt.toISODate() == today.toISODate()) {
     window.runCheckTime = true;
