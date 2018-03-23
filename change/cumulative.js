@@ -8,7 +8,8 @@ var w = console.log,
   disqus_title = "FX Change",
   disqus_category_id = "change",
   disqus_url = "https://fxtools.github.io/change/cumulative.html#disqus_thread",
-  disqus_identifier = "";
+//  disqus_identifier = ""
+;
 
 window.onerror = function(msg, url, line, col, error) {
   gtag("event", "exception", {
@@ -627,12 +628,12 @@ var loadData = function(enabled) {
   var day = dt;
 
   disqus_title = "FX Change " + day.toISODate();
-  disqus_identifier = "change-" + day.toISODate();
+  //disqus_identifier = "change-" + day.toISODate();
   disqus_url = "https://fxtools.github.io/change/cumulative.html?day=" + day.toISODate() + "#disqus_thread";
 
   $("title").text(disqus_title);
   $("#commentLink")
-    .attr("data-disqus-identifier", disqus_identifier)
+    //.attr("data-disqus-identifier", disqus_identifier)
     .attr("href", disqus_url)
     .on("click", function() {
       $(this).unbind("click");
