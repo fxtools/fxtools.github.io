@@ -31,7 +31,7 @@ window.user = localStorage.getItem("user");
 var formatNumber = function(value) {
   var format = "k",
     abbr = "";
-/*
+
   switch (format) {
     case "b":
       value = Math.round(value / 1000 / 1000 / 1000);
@@ -46,7 +46,7 @@ var formatNumber = function(value) {
       abbr = "k";
       break;
   }
-*/
+
   // return value == 0 ? "" : value.toLocaleString() + abbr;
   return value.toLocaleString() + abbr;
 };
