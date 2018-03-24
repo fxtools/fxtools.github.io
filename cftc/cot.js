@@ -29,10 +29,9 @@ if (!localStorage.getItem("user")) {
 window.user = localStorage.getItem("user");
 
 var formatNumber = function(value) {
-/*
   var format = "k",
     abbr = "";
-
+/*
   switch (format) {
     case "b":
       value = Math.round(value / 1000 / 1000 / 1000);
