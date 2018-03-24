@@ -29,6 +29,7 @@ if (!localStorage.getItem("user")) {
 window.user = localStorage.getItem("user");
 
 var formatNumber = function(value) {
+/*
   var format = "k",
     abbr = "";
 
@@ -46,7 +47,7 @@ var formatNumber = function(value) {
       abbr = "k";
       break;
   }
-
+*/
   // return value == 0 ? "" : value.toLocaleString() + abbr;
   return value.toLocaleString() + abbr;
 };
