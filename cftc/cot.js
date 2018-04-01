@@ -432,7 +432,7 @@ var loadReport = function(date) {
     var showSpreading = $("#columns").val() == "long & short & spreading";
 
     try {
-      gtag("event", $("#report").val(), {
+      gtag("event", $("#columns").val(), {
         event_category: "cot: " + $("#symbol").val(),
         event_label: window.user,
       });
