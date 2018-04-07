@@ -639,7 +639,7 @@ var loadReport = function(date) {
     }
 
     // settings: symbol
-    var matchSym = document.location.href.match(/sym(?:bol){0,1}=(\w{2,3})/);
+    var matchSym = document.location.href.match(/sym(?:bol){0,1}=(\w{2,5})/);
     if (matchSym) {
       localStorage.setItem("settings_symbol", matchSymbol(matchSym[1]));
     }
