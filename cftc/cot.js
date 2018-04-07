@@ -72,6 +72,8 @@ var matchSymbol = function(symbol) {
       return "NEW ZEALAND DOLLAR";
     case "DX":
       return "U.S. DOLLAR INDEX";
+    case "US10Y":
+      return "10-YEAR U.S. TREASURY NOTES";
   }
 };
 
