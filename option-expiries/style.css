@@ -13,16 +13,7 @@ title {
 	padding: 5px;
 }
 
-title,
-ccypair {
-	display: block;
-	color: #dfc48c;
-	text-align: center;
-}
-
-
-
-expiries {
+ccypair-expiries {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -31,6 +22,12 @@ expiries {
 	align-content: flex-start;
 	padding: 10px;
 	align-content: stretch;
+}
+
+ccypair {
+	display: block;
+	color: #dfc48c;
+	text-align: center;
 }
 
 expiries {
