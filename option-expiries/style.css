@@ -11,6 +11,9 @@ title {
 	text-shadow: -1px 0px 1px rgb(97, 100, 5);
 	color: white;
 	padding: 5px;
+	display: block;
+	color: #dfc48c;
+	text-align: center;
 }
 
 ccypair-expiries {
