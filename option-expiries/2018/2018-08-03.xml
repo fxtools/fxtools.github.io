@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="style.css"?>
+<title>FXOE at New York cut on 2018-08-03</title>
+<expiries>
+	<ccypair>AUDUSD</ccypair>
+	<expiry><strk>0.7550</strk><amnt>0.439 bln</amnt></expiry>
+	<expiry><strk>0.7500</strk><amnt>0.161 bln</amnt></expiry>
+	<expiry><strk>0.7450</strk><amnt>0.743 bln</amnt></expiry>
+	<expiry><strk>0.7400</strk><amnt>0.987 bln</amnt></expiry>
+	<expiry><strk>0.7375</strk><amnt>0.108 bln</amnt></expiry>
+	<expiry><strk>0.7350</strk><amnt>0.221 bln</amnt></expiry>
+	<expiry><strk>0.7320</strk><amnt>0.637 bln</amnt></expiry>
+	<expiry><strk>0.7300</strk><amnt>0.285 bln</amnt></expiry>
+	<expiry><strk>0.7250</strk><amnt>0.145 bln</amnt></expiry>
+</expiries>
+<expiries>
+	<ccypair>EURCZK</ccypair>
+	<expiry><strk>26.2000</strk><amnt>0.153 bln</amnt></expiry>
+	<expiry><strk>25.5000</strk><amnt>0.220 bln</amnt></expiry>
+</expiries>
+<expiries>
+	<ccypair>EURGBP</ccypair>
+	<expiry><strk>0.9000</strk><amnt>0.120 bln</amnt></expiry>
+	<expiry><strk>0.8985</strk><amnt>0.128 bln</amnt></expiry>
+	<expiry><strk>0.8890</strk><amnt>0.101 bln</amnt></expiry>
+	<expiry><strk>0.8850</strk><amnt>0.129 bln</amnt></expiry>
+	<expiry><strk>0.8800</strk><amnt>0.150 bln</amnt></expiry>
+	<expiry><strk>0.8775</strk><amnt>0.200 bln</amnt></expiry>
+	<expiry><strk>0.8750</strk><amnt>0.230 bln</amnt></expiry>
+</expiries>
+<expiries>
+	<ccypair>EURHUF</ccypair>
+	<expiry><strk>327.00</strk><amnt>0.202 bln</amnt></expiry>
+	<expiry><strk>323.00</strk><amnt>0.640 bln</amnt></expiry>
+	<expiry><strk>300.00</strk><amnt>0.200 bln</amnt></expiry>
+</expiries>
+<expiries>
+	<ccypair>EURJPY</ccypair>
+	<expiry><strk>135.75</strk><amnt>0.420 bln</amnt></expiry>
+	<expiry><strk>130.50</strk><amnt>0.284 bln</amnt></expiry>
+	<expiry><strk>130.00</strk><amnt>0.334 bln</amnt></expiry>
+	<expiry><strk>129.35</strk><amnt>0.334 bln</amnt></expiry>
+</expiries>
+<expiries>
+	<ccypair>EURSEK</ccypair>
+	<expiry><strk>11.0940</strk><amnt>0.116 bln</amnt></expiry>
+	<expiry><strk>10.5800</strk><amnt>0.150 bln</amnt></expiry>
+	<expiry><strk>10.2605</strk><amnt>0.126 bln</amnt></expiry>
+</expiries>
+<expiries>
+	<ccypair>EURTRY</ccypair>
+	<expiry><strk>4.7350</strk><amnt>0.202 bln</amnt></expiry>
+</expiries>
+<expiries>
+	<ccypair>EURUSD</ccypair>
+	<expiry><strk>1.3610</strk><amnt>0.118 bln</amnt></expiry>
+	<expiry><strk>1.3600</strk><amnt>0.121 bln</amnt></expiry>
+	<expiry><strk>1.2085</strk><amnt>0.250 bln</amnt></expiry>
+	<expiry><strk>1.2000</strk><amnt>0.311 bln</amnt></expiry>
+	<expiry><strk>1.1850</strk><amnt>0.323 bln</amnt></expiry>
+	<expiry><strk>1.1825</strk><amnt>0.332 bln</amnt></expiry>
+	<expiry><strk>1.1815</strk><amnt>0.150 bln</amnt></expiry>
+	<expiry><strk>1.1800</strk><amnt>1.855 bln</amnt></expiry>
+	<expiry><strk>1.1780</strk><amnt>0.360 bln</amnt></expiry>
+	<expiry><strk>1.1775</strk><amnt>0.206 bln</amnt></expiry>
+</expiries>
+<expiries>
+	<ccypair>GBPCAD</ccypair>
+	<expiry><strk>1.7700</strk><amnt>0.149 bln</amnt></expiry>
+</expiries>
+<expiries>
+	<ccypair>GBPUSD</ccypair>
+	<expiry><strk>1.3700</strk><amnt>0.178 bln</amnt></expiry>
+	<expiry><strk>1.3650</strk><amnt>0.113 bln</amnt></expiry>
+	<expiry><strk>1.3450</strk><amnt>0.147 bln</amnt></expiry>
+	<expiry><strk>1.3300</strk><amnt>0.187 bln</amnt></expiry>
+	<expiry><strk>1.3275</strk><amnt>0.274 bln</amnt></expiry>
+	<expiry><strk>1.3225</strk><amnt>0.104 bln</amnt></expiry>
+	<expiry><strk>1.3125</strk><amnt>0.332 bln</amnt></expiry>
+	<expiry><strk>1.3117</strk><amnt>0.214 bln</amnt></expiry>
+	<expiry><strk>1.3110</strk><amnt>0.591 bln</amnt></expiry>
+	<expiry><strk>1.3095</strk><amnt>0.261 bln</amnt></expiry>
+</expiries>
+<expiries>
+	<ccypair>JPYCAD</ccypair>
+	<expiry><strk>85.9000</strk><amnt>2.000 bln</amnt></expiry>
+	<expiry><strk>85.2500</strk><amnt>9.000 bln</amnt></expiry>
+</expiries>
+<expiries>
+	<ccypair>NZDUSD</ccypair>
+	<expiry><strk>0.7035</strk><amnt>0.139 bln</amnt></expiry>
+	<expiry><strk>0.6785</strk><amnt>0.150 bln</amnt></expiry>
+</expiries>
+<expiries>
+	<ccypair>TRYJPY</ccypair>
+	<expiry><strk>26.1500</strk><amnt>0.180 bln</amnt></expiry>
+</expiries>
+<expiries>
+	<ccypair>USDBRL</ccypair>
+	<expiry><strk>3.9500</strk><amnt>0.250 bln</amnt></expiry>
+	<expiry><strk>3.7700</strk><amnt>0.265 bln</amnt></expiry>
+	<expiry><strk>3.7525</strk><amnt>0.295 bln</amnt></expiry>
+	<expiry><strk>3.7175</strk><amnt>0.270 bln</amnt></expiry>
+	<expiry><strk>3.5250</strk><amnt>0.200 bln</amnt></expiry>
+</expiries>
+<expiries>
+	<ccypair>USDCAD</ccypair>
+	<expiry><strk>1.3490</strk><amnt>0.343 bln</amnt></expiry>
+	<expiry><strk>1.3470</strk><amnt>0.380 bln</amnt></expiry>
+	<expiry><strk>1.3380</strk><amnt>0.194 bln</amnt></expiry>
+	<expiry><strk>1.3325</strk><amnt>0.600 bln</amnt></expiry>
+	<expiry><strk>1.3300</strk><amnt>0.993 bln</amnt></expiry>
+	<expiry><strk>1.3235</strk><amnt>0.140 bln</amnt></expiry>
+	<expiry><strk>1.3200</strk><amnt>0.260 bln</amnt></expiry>
+	<expiry><strk>1.3150</strk><amnt>0.262 bln</amnt></expiry>
+	<expiry><strk>1.3100</strk><amnt>0.920 bln</amnt></expiry>
+	<expiry><strk>1.3050</strk><amnt>0.298 bln</amnt></expiry>
+</expiries>
+<expiries>
+	<ccypair>USDCHF</ccypair>
+	<expiry><strk>1.0000</strk><amnt>0.240 bln</amnt></expiry>
+	<expiry><strk>0.9850</strk><amnt>0.516 bln</amnt></expiry>
+</expiries>
+<expiries>
+	<ccypair>USDCNY</ccypair>
+	<expiry><strk>6.8200</strk><amnt>1.258 bln</amnt></expiry>
+	<expiry><strk>6.7500</strk><amnt>0.112 bln</amnt></expiry>
+	<expiry><strk>6.7000</strk><amnt>0.400 bln</amnt></expiry>
+	<expiry><strk>6.6500</strk><amnt>0.250 bln</amnt></expiry>
+	<expiry><strk>6.6200</strk><amnt>0.110 bln</amnt></expiry>
+	<expiry><strk>6.3800</strk><amnt>0.200 bln</amnt></expiry>
+</expiries>
+<expiries>
+	<ccypair>USDIDR</ccypair>
+	<expiry><strk>14,400.00</strk><amnt>0.402 bln</amnt></expiry>
+</expiries>
+<expiries>
+	<ccypair>USDILS</ccypair>
+	<expiry><strk>3.4000</strk><amnt>0.250 bln</amnt></expiry>
+</expiries>
+<expiries>
+	<ccypair>USDINR</ccypair>
+	<expiry><strk>70.0000</strk><amnt>0.150 bln</amnt></expiry>
+	<expiry><strk>68.0000</strk><amnt>0.182 bln</amnt></expiry>
+	<expiry><strk>67.5000</strk><amnt>0.300 bln</amnt></expiry>
+	<expiry><strk>67.0000</strk><amnt>0.220 bln</amnt></expiry>
+	<expiry><strk>66.7500</strk><amnt>0.182 bln</amnt></expiry>
+</expiries>
+<expiries>
+	<ccypair>USDJPY</ccypair>
+	<expiry><strk>133.90</strk><amnt>0.181 bln</amnt></expiry>
+	<expiry><strk>113.50</strk><amnt>1.446 bln</amnt></expiry>
+	<expiry><strk>112.50</strk><amnt>0.202 bln</amnt></expiry>
+	<expiry><strk>112.00</strk><amnt>1.774 bln</amnt></expiry>
+	<expiry><strk>111.75</strk><amnt>0.415 bln</amnt></expiry>
+	<expiry><strk>111.66</strk><amnt>0.140 bln</amnt></expiry>
+	<expiry><strk>111.60</strk><amnt>0.130 bln</amnt></expiry>
+	<expiry><strk>111.50</strk><amnt>0.185 bln</amnt></expiry>
+	<expiry><strk>111.40</strk><amnt>0.876 bln</amnt></expiry>
+	<expiry><strk>111.25</strk><amnt>0.200 bln</amnt></expiry>
+</expiries>
+<expiries>
+	<ccypair>USDMXN</ccypair>
+	<expiry><strk>19.5000</strk><amnt>0.182 bln</amnt></expiry>
+	<expiry><strk>19.0000</strk><amnt>0.342 bln</amnt></expiry>
+	<expiry><strk>18.6000</strk><amnt>0.260 bln</amnt></expiry>
+	<expiry><strk>17.7000</strk><amnt>0.126 bln</amnt></expiry>
+</expiries>
+<expiries>
+	<ccypair>USDSEK</ccypair>
+	<expiry><strk>8.2700</strk><amnt>0.150 bln</amnt></expiry>
+</expiries>
+<expiries>
+	<ccypair>USDTRY</ccypair>
+	<expiry><strk>4.4500</strk><amnt>0.400 bln</amnt></expiry>
+</expiries>
+<expiries>
+	<ccypair>USDTWD</ccypair>
+	<expiry><strk>31.1500</strk><amnt>0.140 bln</amnt></expiry>
+</expiries>
+<expiries>
+	<ccypair>USDZAR</ccypair>
+	<expiry><strk>12.0000</strk><amnt>0.140 bln</amnt></expiry>
+</expiries>
