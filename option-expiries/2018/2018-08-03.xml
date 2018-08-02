@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/css" href="style.css"?>
-<title>FXOE at New York cut on 2018-08-03</title>
+<content><title>FXOE at New York cut on 2018-08-03</title>
 <expiries>
 	<ccypair>AUDUSD</ccypair>
 	<expiry><strk>0.7550</strk><amnt>0.439 bln</amnt></expiry>
@@ -39,7 +39,7 @@
 	<expiry><strk>135.75</strk><amnt>0.420 bln</amnt></expiry>
 	<expiry><strk>130.50</strk><amnt>0.284 bln</amnt></expiry>
 	<expiry><strk>130.00</strk><amnt>0.334 bln</amnt></expiry>
-	<expiry><strk>129.35</strk><amnt>0.334 bln</amnt></expiry>
+	<expiry><strk>129.35</strk><amnt>0.364 bln</amnt></expiry>
 </expiries>
 <expiries>
 	<ccypair>EURSEK</ccypair>
@@ -182,3 +182,4 @@
 	<ccypair>USDZAR</ccypair>
 	<expiry><strk>12.0000</strk><amnt>0.140 bln</amnt></expiry>
 </expiries>
+</content>
