@@ -135,9 +135,9 @@
 			<ccypair>USDCAD</ccypair>
 			<expiries>
 				<expiry><strike>1.31</strike><amount>0,248 bln</amount></expiry>
-				<expiry><strike>1.30</strike><amount>1,636 bln</amount></expiry>
-				<expiry><strike>1.30</strike><amount>0,225 bln</amount></expiry>
-				<expiry><strike>1.29</strike><amount>1,005 bln</amount></expiry>
+				<expiry><strike>1.30</strike><amount>1,656 bln</amount></expiry>
+				<expiry><strike>1.30</strike><amount>0,230 bln</amount></expiry>
+				<expiry><strike>1.29</strike><amount>1,033 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
@@ -152,7 +152,7 @@
 			<expiries>
 				<expiry><strike>7.16</strike><amount>0,500 bln</amount></expiry>
 				<expiry><strike>6.90</strike><amount>0,400 bln</amount></expiry>
-				<expiry><strike>6.85</strike><amount>0,830 bln</amount></expiry>
+				<expiry><strike>6.85</strike><amount>0,850 bln</amount></expiry>
 				<expiry><strike>6.82</strike><amount>0,650 bln</amount></expiry>
 				<expiry><strike>6.80</strike><amount>1,210 bln</amount></expiry>
 				<expiry><strike>6.75</strike><amount>1,035 bln</amount></expiry>
