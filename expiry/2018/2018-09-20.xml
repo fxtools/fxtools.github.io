@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/css" href="../style.css"?>
+<?xml-stylesheet type="text/css" href="../../css/exp.style.css"?>
 <content>
 	<title>Spot Options expiring 2018-09-20 1400GMT</title>
 	<ccypairs>
@@ -99,7 +99,7 @@
 			<expiries>
 				<expiry><strike>1.3710</strike><amount>0.806 bln</amount></expiry>
 				<expiry><strike>1.3175</strike><amount>0.257 bln</amount></expiry>
-				<expiry><strike>1.3140</strike><amount>0.963 bln</amount></expiry>
+				<expiry><strike>1.3140</strike><amount>0.993 bln</amount></expiry>
 				<expiry><strike>1.3100</strike><amount>0.270 bln</amount></expiry>
 				<expiry><strike>1.2865</strike><amount>0.597 bln</amount></expiry>
 			</expiries>
