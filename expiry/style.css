@@ -6,8 +6,9 @@
 
 title {
   display: block;
-  padding: 5px;
-  font-size: 18px;
+  margin: 10px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 ccypair_expiries {
@@ -15,21 +16,22 @@ ccypair_expiries {
   margin: 10px;
   padding: 10px;
   background: #dfc48c;
+  width: 160px;
 }
 
 ccypair {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 expiries {
   display: flex;
   flex-flow: column wrap;
-  justify-content: space-around;
 }
 
 expiry {
   font-family: monospace;
+  white-space: nowrap;
 }
 
 strike,
