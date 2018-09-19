@@ -17,10 +17,6 @@ ccypair_expiries {
   background: #dfc48c;
 }
 
-ccypair_expiries > * > * > * {
-  margin: 10px;
-}
-
 ccypair {
   display: block;
   margin-bottom: 10px;
@@ -39,6 +35,5 @@ expiry {
 
 strike,
 amount {
-  w-idth: 50%;
-  m-argin: 10px;
+  margin: 10px;
 }
