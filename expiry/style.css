@@ -1,34 +1,44 @@
 * {
   margin: 0px;
   padding: 0px;
+  text-align: center;
 }
 
 title {
   display: block;
   padding: 5px;
   font-size: 18px;
-  text-align: center;
 }
 
 ccypair_expiries {
+  display: inline-block;
   margin: 10px;
   padding: 10px;
   background: #dfc48c;
-  display: inline-block;
+}
+
+ccypair_expiries > * > * > * {
+  margin: 10px;
 }
 
 ccypair {
-  text-align: center;
   display: block;
   margin-bottom: 10px;
 }
 
+expiries {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-around;
+}
+
 expiry {
-  display: block;
+  font-family: monospace;
+  d-isplay: block;
 }
 
 strike,
 amount {
-  width: 50%;
-  margin: 10px;
+  w-idth: 50%;
+  m-argin: 10px;
 }
