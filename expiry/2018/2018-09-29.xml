@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="../style.css"?>
+<content>
+	<title>Spot Options expiring 2018-09-29 1400GMT</title>
+	<ccypairs>
+	</ccypairs>
+<xhtml:script xmlns:xhtml="http://www.w3.org/1999/xhtml" type="application/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-112925276-1" />
+<xhtml:script xmlns:xhtml="http://www.w3.org/1999/xhtml" type="application/javascript">
+	window.dataLayer = window.dataLayer || [];
+	function gtag() { dataLayer.push(arguments); }
+	gtag('js', new Date());
+	gtag('config', 'UA-112925276-1');
+</xhtml:script>
+</content>
