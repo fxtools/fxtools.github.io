@@ -98,7 +98,7 @@
 			<expiries>
 				<expiry><strike>1.3250</strike><amount>0.224 bln</amount></expiry>
 				<expiry><strike>1.2955</strike><amount>0.360 bln</amount></expiry>
-				<expiry><strike>1.2950</strike><amount>0.225 bln</amount></expiry>
+				<expiry><strike>1.2950</strike><amount>0.250 bln</amount></expiry>
 				<expiry><strike>1.2925</strike><amount>0.231 bln</amount></expiry>
 				<expiry><strike>1.2800</strike><amount>0.484 bln</amount></expiry>
 				<expiry><strike>1.2500</strike><amount>0.349 bln</amount></expiry>
