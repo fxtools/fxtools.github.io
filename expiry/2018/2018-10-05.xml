@@ -57,11 +57,11 @@
 				<expiry><strike>1.2575</strike><amount>0.902 bln</amount></expiry>
 				<expiry><strike>1.2000</strike><amount>0.745 bln</amount></expiry>
 				<expiry><strike>1.1750</strike><amount>0.714 bln</amount></expiry>
-				<expiry><strike>1.1725</strike><amount>0.748 bln</amount></expiry>
+				<expiry><strike>1.1725</strike><amount>0.783 bln</amount></expiry>
 				<expiry><strike>1.1700</strike><amount>0.996 bln</amount></expiry>
-				<expiry><strike>1.1630</strike><amount>0.772 bln</amount></expiry>
+				<expiry><strike>1.1630</strike><amount>0.962 bln</amount></expiry>
 				<expiry><strike>1.1600</strike><amount>0.688 bln</amount></expiry>
-				<expiry><strike>1.1500</strike><amount>1.960 bln</amount></expiry>
+				<expiry><strike>1.1500</strike><amount>1.970 bln</amount></expiry>
 				<expiry><strike>1.1450</strike><amount>2.264 bln</amount></expiry>
 				<expiry><strike>1.1400</strike><amount>0.691 bln</amount></expiry>
 			</expiries>
@@ -84,6 +84,12 @@
 			<ccypair>JPYCAD</ccypair>
 			<expiries>
 				<expiry><strike>84.5500</strike><amount>7.000 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>NOKSEK</ccypair>
+			<expiries>
+				<expiry><strike>1.1050</strike><amount>0.498 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
