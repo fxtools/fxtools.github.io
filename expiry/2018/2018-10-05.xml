@@ -22,7 +22,7 @@
 			<ccypair>EURCHF</ccypair>
 			<expiries>
 				<expiry><strike>1.1550</strike><amount>0.855 bln</amount></expiry>
-				<expiry><strike>1.1400</strike><amount>0.849 bln</amount></expiry>
+				<expiry><strike>1.1400</strike><amount>0.879 bln</amount></expiry>
 				<expiry><strike>1.1250</strike><amount>0.210 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
