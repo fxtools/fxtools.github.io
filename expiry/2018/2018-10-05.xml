@@ -89,7 +89,7 @@
 		<ccypair_expiries>
 			<ccypair>NOKSEK</ccypair>
 			<expiries>
-				<expiry><strike>1.1050</strike><amount>0.498 bln</amount></expiry>
+				<expiry><strike>1.1050</strike><amount>0.597 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
@@ -103,7 +103,7 @@
 			<expiries>
 				<expiry><strike>0.6620</strike><amount>0.394 bln</amount></expiry>
 				<expiry><strike>0.6600</strike><amount>0.417 bln</amount></expiry>
-				<expiry><strike>0.6550</strike><amount>0.385 bln</amount></expiry>
+				<expiry><strike>0.6550</strike><amount>0.400 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
