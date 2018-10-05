@@ -7,6 +7,7 @@
 			<ccypair>AUDJPY</ccypair>
 			<expiries>
 				<expiry><strike>83.0000</strike><amount>0.420 bln</amount></expiry>
+				<expiry><strike>80.0000</strike><amount>0.225 bln</amount></expiry>
 				<expiry><strike>76.0000</strike><amount>0.800 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
