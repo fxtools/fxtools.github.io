@@ -4,6 +4,12 @@
 	<title>Spot Options expiring 2018-10-12 1400GMT</title>
 	<ccypairs>
 		<ccypair_expiries>
+			<ccypair>AUDJPY</ccypair>
+			<expiries>
+				<expiry><strike>80.0000</strike><amount>0.219 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
 			<ccypair>AUDNZD</ccypair>
 			<expiries>
 				<expiry><strike>1.1250</strike><amount>0.409 bln</amount></expiry>
@@ -19,8 +25,8 @@
 				<expiry><strike>0.7300</strike><amount>0.305 bln</amount></expiry>
 				<expiry><strike>0.7250</strike><amount>0.204 bln</amount></expiry>
 				<expiry><strike>0.7175</strike><amount>0.251 bln</amount></expiry>
-				<expiry><strike>0.7150</strike><amount>0.437 bln</amount></expiry>
-				<expiry><strike>0.7100</strike><amount>0.285 bln</amount></expiry>
+				<expiry><strike>0.7150</strike><amount>0.487 bln</amount></expiry>
+				<expiry><strike>0.7100</strike><amount>0.359 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
@@ -32,6 +38,7 @@
 		<ccypair_expiries>
 			<ccypair>EURGBP</ccypair>
 			<expiries>
+				<expiry><strike>0.8775</strike><amount>0.250 bln</amount></expiry>
 				<expiry><strike>0.8700</strike><amount>0.244 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
@@ -51,7 +58,7 @@
 		<ccypair_expiries>
 			<ccypair>EURSEK</ccypair>
 			<expiries>
-				<expiry><strike>10.4300</strike><amount>0.300 bln</amount></expiry>
+				<expiry><strike>10.4300</strike><amount>0.450 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
@@ -59,11 +66,11 @@
 			<expiries>
 				<expiry><strike>1.2100</strike><amount>0.438 bln</amount></expiry>
 				<expiry><strike>1.1710</strike><amount>0.384 bln</amount></expiry>
-				<expiry><strike>1.1590</strike><amount>0.723 bln</amount></expiry>
-				<expiry><strike>1.1575</strike><amount>0.276 bln</amount></expiry>
-				<expiry><strike>1.1550</strike><amount>0.920 bln</amount></expiry>
+				<expiry><strike>1.1590</strike><amount>0.884 bln</amount></expiry>
+				<expiry><strike>1.1575</strike><amount>0.327 bln</amount></expiry>
+				<expiry><strike>1.1550</strike><amount>1.065 bln</amount></expiry>
 				<expiry><strike>1.1520</strike><amount>0.536 bln</amount></expiry>
-				<expiry><strike>1.1500</strike><amount>0.312 bln</amount></expiry>
+				<expiry><strike>1.1500</strike><amount>0.420 bln</amount></expiry>
 				<expiry><strike>1.1450</strike><amount>0.334 bln</amount></expiry>
 				<expiry><strike>1.1300</strike><amount>0.664 bln</amount></expiry>
 				<expiry><strike>1.1250</strike><amount>0.973 bln</amount></expiry>
@@ -118,7 +125,8 @@
 			<expiries>
 				<expiry><strike>7.0300</strike><amount>0.210 bln</amount></expiry>
 				<expiry><strike>6.9300</strike><amount>0.428 bln</amount></expiry>
-				<expiry><strike>6.9000</strike><amount>0.600 bln</amount></expiry>
+				<expiry><strike>6.9250</strike><amount>0.228 bln</amount></expiry>
+				<expiry><strike>6.9000</strike><amount>0.603 bln</amount></expiry>
 				<expiry><strike>6.8300</strike><amount>0.750 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
@@ -135,7 +143,7 @@
 				<expiry><strike>114.00</strike><amount>0.256 bln</amount></expiry>
 				<expiry><strike>113.60</strike><amount>0.600 bln</amount></expiry>
 				<expiry><strike>113.00</strike><amount>0.535 bln</amount></expiry>
-				<expiry><strike>112.50</strike><amount>0.212 bln</amount></expiry>
+				<expiry><strike>112.50</strike><amount>0.282 bln</amount></expiry>
 				<expiry><strike>109.00</strike><amount>0.205 bln</amount></expiry>
 				<expiry><strike>106.00</strike><amount>0.250 bln</amount></expiry>
 			</expiries>
