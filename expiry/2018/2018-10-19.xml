@@ -13,7 +13,7 @@
 			<ccypair>AUDUSD</ccypair>
 			<expiries>
 				<expiry><strike>0.7545</strike><amount>0.795 bln</amount></expiry>
-				<expiry><strike>0.7150</strike><amount>0.794 bln</amount></expiry>
+				<expiry><strike>0.7150</strike><amount>0.895 bln</amount></expiry>
 				<expiry><strike>0.7120</strike><amount>0.787 bln</amount></expiry>
 				<expiry><strike>0.7000</strike><amount>0.303 bln</amount></expiry>
 				<expiry><strike>0.6950</strike><amount>0.222 bln</amount></expiry>
@@ -37,12 +37,12 @@
 				<expiry><strike>1.2200</strike><amount>0.275 bln</amount></expiry>
 				<expiry><strike>1.2143</strike><amount>0.412 bln</amount></expiry>
 				<expiry><strike>1.2140</strike><amount>0.327 bln</amount></expiry>
-				<expiry><strike>1.1900</strike><amount>0.261 bln</amount></expiry>
-				<expiry><strike>1.1540</strike><amount>0.787 bln</amount></expiry>
+				<expiry><strike>1.1600</strike><amount>0.309 bln</amount></expiry>
+				<expiry><strike>1.1540</strike><amount>0.912 bln</amount></expiry>
 				<expiry><strike>1.1525</strike><amount>0.307 bln</amount></expiry>
-				<expiry><strike>1.1500</strike><amount>0.420 bln</amount></expiry>
+				<expiry><strike>1.1500</strike><amount>0.983 bln</amount></expiry>
 				<expiry><strike>1.1420</strike><amount>0.657 bln</amount></expiry>
-				<expiry><strike>1.1400</strike><amount>1.744 bln</amount></expiry>
+				<expiry><strike>1.1400</strike><amount>1.674 bln</amount></expiry>
 				<expiry><strike>1.1250</strike><amount>0.470 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
@@ -57,24 +57,26 @@
 			<expiries>
 				<expiry><strike>1.4500</strike><amount>0.366 bln</amount></expiry>
 				<expiry><strike>1.3600</strike><amount>0.206 bln</amount></expiry>
-				<expiry><strike>1.2975</strike><amount>0.242 bln</amount></expiry>
+				<expiry><strike>1.3300</strike><amount>0.207 bln</amount></expiry>
+				<expiry><strike>1.3100</strike><amount>0.411 bln</amount></expiry>
+				<expiry><strike>1.2975</strike><amount>0.488 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
 			<ccypair>NOKSEK</ccypair>
 			<expiries>
-				<expiry><strike>1.1125</strike><amount>0.809 bln</amount></expiry>
-				<expiry><strike>1.1000</strike><amount>6.118 bln</amount></expiry>
+				<expiry><strike>1.1125</strike><amount>1.618 bln</amount></expiry>
+				<expiry><strike>1.1000</strike><amount>4.118 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
 			<ccypair>USDCAD</ccypair>
 			<expiries>
 				<expiry><strike>1.3225</strike><amount>0.623 bln</amount></expiry>
-				<expiry><strike>1.3065</strike><amount>0.210 bln</amount></expiry>
+				<expiry><strike>1.3065</strike><amount>0.240 bln</amount></expiry>
 				<expiry><strike>1.2975</strike><amount>0.300 bln</amount></expiry>
 				<expiry><strike>1.2950</strike><amount>0.230 bln</amount></expiry>
-				<expiry><strike>1.2945</strike><amount>0.290 bln</amount></expiry>
+				<expiry><strike>1.2945</strike><amount>0.530 bln</amount></expiry>
 				<expiry><strike>1.2900</strike><amount>0.430 bln</amount></expiry>
 				<expiry><strike>1.2775</strike><amount>0.300 bln</amount></expiry>
 				<expiry><strike>1.2600</strike><amount>0.231 bln</amount></expiry>
@@ -90,11 +92,11 @@
 			<ccypair>USDCNY</ccypair>
 			<expiries>
 				<expiry><strike>7.1000</strike><amount>0.268 bln</amount></expiry>
-				<expiry><strike>7.0500</strike><amount>0.275 bln</amount></expiry>
+				<expiry><strike>7.0500</strike><amount>0.225 bln</amount></expiry>
 				<expiry><strike>7.0340</strike><amount>0.230 bln</amount></expiry>
-				<expiry><strike>6.9500</strike><amount>0.285 bln</amount></expiry>
+				<expiry><strike>6.9500</strike><amount>0.235 bln</amount></expiry>
 				<expiry><strike>6.9375</strike><amount>0.500 bln</amount></expiry>
-				<expiry><strike>6.9000</strike><amount>0.479 bln</amount></expiry>
+				<expiry><strike>6.9000</strike><amount>0.429 bln</amount></expiry>
 				<expiry><strike>6.8050</strike><amount>0.500 bln</amount></expiry>
 				<expiry><strike>6.5000</strike><amount>0.216 bln</amount></expiry>
 				<expiry><strike>6.4000</strike><amount>0.512 bln</amount></expiry>
@@ -103,18 +105,18 @@
 		<ccypair_expiries>
 			<ccypair>USDJPY</ccypair>
 			<expiries>
-				<expiry><strike>115.00</strike><amount>0.236 bln</amount></expiry>
 				<expiry><strike>114.00</strike><amount>2.211 bln</amount></expiry>
 				<expiry><strike>113.50</strike><amount>0.376 bln</amount></expiry>
 				<expiry><strike>113.25</strike><amount>0.750 bln</amount></expiry>
 				<expiry><strike>113.00</strike><amount>0.322 bln</amount></expiry>
-				<expiry><strike>112.50</strike><amount>0.395 bln</amount></expiry>
+				<expiry><strike>112.50</strike><amount>0.855 bln</amount></expiry>
+				<expiry><strike>112.05</strike><amount>0.294 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
 			<ccypair>USDMXN</ccypair>
 			<expiries>
-				<expiry><strike>19.0000</strike><amount>0.257 bln</amount></expiry>
+				<expiry><strike>19.0000</strike><amount>0.263 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
