@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="../style.css"?>
+<content>
+	<title>Spot Options expiring 2018-10-24 1400GMT</title>
+	<ccypairs>
+		<ccypair_expiries>
+			<ccypair>AUDCAD</ccypair>
+			<expiries>
+				<expiry><strike>0.9400</strike><amount>0.455 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>AUDJPY</ccypair>
+			<expiries>
+				<expiry><strike>80.0000</strike><amount>0.300 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>AUDNZD</ccypair>
+			<expiries>
+				<expiry><strike>1.1140</strike><amount>1.373 bln</amount></expiry>
+				<expiry><strike>1.0980</strike><amount>1.008 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>AUDUSD</ccypair>
+			<expiries>
+				<expiry><strike>0.7160</strike><amount>1.140 bln</amount></expiry>
+				<expiry><strike>0.7124</strike><amount>0.842 bln</amount></expiry>
+				<expiry><strike>0.7120</strike><amount>0.202 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>CHFJPY</ccypair>
+			<expiries>
+				<expiry><strike>117.95</strike><amount>0.254 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>EURAUD</ccypair>
+			<expiries>
+				<expiry><strike>1.6225</strike><amount>0.355 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>EURCAD</ccypair>
+			<expiries>
+				<expiry><strike>1.5240</strike><amount>0.361 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>EURJPY</ccypair>
+			<expiries>
+				<expiry><strike>132.20</strike><amount>0.250 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>EURNOK</ccypair>
+			<expiries>
+				<expiry><strike>9.5300</strike><amount>0.381 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>EURUSD</ccypair>
+			<expiries>
+				<expiry><strike>1.2575</strike><amount>0.340 bln</amount></expiry>
+				<expiry><strike>1.2070</strike><amount>0.258 bln</amount></expiry>
+				<expiry><strike>1.2000</strike><amount>0.413 bln</amount></expiry>
+				<expiry><strike>1.1900</strike><amount>0.705 bln</amount></expiry>
+				<expiry><strike>1.1625</strike><amount>0.268 bln</amount></expiry>
+				<expiry><strike>1.1555</strike><amount>0.325 bln</amount></expiry>
+				<expiry><strike>1.1485</strike><amount>0.260 bln</amount></expiry>
+				<expiry><strike>1.1450</strike><amount>0.702 bln</amount></expiry>
+				<expiry><strike>1.1300</strike><amount>1.557 bln</amount></expiry>
+				<expiry><strike>1.1280</strike><amount>1.487 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>GBPUSD</ccypair>
+			<expiries>
+				<expiry><strike>1.3170</strike><amount>0.538 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>JPYCAD</ccypair>
+			<expiries>
+				<expiry><strike>86.5100</strike><amount>2.163 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>NZDJPY</ccypair>
+			<expiries>
+				<expiry><strike>74.0000</strike><amount>0.208 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>NZDUSD</ccypair>
+			<expiries>
+				<expiry><strike>0.6850</strike><amount>0.345 bln</amount></expiry>
+				<expiry><strike>0.6650</strike><amount>0.305 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>USDCAD</ccypair>
+			<expiries>
+				<expiry><strike>1.3075</strike><amount>0.250 bln</amount></expiry>
+				<expiry><strike>1.2700</strike><amount>0.850 bln</amount></expiry>
+				<expiry><strike>1.2620</strike><amount>0.240 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>USDCNY</ccypair>
+			<expiries>
+				<expiry><strike>7.2500</strike><amount>0.250 bln</amount></expiry>
+				<expiry><strike>7.1000</strike><amount>0.250 bln</amount></expiry>
+				<expiry><strike>7.0950</strike><amount>0.800 bln</amount></expiry>
+				<expiry><strike>6.9000</strike><amount>0.214 bln</amount></expiry>
+				<expiry><strike>6.5500</strike><amount>0.550 bln</amount></expiry>
+				<expiry><strike>6.5275</strike><amount>0.800 bln</amount></expiry>
+				<expiry><strike>6.4500</strike><amount>0.776 bln</amount></expiry>
+				<expiry><strike>6.3300</strike><amount>0.255 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>USDJPY</ccypair>
+			<expiries>
+				<expiry><strike>115.10</strike><amount>0.350 bln</amount></expiry>
+				<expiry><strike>114.75</strike><amount>0.400 bln</amount></expiry>
+				<expiry><strike>112.50</strike><amount>0.253 bln</amount></expiry>
+				<expiry><strike>111.50</strike><amount>0.645 bln</amount></expiry>
+				<expiry><strike>111.45</strike><amount>0.680 bln</amount></expiry>
+				<expiry><strike>111.00</strike><amount>0.602 bln</amount></expiry>
+				<expiry><strike>110.00</strike><amount>0.693 bln</amount></expiry>
+				<expiry><strike>109.20</strike><amount>0.350 bln</amount></expiry>
+				<expiry><strike>105.00</strike><amount>0.710 bln</amount></expiry>
+				<expiry><strike>102.85</strike><amount>0.450 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>USDSAR</ccypair>
+			<expiries>
+				<expiry><strike>3.7000</strike><amount>0.250 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>USDSGD</ccypair>
+			<expiries>
+				<expiry><strike>1.3750</strike><amount>0.430 bln</amount></expiry>
+				<expiry><strike>1.3165</strike><amount>0.220 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>USDZAR</ccypair>
+			<expiries>
+				<expiry><strike>17.5000</strike><amount>1.989 bln</amount></expiry>
+				<expiry><strike>16.0000</strike><amount>0.561 bln</amount></expiry>
+				<expiry><strike>14.5000</strike><amount>0.225 bln</amount></expiry>
+				<expiry><strike>13.7600</strike><amount>0.550 bln</amount></expiry>
+				<expiry><strike>13.7500</strike><amount>0.400 bln</amount></expiry>
+				<expiry><strike>13.0000</strike><amount>0.475 bln</amount></expiry>
+				<expiry><strike>12.2500</strike><amount>0.864 bln</amount></expiry>
+				<expiry><strike>11.7500</strike><amount>0.970 bln</amount></expiry>
+				<expiry><strike>11.5000</strike><amount>0.500 bln</amount></expiry>
+				<expiry><strike>11.2500</strike><amount>1.513 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+	</ccypairs>
+<xhtml:script xmlns:xhtml="http://www.w3.org/1999/xhtml" type="application/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-112925276-1" />
+<xhtml:script xmlns:xhtml="http://www.w3.org/1999/xhtml" type="application/javascript">
+	window.dataLayer = window.dataLayer || [];
+	function gtag() { dataLayer.push(arguments); }
+	gtag('js', new Date());
+	gtag('config', 'UA-112925276-1');
+</xhtml:script>
+</content>
