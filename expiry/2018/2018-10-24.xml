@@ -25,8 +25,8 @@
 		<ccypair_expiries>
 			<ccypair>AUDUSD</ccypair>
 			<expiries>
-				<expiry><strike>0.7160</strike><amount>1.570 bln</amount></expiry>
-				<expiry><strike>0.7124</strike><amount>1.123 bln</amount></expiry>
+				<expiry><strike>0.7160</strike><amount>1.011 bln</amount></expiry>
+				<expiry><strike>0.7124</strike><amount>0.561 bln</amount></expiry>
 				<expiry><strike>0.7120</strike><amount>0.202 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
@@ -34,12 +34,6 @@
 			<ccypair>CHFJPY</ccypair>
 			<expiries>
 				<expiry><strike>117.95</strike><amount>0.254 bln</amount></expiry>
-			</expiries>
-		</ccypair_expiries>
-		<ccypair_expiries>
-			<ccypair>EURAUD</ccypair>
-			<expiries>
-				<expiry><strike>1.6225</strike><amount>0.355 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
