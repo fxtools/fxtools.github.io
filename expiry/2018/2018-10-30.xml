@@ -6,7 +6,9 @@
 		<ccypair_expiries>
 			<ccypair>AUDJPY</ccypair>
 			<expiries>
+				<expiry><strike>102.50</strike><amount>0.254 bln</amount></expiry>
 				<expiry><strike>78.7000</strike><amount>0.300 bln</amount></expiry>
+				<expiry><strike>68.5000</strike><amount>0.260 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
@@ -122,7 +124,7 @@
 				<expiry><strike>111.75</strike><amount>0.300 bln</amount></expiry>
 				<expiry><strike>111.50</strike><amount>0.380 bln</amount></expiry>
 				<expiry><strike>110.75</strike><amount>0.275 bln</amount></expiry>
-				<expiry><strike>108.00</strike><amount>0.260 bln</amount></expiry>
+				<expiry><strike>108.00</strike><amount>0.500 bln</amount></expiry>
 				<expiry><strike>100.00</strike><amount>0.250 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
@@ -147,6 +149,7 @@
 				<expiry><strike>4.8000</strike><amount>0.605 bln</amount></expiry>
 				<expiry><strike>4.6600</strike><amount>0.300 bln</amount></expiry>
 				<expiry><strike>4.6500</strike><amount>0.300 bln</amount></expiry>
+				<expiry><strike>4.6100</strike><amount>0.460 bln</amount></expiry>
 				<expiry><strike>4.6000</strike><amount>0.461 bln</amount></expiry>
 				<expiry><strike>4.1500</strike><amount>0.671 bln</amount></expiry>
 				<expiry><strike>3.7500</strike><amount>0.300 bln</amount></expiry>
