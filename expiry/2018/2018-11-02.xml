@@ -7,7 +7,7 @@
 			<ccypair>AUDUSD</ccypair>
 			<expiries>
 				<expiry><strike>0.8350</strike><amount>0.311 bln</amount></expiry>
-				<expiry><strike>0.7100</strike><amount>0.217 bln</amount></expiry>
+				<expiry><strike>0.7100</strike><amount>0.227 bln</amount></expiry>
 				<expiry><strike>0.7055</strike><amount>0.336 bln</amount></expiry>
 				<expiry><strike>0.7000</strike><amount>0.278 bln</amount></expiry>
 			</expiries>
@@ -50,14 +50,14 @@
 		<ccypair_expiries>
 			<ccypair>EURUSD</ccypair>
 			<expiries>
-				<expiry><strike>1.1825</strike><amount>0.353 bln</amount></expiry>
 				<expiry><strike>1.1525</strike><amount>0.427 bln</amount></expiry>
 				<expiry><strike>1.1500</strike><amount>0.652 bln</amount></expiry>
 				<expiry><strike>1.1460</strike><amount>0.367 bln</amount></expiry>
 				<expiry><strike>1.1450</strike><amount>0.636 bln</amount></expiry>
-				<expiry><strike>1.1400</strike><amount>1.805 bln</amount></expiry>
-				<expiry><strike>1.1350</strike><amount>0.590 bln</amount></expiry>
-				<expiry><strike>1.1325</strike><amount>2.233 bln</amount></expiry>
+				<expiry><strike>1.1400</strike><amount>2.084 bln</amount></expiry>
+				<expiry><strike>1.1380</strike><amount>0.393 bln</amount></expiry>
+				<expiry><strike>1.1350</strike><amount>0.811 bln</amount></expiry>
+				<expiry><strike>1.1325</strike><amount>2.263 bln</amount></expiry>
 				<expiry><strike>1.1300</strike><amount>0.865 bln</amount></expiry>
 				<expiry><strike>1.1215</strike><amount>0.362 bln</amount></expiry>
 			</expiries>
@@ -112,9 +112,9 @@
 				<expiry><strike>113.75</strike><amount>0.286 bln</amount></expiry>
 				<expiry><strike>113.50</strike><amount>1.007 bln</amount></expiry>
 				<expiry><strike>112.30</strike><amount>0.980 bln</amount></expiry>
-				<expiry><strike>111.90</strike><amount>0.305 bln</amount></expiry>
-				<expiry><strike>111.55</strike><amount>1.505 bln</amount></expiry>
-				<expiry><strike>111.00</strike><amount>0.460 bln</amount></expiry>
+				<expiry><strike>111.90</strike><amount>0.445 bln</amount></expiry>
+				<expiry><strike>111.55</strike><amount>1.655 bln</amount></expiry>
+				<expiry><strike>111.00</strike><amount>0.490 bln</amount></expiry>
 				<expiry><strike>110.75</strike><amount>0.286 bln</amount></expiry>
 				<expiry><strike>107.70</strike><amount>0.500 bln</amount></expiry>
 				<expiry><strike>102.35</strike><amount>0.600 bln</amount></expiry>
