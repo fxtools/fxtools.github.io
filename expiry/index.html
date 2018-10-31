@@ -118,7 +118,9 @@ try {
 }
 
 w($("iframe"), $("iframe").src);
-$("iframe").src = "https://fxtools.github.io/expiry/" + dt.year + "/" + dt.toISODate();
+var uri = "https://fxtools.github.io/expiry/" + dt.year + "/" + dt.toISODate();
+$("iframe").src = uri;
+w(uri, $("iframe"), $("iframe").src);
 
 </script>
 
