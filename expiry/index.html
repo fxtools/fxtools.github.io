@@ -84,7 +84,7 @@
 		</header>
 
         	<section id="expiry">
-			<iframe height="100%" width="100%">expiries</iframe>
+			<iframe src="_blank" height="100%" width="100%">expiries</iframe>
 		</section>
 		
 		<section>
@@ -117,6 +117,7 @@ try {
 	}
 }
 
+w($("iframe"), $("iframe").src);
 $("iframe").src = "https://fxtools.github.io/expiry/" + dt.year + "/" + dt.toISODate();
 
 </script>
