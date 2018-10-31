@@ -83,8 +83,7 @@
 			</ul>
 		</header>
 
-        	<section id="expiry">
-			<iframe src="_blank" height="100%" width="100%">expiries</iframe>
+		<section id="expiry">
 		</section>
 		
 		<section>
@@ -117,11 +116,14 @@ try {
 	}
 }
 
-w($("iframe"), $("iframe").src);
-var uri = "https://fxtools.github.io/expiry/" + dt.year + "/" + dt.toISODate();
-$("iframe").attr('src', uri);
-w(uri, $("iframe"), $("iframe").src);
-
+$.get("https://fxtools.github.io/expiry/" + dt.year + "/" + dt.toISODate(), function(xml) {
+        var doc = $($.parseXML(xml));
+	w(doc, doc.find("ccypairs"));
+		$("#expiry").append(doc.find("ccypairs"));
+	
+    }
+});
+	
 </script>
 
 		
