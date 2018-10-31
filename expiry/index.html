@@ -117,7 +117,7 @@ try {
 }
 
 $.get("https://fxtools.github.io/expiry/" + dt.year + "/" + dt.toISODate(), function(xml) {
-	var xmlDoc = $.parseHTML(xml),
+	var xmlDoc = $.parseXML(xml),
 		xmlDom = $(xmlDoc),
 	    title = xmlDom.find("title");
 	w(xmlDom, xmlDom, title);
