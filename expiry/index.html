@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>FX Tools</title>
+	<meta http-equiv="expires" content="0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+	<style>
+		body {
+		    overflow-y: scroll;
+		}
+	</style>
+	<link type="text/css" rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
+	<link type="text/css" rel="stylesheet" href="/js/billboard.js/billboard.min.css" />
+	<link type="text/css" rel="stylesheet" href="/js/enjoyhint/enjoyhint.css">
+	<link type="text/css" rel="stylesheet" href="/default.css">
+	<style>
+		.cumulative {
+			b-ackground: linear-gradient(to right, green 0%, gray 33%, gray 66%, red 100%);
+			white-space: nowrap;
+			margin: 0 auto;
+			w-idth: 100vw;
+			text-align: center;
+			margin: 0.3vw;
+			padding: 0.3vw;
+		}
+
+		.cumulative span {
+			color: black;
+		}
+
+		.ccy {
+			display: block;
+		}
+
+		.sum {
+			display: block;
+		}
+
+		.sum:after {
+			content: "%";
+		}
+
+		.show {
+			display: inline;
+		}
+
+		#chart {
+			margin-left: 5%;
+			margin-right: 10%;
+		}
+
+		#percentages {
+			overflow-x: auto;
+		}
+
+		.tile {
+			display: inline-block;
+			margin: 1px;
+			padding: 5px;
+			border-radius: 3px;
+			width: 40px;
+			overflow: hidden;
+		}
+
+		#navi,
+		#navi2 {
+			f-ont-size: 15px;
+			padding: 10px;
+		}
+
+		#navi>* {
+			display: inline;
+		}
+
+		#navi>a {
+			margin: 0px 15px 0px 15px;
+		}
+
+		#disqus_thread {
+			margin: auto;
+			width: 95%;
+		}
+
+		#container-asia,
+		#container-europe,
+		#container-america,
+		#heading-asia {
+			display: none;
+		}
+
+		#filter {
+			background-color: #272b38;
+		}
+
+		#filter li {
+			list-style: none;
+			margin: 5px;
+			color: #48d8a0;
+		}
+
+		#filter th {
+			color: #6a7490;
+		}
+
+		#filter td {
+			vertical-align: top;
+			padding: 10px 10px 10px 10px;
+		}
+
+		#time {
+			position: fixed;
+			right: 0px;
+			bottom: 0px;
+			margin: 5px;
+		}
+		
+		a[id="prev"][href="javascript:void(0);"],
+		a[id="next"][href="javascript:void(0);"] {
+			color: #272b38 !important;
+		}
+	</style>
+</head>
+
+<body class="noselect" unselectable="on" onselectstart="return false;" onmousedown="return false;">
+	<center>
+
+		<header>
+			<span title="last updated" id="time"></span>
+			<ul>
+				<li id="home" title="show other tools">
+					<a href="/">
+						<i class="fas fa-home"></i>
+					</a>
+				</li>
+				<li title="jump to previous day">
+					<a id="prev" href="javascript:void(0);">
+						<i class="fas fa-angle-double-left"></i>
+					</a>
+				</li>
+				<li id="date">
+				</li>
+				<li title="jump to next day">
+					<a id="next" href="javascript:void(0);">
+						<i class="fas fa-angle-double-right"></i>
+					</a>
+				</li>
+				<li id="settings" title="settings">
+					<a href="javascript:void(0);">
+						<i class="fas fa-cogs"></i>
+					</a>
+				</li>
+				<li title="comments" style="width: 25px; text-align: right; white-space: nowrap">
+					<a id="commentLink" class="disqus-comment-count" href="#disqus_thread">
+						<i class="fas fa-comments"></i>
+					</a>
+				</li>
+				<li title="quick tour">
+					<a id="tour" href="javascript:void(0);" onclick="javascript: startTour();">
+						<i class="fas fa-question"></i>
+					</a>
+				</li>
+			</ul>
+
+		</header>
+
+		<header id="subNavi">
+			<ul>
+				<li>
+					<a id="jumpToCurrentDay" href="javascript:void(0);">jump to current day</a>
+				</li>
+			</ul>
+		</header>
+
+        <section id="expiry">
+		</section>
+		
+		<section>
+			<a target="_blank" title="chat" href="https://join.slack.com/t/fxfools/shared_invite/enQtMzczNzgzODY2ODUwLWQ0NDJhMTRlODc0MmRjNjNiNDcxMTg5NjU4MmZmMjg4NmM0N2RlMGZiYjEwMGJjNDE4NGM3MmQ5YjNjMjQ3MTg">Have questions or comments? Join our FX chat!</a>
+		</section>
+
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112925276-1"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() { dataLayer.push(arguments); }
+			gtag('js', new Date());
+			gtag('config', 'UA-112925276-1');
+		</script>
+
+		<script src="/js/jquery-3.3.1.min.js"></script>
+		<script src="/js/luxon/luxon.min.js"></script>
+
+		<script>            
+var w = console.log,
+  DateTime = luxon.DateTime,
+  Interval = luxon.Interval;
+
+
+
+var expiry = DateTime.local().toISODate();
+try {
+  expiry = document.location.href.match(/expiry=(\d{4}-\d{2}-\d{2})/)[1];
+} catch (e) {}
+
+$.get("https://fxtools.github.io/expiry/2018/2018-10-31", function(xml) {
+    w(xml);
+    $('#expiry').html(xml);
+});
+
+		</script>
+
+	</center>
+
+</body>
+
+</html>
