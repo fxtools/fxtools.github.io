@@ -147,21 +147,6 @@
 						<i class="fas fa-angle-double-right"></i>
 					</a>
 				</li>
-				<li id="settings" title="settings">
-					<a href="javascript:void(0);">
-						<i class="fas fa-cogs"></i>
-					</a>
-				</li>
-				<li title="comments" style="width: 25px; text-align: right; white-space: nowrap">
-					<a id="commentLink" class="disqus-comment-count" href="#disqus_thread">
-						<i class="fas fa-comments"></i>
-					</a>
-				</li>
-				<li title="quick tour">
-					<a id="tour" href="javascript:void(0);" onclick="javascript: startTour();">
-						<i class="fas fa-question"></i>
-					</a>
-				</li>
 			</ul>
 
 		</header>
@@ -174,7 +159,8 @@
 			</ul>
 		</header>
 
-        <section id="expiry">
+        	<section id="expiry">
+			<iframe height="100%" width="100%">expiries</iframe>
 		</section>
 		
 		<section>
@@ -192,25 +178,27 @@
 		<script src="/js/jquery-3.3.1.min.js"></script>
 		<script src="/js/luxon/luxon.min.js"></script>
 
-		<script>            
+<script>            
 var w = console.log,
   DateTime = luxon.DateTime,
   Interval = luxon.Interval;
 
+var dt = DateTime.fromObject({zone: 'America/New_York'});
 
-
-var expiry = DateTime.local().toISODate();
+w(dt);
+			
+var expiry = dt.toISODate();
 try {
   expiry = document.location.href.match(/expiry=(\d{4}-\d{2}-\d{2})/)[1];
 } catch (e) {}
 
-$.get("https://fxtools.github.io/expiry/2018/2018-10-31", function(xml) {
-    w(xml);
-    $('#expiry').html(xml);
-});
+$("#expiry > iframe").src = "https://fxtools.github.io/expiry/" + dt.year + "/" + dt.toISODate();
 
-		</script>
+</script>
 
+		
+
+		
 	</center>
 
 </body>
