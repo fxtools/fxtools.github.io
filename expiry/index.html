@@ -116,16 +116,11 @@ try {
 	}
 }
 
-$.get("https://fxtools.github.io/expiry/" + dt.year + "/" + dt.toISODate(), function(xml) {
+$.get("https://fxtools.github.io/expiry/" + dt.year + "/" + dt.toISODate(), function(data) {
+	var xml = $(data);
 	w("xml", xml);
-	var xmlDoc = $.parseXML(xml);
-	w("xmlDoc", xmlDoc);
-	var xmlDom = $(xmlDoc);
-	w("xmlDom", xmlDom);
-	var lala = $(xml);
-	w("lala", lala);
 	
-	//$("#expiry").append($xml.find("ccypairs"));
+	$("#expiry").append(xml.find("ccypairs"));
 });
 
 </script>
