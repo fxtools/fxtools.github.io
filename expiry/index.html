@@ -109,16 +109,15 @@ var w = console.log,
 
 var dt = DateTime.fromObject({zone: 'America/New_York'});
 
-w(dt.hour);
-			
-var expiry = dt.toISODate();
 try {
-  expiry = document.location.href.match(/expiry=(\d{4}-\d{2}-\d{2})/)[1];
-} catch (e) {}
+  dt = document.location.href.match(/expiry=(\d{4}-\d{2}-\d{2})/)[1];
+} catch (e) {
+	if (dt.hour >= 10) {
+		dt.plus({ days: 1 });
+	}
+}
 
-	w("https://fxtools.github.io/expiry/" + dt.year + "/" + dt.toISODate());
-	
-$("#expiry > iframe").src = "https://fxtools.github.io/expiry/" + dt.year + "/" + dt.toISODate();
+$("iframe").src = "https://fxtools.github.io/expiry/" + dt.year + "/" + dt.toISODate();
 
 </script>
 
