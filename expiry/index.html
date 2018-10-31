@@ -119,7 +119,7 @@ try {
 
 w($("iframe"), $("iframe").src);
 var uri = "https://fxtools.github.io/expiry/" + dt.year + "/" + dt.toISODate();
-$("iframe").src = uri;
+$("iframe").attr('src', uri);
 w(uri, $("iframe"), $("iframe").src);
 
 </script>
