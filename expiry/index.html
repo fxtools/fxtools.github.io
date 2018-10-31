@@ -13,58 +13,8 @@
 		}
 	</style>
 	<link type="text/css" rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
-	<link type="text/css" rel="stylesheet" href="/js/billboard.js/billboard.min.css" />
-	<link type="text/css" rel="stylesheet" href="/js/enjoyhint/enjoyhint.css">
 	<link type="text/css" rel="stylesheet" href="/default.css">
 	<style>
-		.cumulative {
-			b-ackground: linear-gradient(to right, green 0%, gray 33%, gray 66%, red 100%);
-			white-space: nowrap;
-			margin: 0 auto;
-			w-idth: 100vw;
-			text-align: center;
-			margin: 0.3vw;
-			padding: 0.3vw;
-		}
-
-		.cumulative span {
-			color: black;
-		}
-
-		.ccy {
-			display: block;
-		}
-
-		.sum {
-			display: block;
-		}
-
-		.sum:after {
-			content: "%";
-		}
-
-		.show {
-			display: inline;
-		}
-
-		#chart {
-			margin-left: 5%;
-			margin-right: 10%;
-		}
-
-		#percentages {
-			overflow-x: auto;
-		}
-
-		.tile {
-			display: inline-block;
-			margin: 1px;
-			padding: 5px;
-			border-radius: 3px;
-			width: 40px;
-			overflow: hidden;
-		}
-
 		#navi,
 		#navi2 {
 			f-ont-size: 15px;
@@ -82,32 +32,6 @@
 		#disqus_thread {
 			margin: auto;
 			width: 95%;
-		}
-
-		#container-asia,
-		#container-europe,
-		#container-america,
-		#heading-asia {
-			display: none;
-		}
-
-		#filter {
-			background-color: #272b38;
-		}
-
-		#filter li {
-			list-style: none;
-			margin: 5px;
-			color: #48d8a0;
-		}
-
-		#filter th {
-			color: #6a7490;
-		}
-
-		#filter td {
-			vertical-align: top;
-			padding: 10px 10px 10px 10px;
 		}
 
 		#time {
@@ -185,13 +109,15 @@ var w = console.log,
 
 var dt = DateTime.fromObject({zone: 'America/New_York'});
 
-w(dt);
+w(dt.hour);
 			
 var expiry = dt.toISODate();
 try {
   expiry = document.location.href.match(/expiry=(\d{4}-\d{2}-\d{2})/)[1];
 } catch (e) {}
 
+	w("https://fxtools.github.io/expiry/" + dt.year + "/" + dt.toISODate());
+	
 $("#expiry > iframe").src = "https://fxtools.github.io/expiry/" + dt.year + "/" + dt.toISODate();
 
 </script>
