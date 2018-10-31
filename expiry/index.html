@@ -120,7 +120,7 @@ $.get("https://fxtools.github.io/expiry/" + dt.year + "/" + dt.toISODate(), func
 	var xmlDoc = $.parseXML(xml),
 		$xml = $(xmlDoc),
 	    title = $xml.find("title");
-	w($xml, title, $xml.find("ccypairs"));
+	w(xml, $xml, title, $xml.find("ccypairs"));
 	$("#expiry").append($xml.find("ccypairs"));
 });
 	
