@@ -129,8 +129,8 @@ $.get("https://fxtools.github.io/expiry/" + dt.year + "/" + dt.toISODate(), func
 	var dtPrev = dt.plus({ days: -1 });
 	var dtNext = dt.plus({ days: +1 });
 	
-	var uriPrev = "https://fxtools.github.io/expiry/" + dtPrev.year + "/" + dtPrev.toISODate();
-	var uriNext = "https://fxtools.github.io/expiry/" + dtNext.year + "/" + dtNext.toISODate();
+	var uriPrev = "/expiry?expiry=" + dtPrev.toISODate();
+	var uriNext = "/expiry?expiry=" + dtNext.toISODate();
 	
 	$("#prev").attr("href", uriPrev);
 	$("#next").attr("href", uriNext);
