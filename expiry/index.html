@@ -127,7 +127,7 @@ $.get("https://fxtools.github.io/expiry/" + dt.year + "/" + dt.toISODate(), func
 	$("#expiry").append(xml.find("ccypairs"));
 	
 	var dtPrev = dt.plus({ days: -1 });
-	var dtPrev = dt.plus({ days: +1 });
+	var dtNext = dt.plus({ days: +1 });
 	
 	var uriPrev = "https://fxtools.github.io/expiry/" + dtPrev.year + "/" + dtPrev.toISODate();
 	var uriNext = "https://fxtools.github.io/expiry/" + dtNext.year + "/" + dtNext.toISODate();
