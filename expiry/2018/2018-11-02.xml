@@ -7,6 +7,7 @@
 			<ccypair>AUDUSD</ccypair>
 			<expiries>
 				<expiry><strike>0.8350</strike><amount>0.311 bln</amount></expiry>
+				<expiry><strike>0.7175</strike><amount>0.222 bln</amount></expiry>
 				<expiry><strike>0.7105</strike><amount>0.221 bln</amount></expiry>
 				<expiry><strike>0.7100</strike><amount>0.307 bln</amount></expiry>
 				<expiry><strike>0.7055</strike><amount>0.465 bln</amount></expiry>
@@ -112,9 +113,9 @@
 			<expiries>
 				<expiry><strike>115.25</strike><amount>0.497 bln</amount></expiry>
 				<expiry><strike>113.75</strike><amount>0.386 bln</amount></expiry>
-				<expiry><strike>113.50</strike><amount>1.207 bln</amount></expiry>
+				<expiry><strike>113.50</strike><amount>1.282 bln</amount></expiry>
 				<expiry><strike>112.45</strike><amount>0.450 bln</amount></expiry>
-				<expiry><strike>112.30</strike><amount>1.280 bln</amount></expiry>
+				<expiry><strike>112.30</strike><amount>1.355 bln</amount></expiry>
 				<expiry><strike>111.90</strike><amount>0.525 bln</amount></expiry>
 				<expiry><strike>111.55</strike><amount>1.655 bln</amount></expiry>
 				<expiry><strike>111.00</strike><amount>0.490 bln</amount></expiry>
