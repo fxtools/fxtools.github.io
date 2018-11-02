@@ -35,6 +35,7 @@
 		<ccypair_expiries>
 			<ccypair>EURJPY</ccypair>
 			<expiries>
+				<expiry><strike>128.95</strike><amount>0.201 bln</amount></expiry>
 				<expiry><strike>127.50</strike><amount>0.390 bln</amount></expiry>
 				<expiry><strike>125.10</strike><amount>0.440 bln</amount></expiry>
 				<expiry><strike>122.70</strike><amount>0.300 bln</amount></expiry>
@@ -49,7 +50,7 @@
 				<expiry><strike>1.1500</strike><amount>1.042 bln</amount></expiry>
 				<expiry><strike>1.1430</strike><amount>0.321 bln</amount></expiry>
 				<expiry><strike>1.1405</strike><amount>0.372 bln</amount></expiry>
-				<expiry><strike>1.1400</strike><amount>1.205 bln</amount></expiry>
+				<expiry><strike>1.1400</strike><amount>1.211 bln</amount></expiry>
 				<expiry><strike>1.1350</strike><amount>1.056 bln</amount></expiry>
 				<expiry><strike>1.1325</strike><amount>0.299 bln</amount></expiry>
 				<expiry><strike>1.1300</strike><amount>1.093 bln</amount></expiry>
