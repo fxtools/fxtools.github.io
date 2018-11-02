@@ -81,7 +81,7 @@
 		<ccypair_expiries>
 			<ccypair>NZDUSD</ccypair>
 			<expiries>
-				<expiry><strike>0.6665</strike><amount>0.300 bln</amount></expiry>
+				<expiry><strike>0.6665</strike><amount>0.350 bln</amount></expiry>
 				<expiry><strike>0.6600</strike><amount>0.242 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
