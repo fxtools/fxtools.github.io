@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="../style.css"?>
+<content>
+	<title>Spot Options expiring 2018-11-06 1400GMT</title>
+	<ccypairs>
+		<ccypair_expiries>
+			<ccypair>AUDUSD</ccypair>
+			<expiries>
+				<expiry><strike>0.7395</strike><amount>0.360 bln</amount></expiry>
+				<expiry><strike>0.7390</strike><amount>0.246 bln</amount></expiry>
+				<expiry><strike>0.7145</strike><amount>0.502 bln</amount></expiry>
+				<expiry><strike>0.6950</strike><amount>0.376 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>CHFJPY</ccypair>
+			<expiries>
+				<expiry><strike>117.10</strike><amount>0.231 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>EURCNY</ccypair>
+			<expiries>
+				<expiry><strike>7.8937</strike><amount>0.220 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>EURRUB</ccypair>
+			<expiries>
+				<expiry><strike>78.0000</strike><amount>0.410 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>EURSEK</ccypair>
+			<expiries>
+				<expiry><strike>9.8995</strike><amount>0.240 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>EURUSD</ccypair>
+			<expiries>
+				<expiry><strike>1.3800</strike><amount>0.201 bln</amount></expiry>
+				<expiry><strike>1.2670</strike><amount>0.351 bln</amount></expiry>
+				<expiry><strike>1.1900</strike><amount>0.202 bln</amount></expiry>
+				<expiry><strike>1.1725</strike><amount>0.212 bln</amount></expiry>
+				<expiry><strike>1.1635</strike><amount>0.653 bln</amount></expiry>
+				<expiry><strike>1.1450</strike><amount>0.268 bln</amount></expiry>
+				<expiry><strike>1.1380</strike><amount>0.453 bln</amount></expiry>
+				<expiry><strike>1.1375</strike><amount>0.244 bln</amount></expiry>
+				<expiry><strike>1.1350</strike><amount>0.298 bln</amount></expiry>
+				<expiry><strike>1.1225</strike><amount>0.420 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>GBPUSD</ccypair>
+			<expiries>
+				<expiry><strike>1.3000</strike><amount>0.502 bln</amount></expiry>
+				<expiry><strike>1.2925</strike><amount>1.114 bln</amount></expiry>
+				<expiry><strike>1.2800</strike><amount>0.920 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>MXNJPY</ccypair>
+			<expiries>
+				<expiry><strike>5.7500</strike><amount>0.400 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>NZDUSD</ccypair>
+			<expiries>
+				<expiry><strike>0.6750</strike><amount>0.252 bln</amount></expiry>
+				<expiry><strike>0.6450</strike><amount>0.281 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>USDCAD</ccypair>
+			<expiries>
+				<expiry><strike>1.2900</strike><amount>0.430 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>USDCNY</ccypair>
+			<expiries>
+				<expiry><strike>7.0700</strike><amount>0.280 bln</amount></expiry>
+				<expiry><strike>7.0000</strike><amount>0.260 bln</amount></expiry>
+				<expiry><strike>6.9400</strike><amount>0.550 bln</amount></expiry>
+				<expiry><strike>6.9395</strike><amount>0.370 bln</amount></expiry>
+				<expiry><strike>6.9250</strike><amount>0.250 bln</amount></expiry>
+				<expiry><strike>6.9190</strike><amount>0.350 bln</amount></expiry>
+				<expiry><strike>6.9000</strike><amount>0.930 bln</amount></expiry>
+				<expiry><strike>6.8500</strike><amount>0.282 bln</amount></expiry>
+				<expiry><strike>6.7750</strike><amount>0.360 bln</amount></expiry>
+				<expiry><strike>6.5000</strike><amount>0.350 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>USDJPY</ccypair>
+			<expiries>
+				<expiry><strike>116.00</strike><amount>0.560 bln</amount></expiry>
+				<expiry><strike>113.25</strike><amount>0.560 bln</amount></expiry>
+				<expiry><strike>113.00</strike><amount>0.384 bln</amount></expiry>
+				<expiry><strike>112.50</strike><amount>0.470 bln</amount></expiry>
+				<expiry><strike>112.10</strike><amount>0.370 bln</amount></expiry>
+				<expiry><strike>112.00</strike><amount>0.358 bln</amount></expiry>
+				<expiry><strike>111.00</strike><amount>0.551 bln</amount></expiry>
+				<expiry><strike>108.00</strike><amount>0.411 bln</amount></expiry>
+				<expiry><strike>104.00</strike><amount>0.394 bln</amount></expiry>
+				<expiry><strike>99.5000</strike><amount>0.360 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>USDMXN</ccypair>
+			<expiries>
+				<expiry><strike>24.0000</strike><amount>0.220 bln</amount></expiry>
+				<expiry><strike>21.0000</strike><amount>0.240 bln</amount></expiry>
+				<expiry><strike>18.5000</strike><amount>0.570 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>USDSEK</ccypair>
+			<expiries>
+				<expiry><strike>8.8200</strike><amount>0.300 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>USDSGD</ccypair>
+			<expiries>
+				<expiry><strike>1.3925</strike><amount>0.251 bln</amount></expiry>
+				<expiry><strike>1.3850</strike><amount>0.300 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>USDZAR</ccypair>
+			<expiries>
+				<expiry><strike>12.8000</strike><amount>0.795 bln</amount></expiry>
+				<expiry><strike>12.3000</strike><amount>0.494 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+	</ccypairs>
+<xhtml:script xmlns:xhtml="http://www.w3.org/1999/xhtml" type="application/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-112925276-1" />
+<xhtml:script xmlns:xhtml="http://www.w3.org/1999/xhtml" type="application/javascript">
+	window.dataLayer = window.dataLayer || [];
+	function gtag() { dataLayer.push(arguments); }
+	gtag('js', new Date());
+	gtag('config', 'UA-112925276-1');
+</xhtml:script>
+</content>
