@@ -57,7 +57,7 @@
 				<expiry><strike>1.1420</strike><amount>0.271 bln</amount></expiry>
 				<expiry><strike>1.1417</strike><amount>0.596 bln</amount></expiry>
 				<expiry><strike>1.1415</strike><amount>0.216 bln</amount></expiry>
-				<expiry><strike>1.1400</strike><amount>0.275 bln</amount></expiry>
+				<expiry><strike>1.1400</strike><amount>0.304 bln</amount></expiry>
 				<expiry><strike>1.1350</strike><amount>0.404 bln</amount></expiry>
 				<expiry><strike>1.1320</strike><amount>0.421 bln</amount></expiry>
 			</expiries>
@@ -102,7 +102,7 @@
 			<expiries>
 				<expiry><strike>1.3100</strike><amount>0.270 bln</amount></expiry>
 				<expiry><strike>1.3050</strike><amount>0.215 bln</amount></expiry>
-				<expiry><strike>1.3040</strike><amount>0.273 bln</amount></expiry>
+				<expiry><strike>1.3040</strike><amount>0.283 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
