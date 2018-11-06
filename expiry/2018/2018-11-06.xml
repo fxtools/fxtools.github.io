@@ -123,6 +123,12 @@
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
+			<ccypair>USDSAR</ccypair>
+			<expiries>
+				<expiry><strike>3.7505</strike><amount>0.340 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
 			<ccypair>USDSEK</ccypair>
 			<expiries>
 				<expiry><strike>8.8200</strike><amount>0.300 bln</amount></expiry>
