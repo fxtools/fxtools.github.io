@@ -125,7 +125,7 @@
 		<ccypair_expiries>
 			<ccypair>USDSAR</ccypair>
 			<expiries>
-				<expiry><strike>3.7505</strike><amount>0.340 bln</amount></expiry>
+				<expiry><strike>3.7505</strike><amount>0.684 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
