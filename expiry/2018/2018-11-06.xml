@@ -104,7 +104,7 @@
 			<expiries>
 				<expiry><strike>116.00</strike><amount>0.560 bln</amount></expiry>
 				<expiry><strike>113.25</strike><amount>0.620 bln</amount></expiry>
-				<expiry><strike>113.00</strike><amount>0.421 bln</amount></expiry>
+				<expiry><strike>113.00</strike><amount>0.415 bln</amount></expiry>
 				<expiry><strike>112.85</strike><amount>0.480 bln</amount></expiry>
 				<expiry><strike>112.50</strike><amount>0.620 bln</amount></expiry>
 				<expiry><strike>112.10</strike><amount>0.370 bln</amount></expiry>
@@ -125,7 +125,7 @@
 		<ccypair_expiries>
 			<ccypair>USDSAR</ccypair>
 			<expiries>
-				<expiry><strike>3.7505</strike><amount>1.198 bln</amount></expiry>
+				<expiry><strike>3.7505</strike><amount>0.684 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
