@@ -57,6 +57,12 @@
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
+			<ccypair>NZDUSD</ccypair>
+			<expiries>
+				<expiry><strike>0.6775</strike><amount>0.224 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
 			<ccypair>USDCAD</ccypair>
 			<expiries>
 				<expiry><strike>1.3070</strike><amount>0.378 bln</amount></expiry>
