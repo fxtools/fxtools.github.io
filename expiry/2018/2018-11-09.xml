@@ -163,7 +163,7 @@
 			<ccypair>USDJPY</ccypair>
 			<expiries>
 				<expiry><strike>114.50</strike><amount>0.924 bln</amount></expiry>
-				<expiry><strike>114.00</strike><amount>1.237 bln</amount></expiry>
+				<expiry><strike>114.00</strike><amount>1.267 bln</amount></expiry>
 				<expiry><strike>113.60</strike><amount>1.601 bln</amount></expiry>
 				<expiry><strike>113.50</strike><amount>0.804 bln</amount></expiry>
 				<expiry><strike>113.00</strike><amount>1.536 bln</amount></expiry>
