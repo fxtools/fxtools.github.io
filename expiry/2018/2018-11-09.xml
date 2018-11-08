@@ -45,6 +45,7 @@
 		<ccypair_expiries>
 			<ccypair>EURCHF</ccypair>
 			<expiries>
+				<expiry><strike>1.1450</strike><amount>0.219 bln</amount></expiry>
 				<expiry><strike>1.1200</strike><amount>0.300 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
@@ -73,7 +74,7 @@
 				<expiry><strike>1.1400</strike><amount>2.147 bln</amount></expiry>
 				<expiry><strike>1.1375</strike><amount>1.263 bln</amount></expiry>
 				<expiry><strike>1.1350</strike><amount>0.884 bln</amount></expiry>
-				<expiry><strike>1.1340</strike><amount>0.693 bln</amount></expiry>
+				<expiry><strike>1.1340</strike><amount>0.713 bln</amount></expiry>
 				<expiry><strike>1.1200</strike><amount>0.829 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>

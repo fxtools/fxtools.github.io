@@ -128,7 +128,7 @@
 				<expiry><strike>112.80</strike><amount>0.310 bln</amount></expiry>
 				<expiry><strike>112.00</strike><amount>0.312 bln</amount></expiry>
 				<expiry><strike>111.70</strike><amount>0.500 bln</amount></expiry>
-				<expiry><strike>110.35</strike><amount>1.665 bln</amount></expiry>
+				<expiry><strike>110.35</strike><amount>2.165 bln</amount></expiry>
 				<expiry><strike>108.00</strike><amount>0.480 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
