@@ -141,13 +141,13 @@
 			<expiries>
 				<expiry><strike>115.50</strike><amount>0.768 bln</amount></expiry>
 				<expiry><strike>114.50</strike><amount>0.375 bln</amount></expiry>
+				<expiry><strike>113.80</strike><amount>0.380 bln</amount></expiry>
 				<expiry><strike>113.15</strike><amount>0.305 bln</amount></expiry>
 				<expiry><strike>113.00</strike><amount>0.448 bln</amount></expiry>
 				<expiry><strike>112.00</strike><amount>0.779 bln</amount></expiry>
 				<expiry><strike>111.85</strike><amount>0.538 bln</amount></expiry>
 				<expiry><strike>111.50</strike><amount>0.525 bln</amount></expiry>
 				<expiry><strike>110.05</strike><amount>0.790 bln</amount></expiry>
-				<expiry><strike>109.50</strike><amount>0.301 bln</amount></expiry>
 				<expiry><strike>102.00</strike><amount>0.350 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
