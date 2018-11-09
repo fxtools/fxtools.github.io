@@ -54,7 +54,7 @@
 			<ccypair>EURJPY</ccypair>
 			<expiries>
 				<expiry><strike>130.10</strike><amount>0.215 bln</amount></expiry>
-				<expiry><strike>129.40</strike><amount>0.309 bln</amount></expiry>
+				<expiry><strike>129.40</strike><amount>0.489 bln</amount></expiry>
 				<expiry><strike>120.80</strike><amount>0.220 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
