@@ -116,8 +116,8 @@
 		<ccypair_expiries>
 			<ccypair>USDCAD</ccypair>
 			<expiries>
-				<expiry><strike>1.3200</strike><amount>0.280 bln</amount></expiry>
-				<expiry><strike>1.3150</strike><amount>0.290 bln</amount></expiry>
+				<expiry><strike>1.3200</strike><amount>0.310 bln</amount></expiry>
+				<expiry><strike>1.3150</strike><amount>0.350 bln</amount></expiry>
 				<expiry><strike>1.3110</strike><amount>0.480 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
