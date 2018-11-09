@@ -75,7 +75,7 @@
 				<expiry><strike>1.1430</strike><amount>0.506 bln</amount></expiry>
 				<expiry><strike>1.1415</strike><amount>0.484 bln</amount></expiry>
 				<expiry><strike>1.1400</strike><amount>0.808 bln</amount></expiry>
-				<expiry><strike>1.1345</strike><amount>0.613 bln</amount></expiry>
+				<expiry><strike>1.1345</strike><amount>0.663 bln</amount></expiry>
 				<expiry><strike>1.1300</strike><amount>0.763 bln</amount></expiry>
 				<expiry><strike>1.1250</strike><amount>0.547 bln</amount></expiry>
 			</expiries>
@@ -154,7 +154,7 @@
 		<ccypair_expiries>
 			<ccypair>USDMXN</ccypair>
 			<expiries>
-				<expiry><strike>20.0000</strike><amount>0.410 bln</amount></expiry>
+				<expiry><strike>20.0000</strike><amount>0.430 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
