@@ -66,6 +66,12 @@
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
+			<ccypair>NOKSEK</ccypair>
+			<expiries>
+				<expiry><strike>1.0700</strike><amount>0.400 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
 			<ccypair>TRYJPY</ccypair>
 			<expiries>
 				<expiry><strike>36.2500</strike><amount>1.545 bln</amount></expiry>
