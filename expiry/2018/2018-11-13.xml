@@ -83,7 +83,7 @@
 		<ccypair_expiries>
 			<ccypair>GBPUSD</ccypair>
 			<expiries>
-				<expiry><strike>1.3000</strike><amount>0.430 bln</amount></expiry>
+				<expiry><strike>1.3000</strike><amount>0.452 bln</amount></expiry>
 				<expiry><strike>1.2600</strike><amount>0.256 bln</amount></expiry>
 				<expiry><strike>1.2400</strike><amount>0.298 bln</amount></expiry>
 				<expiry><strike>1.2150</strike><amount>0.213 bln</amount></expiry>
