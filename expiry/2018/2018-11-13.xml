@@ -24,7 +24,7 @@
 				<expiry><strike>0.7400</strike><amount>0.276 bln</amount></expiry>
 				<expiry><strike>0.7300</strike><amount>1.067 bln</amount></expiry>
 				<expiry><strike>0.7250</strike><amount>0.847 bln</amount></expiry>
-				<expiry><strike>0.7225</strike><amount>0.299 bln</amount></expiry>
+				<expiry><strike>0.7225</strike><amount>0.399 bln</amount></expiry>
 				<expiry><strike>0.7220</strike><amount>0.249 bln</amount></expiry>
 				<expiry><strike>0.7200</strike><amount>1.534 bln</amount></expiry>
 				<expiry><strike>0.7115</strike><amount>0.327 bln</amount></expiry>
@@ -83,7 +83,7 @@
 		<ccypair_expiries>
 			<ccypair>GBPUSD</ccypair>
 			<expiries>
-				<expiry><strike>1.3000</strike><amount>0.473 bln</amount></expiry>
+				<expiry><strike>1.3000</strike><amount>0.573 bln</amount></expiry>
 				<expiry><strike>1.2600</strike><amount>0.256 bln</amount></expiry>
 				<expiry><strike>1.2400</strike><amount>0.298 bln</amount></expiry>
 				<expiry><strike>1.2150</strike><amount>0.213 bln</amount></expiry>
