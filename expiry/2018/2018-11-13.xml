@@ -158,6 +158,12 @@
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
+			<ccypair>USDSAR</ccypair>
+			<expiries>
+				<expiry><strike>3.7508</strike><amount>0.240 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
 			<ccypair>USDSGD</ccypair>
 			<expiries>
 				<expiry><strike>1.3730</strike><amount>0.347 bln</amount></expiry>

@@ -108,6 +108,7 @@
 			<ccypair>USDCNY</ccypair>
 			<expiries>
 				<expiry><strike>7.0500</strike><amount>0.250 bln</amount></expiry>
+				<expiry><strike>7.0300</strike><amount>0.250 bln</amount></expiry>
 				<expiry><strike>7.0000</strike><amount>0.212 bln</amount></expiry>
 				<expiry><strike>6.7500</strike><amount>0.250 bln</amount></expiry>
 				<expiry><strike>6.3700</strike><amount>0.385 bln</amount></expiry>
