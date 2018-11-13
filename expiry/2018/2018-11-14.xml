@@ -73,6 +73,12 @@
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
+			<ccypair>NZDUSD</ccypair>
+			<expiries>
+				<expiry><strike>0.6750</strike><amount>0.212 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
 			<ccypair>TRYJPY</ccypair>
 			<expiries>
 				<expiry><strike>36.2500</strike><amount>1.545 bln</amount></expiry>
