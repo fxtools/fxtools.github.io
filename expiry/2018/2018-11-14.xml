@@ -46,15 +46,15 @@
 		<ccypair_expiries>
 			<ccypair>EURUSD</ccypair>
 			<expiries>
-				<expiry><strike>1.2100</strike><amount>0.298 bln</amount></expiry>
+				<expiry><strike>1.3534</strike><amount>0.327 bln</amount></expiry>
 				<expiry><strike>1.2030</strike><amount>0.437 bln</amount></expiry>
 				<expiry><strike>1.1500</strike><amount>2.112 bln</amount></expiry>
 				<expiry><strike>1.1495</strike><amount>0.515 bln</amount></expiry>
 				<expiry><strike>1.1470</strike><amount>0.346 bln</amount></expiry>
 				<expiry><strike>1.1400</strike><amount>0.365 bln</amount></expiry>
 				<expiry><strike>1.1350</strike><amount>1.406 bln</amount></expiry>
-				<expiry><strike>1.1300</strike><amount>0.344 bln</amount></expiry>
-				<expiry><strike>1.1250</strike><amount>0.295 bln</amount></expiry>
+				<expiry><strike>1.1300</strike><amount>0.354 bln</amount></expiry>
+				<expiry><strike>1.1250</strike><amount>0.517 bln</amount></expiry>
 				<expiry><strike>1.0800</strike><amount>0.843 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
