@@ -117,6 +117,7 @@
 			<ccypair>JPYCAD</ccypair>
 			<expiries>
 				<expiry><strike>86.5000</strike><amount>12.460 bln</amount></expiry>
+				<expiry><strike>86.0000</strike><amount>3.000 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
