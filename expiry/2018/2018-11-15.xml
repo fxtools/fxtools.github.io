@@ -195,7 +195,7 @@
 		<ccypair_expiries>
 			<ccypair>USDMXN</ccypair>
 			<expiries>
-				<expiry><strike>20.5000</strike><amount>0.810 bln</amount></expiry>
+				<expiry><strike>20.5000</strike><amount>0.830 bln</amount></expiry>
 				<expiry><strike>20.4315</strike><amount>0.670 bln</amount></expiry>
 				<expiry><strike>20.3195</strike><amount>0.322 bln</amount></expiry>
 				<expiry><strike>19.5000</strike><amount>0.270 bln</amount></expiry>
