@@ -137,6 +137,12 @@
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
+			<ccypair>USDSAR</ccypair>
+			<expiries>
+				<expiry><strike>3.7509</strike><amount>0.320 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
 			<ccypair>USDTRY</ccypair>
 			<expiries>
 				<expiry><strike>6.4800</strike><amount>0.217 bln</amount></expiry>
