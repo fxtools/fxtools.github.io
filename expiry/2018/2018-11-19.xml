@@ -7,7 +7,7 @@
 			<ccypair>AUDUSD</ccypair>
 			<expiries>
 				<expiry><strike>0.7400</strike><amount>0.370 bln</amount></expiry>
-				<expiry><strike>0.7325</strike><amount>0.229 bln</amount></expiry>
+				<expiry><strike>0.7325</strike><amount>0.259 bln</amount></expiry>
 				<expiry><strike>0.7250</strike><amount>0.212 bln</amount></expiry>
 				<expiry><strike>0.7100</strike><amount>0.555 bln</amount></expiry>
 			</expiries>
