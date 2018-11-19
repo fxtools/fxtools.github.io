@@ -95,7 +95,8 @@
 		<ccypair_expiries>
 			<ccypair>USDCAD</ccypair>
 			<expiries>
-				<expiry><strike>1.3100</strike><amount>0.550 bln</amount></expiry>
+				<expiry><strike>1.3190</strike><amount>0.280 bln</amount></expiry>
+				<expiry><strike>1.3100</strike><amount>0.890 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
@@ -108,7 +109,8 @@
 		<ccypair_expiries>
 			<ccypair>USDCNY</ccypair>
 			<expiries>
-				<expiry><strike>6.9250</strike><amount>0.510 bln</amount></expiry>
+				<expiry><strike>6.9250</strike><amount>0.760 bln</amount></expiry>
+				<expiry><strike>6.8900</strike><amount>0.400 bln</amount></expiry>
 				<expiry><strike>6.8500</strike><amount>0.590 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
