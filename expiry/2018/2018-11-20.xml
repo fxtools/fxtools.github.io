@@ -34,7 +34,7 @@
 			<ccypair>EURUSD</ccypair>
 			<expiries>
 				<expiry><strike>1.1500</strike><amount>0.614 bln</amount></expiry>
-				<expiry><strike>1.1450</strike><amount>0.228 bln</amount></expiry>
+				<expiry><strike>1.1450</strike><amount>0.258 bln</amount></expiry>
 				<expiry><strike>1.1400</strike><amount>0.229 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
