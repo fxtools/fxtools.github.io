@@ -43,7 +43,7 @@
 			<ccypair>EURJPY</ccypair>
 			<expiries>
 				<expiry><strike>128.65</strike><amount>0.268 bln</amount></expiry>
-				<expiry><strike>128.00</strike><amount>0.642 bln</amount></expiry>
+				<expiry><strike>128.00</strike><amount>0.662 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
@@ -78,6 +78,12 @@
 			<ccypair>NOKSEK</ccypair>
 			<expiries>
 				<expiry><strike>1.0900</strike><amount>1.302 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>NZDJPY</ccypair>
+			<expiries>
+				<expiry><strike>76.9000</strike><amount>0.240 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
