@@ -149,6 +149,12 @@
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
+			<ccypair>USDTRY</ccypair>
+			<expiries>
+				<expiry><strike>5.3250</strike><amount>0.300 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
 			<ccypair>USDZAR</ccypair>
 			<expiries>
 				<expiry><strike>15.6550</strike><amount>0.215 bln</amount></expiry>
