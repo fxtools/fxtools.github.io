@@ -52,6 +52,12 @@
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
+			<ccypair>EURSEK</ccypair>
+			<expiries>
+				<expiry><strike>10.3500</strike><amount>0.245 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
 			<ccypair>EURUSD</ccypair>
 			<expiries>
 				<expiry><strike>1.1970</strike><amount>0.715 bln</amount></expiry>
@@ -117,13 +123,13 @@
 			<expiries>
 				<expiry><strike>7.5000</strike><amount>0.250 bln</amount></expiry>
 				<expiry><strike>6.9600</strike><amount>0.300 bln</amount></expiry>
+				<expiry><strike>6.9560</strike><amount>0.275 bln</amount></expiry>
 				<expiry><strike>6.9520</strike><amount>0.276 bln</amount></expiry>
 				<expiry><strike>6.9505</strike><amount>0.721 bln</amount></expiry>
 				<expiry><strike>6.9450</strike><amount>0.450 bln</amount></expiry>
 				<expiry><strike>6.9300</strike><amount>0.800 bln</amount></expiry>
 				<expiry><strike>6.8600</strike><amount>0.250 bln</amount></expiry>
 				<expiry><strike>6.8450</strike><amount>0.250 bln</amount></expiry>
-				<expiry><strike>6.8000</strike><amount>0.230 bln</amount></expiry>
 				<expiry><strike>6.6000</strike><amount>0.410 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
