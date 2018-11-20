@@ -100,7 +100,7 @@
 		<ccypair_expiries>
 			<ccypair>NOKCAD</ccypair>
 			<expiries>
-				<expiry><strike>6.4800</strike><amount>1.510 bln</amount></expiry>
+				<expiry><strike>6.4800</strike><amount>2.310 bln</amount></expiry>
 				<expiry><strike>6.3600</strike><amount>2.219 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
