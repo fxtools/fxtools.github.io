@@ -14,6 +14,7 @@
 			<ccypair>AUDUSD</ccypair>
 			<expiries>
 				<expiry><strike>0.7390</strike><amount>0.650 bln</amount></expiry>
+				<expiry><strike>0.7275</strike><amount>0.242 bln</amount></expiry>
 				<expiry><strike>0.7210</strike><amount>0.323 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
@@ -33,9 +34,9 @@
 		<ccypair_expiries>
 			<ccypair>EURUSD</ccypair>
 			<expiries>
-				<expiry><strike>1.1500</strike><amount>0.614 bln</amount></expiry>
-				<expiry><strike>1.1450</strike><amount>0.258 bln</amount></expiry>
-				<expiry><strike>1.1400</strike><amount>0.229 bln</amount></expiry>
+				<expiry><strike>1.1500</strike><amount>0.835 bln</amount></expiry>
+				<expiry><strike>1.1450</strike><amount>0.515 bln</amount></expiry>
+				<expiry><strike>1.1400</strike><amount>0.339 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
