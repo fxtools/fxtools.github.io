@@ -39,7 +39,7 @@
 		<ccypair_expiries>
 			<ccypair>EURGBP</ccypair>
 			<expiries>
-				<expiry><strike>0.8800</strike><amount>0.302 bln</amount></expiry>
+				<expiry><strike>0.8800</strike><amount>0.277 bln</amount></expiry>
 				<expiry><strike>0.8680</strike><amount>0.439 bln</amount></expiry>
 				<expiry><strike>0.8600</strike><amount>0.210 bln</amount></expiry>
 			</expiries>
@@ -65,7 +65,7 @@
 			<ccypair>GBPUSD</ccypair>
 			<expiries>
 				<expiry><strike>1.3100</strike><amount>0.351 bln</amount></expiry>
-				<expiry><strike>1.2900</strike><amount>0.267 bln</amount></expiry>
+				<expiry><strike>1.2900</strike><amount>0.491 bln</amount></expiry>
 				<expiry><strike>1.2860</strike><amount>0.202 bln</amount></expiry>
 				<expiry><strike>1.2805</strike><amount>0.250 bln</amount></expiry>
 				<expiry><strike>1.2790</strike><amount>0.398 bln</amount></expiry>
