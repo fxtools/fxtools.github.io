@@ -182,7 +182,7 @@
 		<ccypair_expiries>
 			<ccypair>USDZAR</ccypair>
 			<expiries>
-				<expiry><strike>13.7600</strike><amount>0.270 bln</amount></expiry>
+				<expiry><strike>13.7600</strike><amount>0.300 bln</amount></expiry>
 				<expiry><strike>13.3000</strike><amount>0.355 bln</amount></expiry>
 				<expiry><strike>13.0000</strike><amount>0.330 bln</amount></expiry>
 			</expiries>
