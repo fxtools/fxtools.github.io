@@ -147,7 +147,7 @@
 		<ccypair_expiries>
 			<ccypair>USDRUB</ccypair>
 			<expiries>
-				<expiry><strike>66.0000</strike><amount>0.215 bln</amount></expiry>
+				<expiry><strike>66.0000</strike><amount>0.235 bln</amount></expiry>
 				<expiry><strike>65.0000</strike><amount>0.460 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
