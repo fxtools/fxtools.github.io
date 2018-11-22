@@ -71,7 +71,7 @@
 		<ccypair_expiries>
 			<ccypair>GBPUSD</ccypair>
 			<expiries>
-				<expiry><strike>1.2850</strike><amount>0.211 bln</amount></expiry>
+				<expiry><strike>1.2850</strike><amount>0.311 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
@@ -95,7 +95,7 @@
 		<ccypair_expiries>
 			<ccypair>NZDUSD</ccypair>
 			<expiries>
-				<expiry><strike>0.6800</strike><amount>0.476 bln</amount></expiry>
+				<expiry><strike>0.6800</strike><amount>0.506 bln</amount></expiry>
 				<expiry><strike>0.6485</strike><amount>0.261 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
