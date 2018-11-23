@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="../style.css"?>
+<content>
+	<title>Spot Options expiring 2018-11-27 1400GMT</title>
+	<ccypairs>
+		<ccypair_expiries>
+			<ccypair>AUDCAD</ccypair>
+			<expiries>
+				<expiry><strike>0.9385</strike><amount>0.202 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>AUDJPY</ccypair>
+			<expiries>
+				<expiry><strike>79.0000</strike><amount>0.240 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>AUDUSD</ccypair>
+			<expiries>
+				<expiry><strike>0.7340</strike><amount>0.259 bln</amount></expiry>
+				<expiry><strike>0.7260</strike><amount>0.201 bln</amount></expiry>
+				<expiry><strike>0.7100</strike><amount>0.214 bln</amount></expiry>
+				<expiry><strike>0.7080</strike><amount>0.475 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>EURCHF</ccypair>
+			<expiries>
+				<expiry><strike>1.1390</strike><amount>0.300 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>EURGBP</ccypair>
+			<expiries>
+				<expiry><strike>0.8700</strike><amount>0.440 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>EURJPY</ccypair>
+			<expiries>
+				<expiry><strike>127.90</strike><amount>0.254 bln</amount></expiry>
+				<expiry><strike>127.80</strike><amount>0.240 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>EURUSD</ccypair>
+			<expiries>
+				<expiry><strike>1.2000</strike><amount>0.822 bln</amount></expiry>
+				<expiry><strike>1.1735</strike><amount>0.336 bln</amount></expiry>
+				<expiry><strike>1.1730</strike><amount>0.426 bln</amount></expiry>
+				<expiry><strike>1.1600</strike><amount>0.371 bln</amount></expiry>
+				<expiry><strike>1.1450</strike><amount>0.402 bln</amount></expiry>
+				<expiry><strike>1.1415</strike><amount>0.606 bln</amount></expiry>
+				<expiry><strike>1.1405</strike><amount>0.773 bln</amount></expiry>
+				<expiry><strike>1.1400</strike><amount>1.073 bln</amount></expiry>
+				<expiry><strike>1.1300</strike><amount>0.700 bln</amount></expiry>
+				<expiry><strike>1.1075</strike><amount>0.349 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>GBPUSD</ccypair>
+			<expiries>
+				<expiry><strike>1.2700</strike><amount>0.306 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>JPYCAD</ccypair>
+			<expiries>
+				<expiry><strike>85.6300</strike><amount>5.994 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>NZDJPY</ccypair>
+			<expiries>
+				<expiry><strike>97.5000</strike><amount>0.287 bln</amount></expiry>
+				<expiry><strike>80.0000</strike><amount>0.325 bln</amount></expiry>
+				<expiry><strike>76.5000</strike><amount>0.366 bln</amount></expiry>
+				<expiry><strike>67.5000</strike><amount>0.360 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>NZDUSD</ccypair>
+			<expiries>
+				<expiry><strike>0.6570</strike><amount>0.320 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>USDCNY</ccypair>
+			<expiries>
+				<expiry><strike>7.0000</strike><amount>0.215 bln</amount></expiry>
+				<expiry><strike>6.9700</strike><amount>0.250 bln</amount></expiry>
+				<expiry><strike>6.9675</strike><amount>0.246 bln</amount></expiry>
+				<expiry><strike>6.9200</strike><amount>0.250 bln</amount></expiry>
+				<expiry><strike>6.8500</strike><amount>0.314 bln</amount></expiry>
+				<expiry><strike>6.8380</strike><amount>0.250 bln</amount></expiry>
+				<expiry><strike>6.8080</strike><amount>0.280 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>USDILS</ccypair>
+			<expiries>
+				<expiry><strike>3.6400</strike><amount>0.500 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>USDJPY</ccypair>
+			<expiries>
+				<expiry><strike>115.00</strike><amount>0.225 bln</amount></expiry>
+				<expiry><strike>113.45</strike><amount>0.450 bln</amount></expiry>
+				<expiry><strike>113.10</strike><amount>0.455 bln</amount></expiry>
+				<expiry><strike>113.00</strike><amount>0.302 bln</amount></expiry>
+				<expiry><strike>112.50</strike><amount>0.305 bln</amount></expiry>
+				<expiry><strike>112.00</strike><amount>0.811 bln</amount></expiry>
+				<expiry><strike>111.80</strike><amount>0.431 bln</amount></expiry>
+				<expiry><strike>111.75</strike><amount>0.220 bln</amount></expiry>
+				<expiry><strike>107.95</strike><amount>0.280 bln</amount></expiry>
+				<expiry><strike>101.00</strike><amount>0.250 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>USDSAR</ccypair>
+			<expiries>
+				<expiry><strike>3.7514</strike><amount>0.210 bln</amount></expiry>
+				<expiry><strike>3.7510</strike><amount>0.290 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
+			<ccypair>USDZAR</ccypair>
+			<expiries>
+				<expiry><strike>17.5000</strike><amount>0.430 bln</amount></expiry>
+				<expiry><strike>17.2500</strike><amount>0.255 bln</amount></expiry>
+				<expiry><strike>16.5000</strike><amount>0.255 bln</amount></expiry>
+				<expiry><strike>13.0000</strike><amount>0.210 bln</amount></expiry>
+				<expiry><strike>11.7500</strike><amount>0.300 bln</amount></expiry>
+				<expiry><strike>11.5000</strike><amount>0.250 bln</amount></expiry>
+				<expiry><strike>11.2500</strike><amount>0.325 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+	</ccypairs>
+<xhtml:script xmlns:xhtml="http://www.w3.org/1999/xhtml" type="application/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-112925276-1" />
+<xhtml:script xmlns:xhtml="http://www.w3.org/1999/xhtml" type="application/javascript">
+	window.dataLayer = window.dataLayer || [];
+	function gtag() { dataLayer.push(arguments); }
+	gtag('js', new Date());
+	gtag('config', 'UA-112925276-1');
+</xhtml:script>
+</content>
