@@ -55,7 +55,7 @@
 		<ccypair_expiries>
 			<ccypair>EURCAD</ccypair>
 			<expiries>
-				<expiry><strike>1.4920</strike><amount>0.214 bln</amount></expiry>
+				<expiry><strike>1.4920</strike><amount>0.264 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
