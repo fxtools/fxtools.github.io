@@ -33,6 +33,7 @@
 		<ccypair_expiries>
 			<ccypair>EURSEK</ccypair>
 			<expiries>
+				<expiry><strike>10.2500</strike><amount>0.230 bln</amount></expiry>
 				<expiry><strike>9.0000</strike><amount>0.211 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
