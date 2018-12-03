@@ -21,7 +21,7 @@
 		<ccypair_expiries>
 			<ccypair>EURAUD</ccypair>
 			<expiries>
-				<expiry><strike>1.5500</strike><amount>0.460 bln</amount></expiry>
+				<expiry><strike>1.5500</strike><amount>0.563 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
@@ -69,6 +69,7 @@
 			<ccypair>GBPUSD</ccypair>
 			<expiries>
 				<expiry><strike>1.2900</strike><amount>0.202 bln</amount></expiry>
+				<expiry><strike>1.2700</strike><amount>0.270 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
