@@ -197,7 +197,7 @@
 		<ccypair_expiries>
 			<ccypair>USDTRY</ccypair>
 			<expiries>
-				<expiry><strike>5.2000</strike><amount>0.380 bln</amount></expiry>
+				<expiry><strike>5.2000</strike><amount>0.390 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
