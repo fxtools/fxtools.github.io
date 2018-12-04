@@ -80,6 +80,12 @@
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
+			<ccypair>GBPUSD</ccypair>
+			<expiries>
+				<expiry><strike>1.2800</strike><amount>0.207 bln</amount></expiry>
+			</expiries>
+		</ccypair_expiries>
+		<ccypair_expiries>
 			<ccypair>JPYCAD</ccypair>
 			<expiries>
 				<expiry><strike>86.4100</strike><amount>6.049 bln</amount></expiry>
