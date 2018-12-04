@@ -100,7 +100,7 @@
 		<ccypair_expiries>
 			<ccypair>USDCHF</ccypair>
 			<expiries>
-				<expiry><strike>1.0000</strike><amount>0.395 bln</amount></expiry>
+				<expiry><strike>1.0000</strike><amount>0.397 bln</amount></expiry>
 				<expiry><strike>0.9650</strike><amount>0.201 bln</amount></expiry>
 				<expiry><strike>0.9550</strike><amount>0.230 bln</amount></expiry>
 			</expiries>
