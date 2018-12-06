@@ -28,13 +28,13 @@
 				<expiry><strike>0.7300</strike><amount>1.163 bln</amount></expiry>
 				<expiry><strike>0.7260</strike><amount>2.016 bln</amount></expiry>
 				<expiry><strike>0.7250</strike><amount>4.997 bln</amount></expiry>
-				<expiry><strike>0.7200</strike><amount>0.282 bln</amount></expiry>
+				<expiry><strike>0.7200</strike><amount>0.301 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
 			<ccypair>EURAUD</ccypair>
 			<expiries>
-				<expiry><strike>1.5700</strike><amount>0.246 bln</amount></expiry>
+				<expiry><strike>1.5700</strike><amount>0.266 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
