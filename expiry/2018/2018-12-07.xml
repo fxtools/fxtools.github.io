@@ -34,7 +34,7 @@
 		<ccypair_expiries>
 			<ccypair>EURAUD</ccypair>
 			<expiries>
-				<expiry><strike>1.5700</strike><amount>0.266 bln</amount></expiry>
+				<expiry><strike>1.5700</strike><amount>0.286 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
