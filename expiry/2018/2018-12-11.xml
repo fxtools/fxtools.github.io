@@ -52,6 +52,7 @@
 				<expiry><strike>130.50</strike><amount>0.207 bln</amount></expiry>
 				<expiry><strike>130.41</strike><amount>0.245 bln</amount></expiry>
 				<expiry><strike>129.00</strike><amount>0.201 bln</amount></expiry>
+				<expiry><strike>128.60</strike><amount>0.211 bln</amount></expiry>
 				<expiry><strike>128.58</strike><amount>0.240 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
@@ -117,6 +118,7 @@
 			<ccypair>USDCNY</ccypair>
 			<expiries>
 				<expiry><strike>6.9465</strike><amount>0.260 bln</amount></expiry>
+				<expiry><strike>6.9260</strike><amount>0.211 bln</amount></expiry>
 				<expiry><strike>6.8500</strike><amount>0.275 bln</amount></expiry>
 				<expiry><strike>6.8425</strike><amount>0.400 bln</amount></expiry>
 				<expiry><strike>6.8060</strike><amount>0.500 bln</amount></expiry>
