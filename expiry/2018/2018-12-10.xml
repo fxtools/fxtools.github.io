@@ -49,6 +49,7 @@
 		<ccypair_expiries>
 			<ccypair>EURGBP</ccypair>
 			<expiries>
+				<expiry><strike>0.8900</strike><amount>0.230 bln</amount></expiry>
 				<expiry><strike>0.8825</strike><amount>0.201 bln</amount></expiry>
 				<expiry><strike>0.8600</strike><amount>0.440 bln</amount></expiry>
 			</expiries>
