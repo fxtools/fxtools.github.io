@@ -57,7 +57,7 @@
 			<ccypair>EURNOK</ccypair>
 			<expiries>
 				<expiry><strike>9.8500</strike><amount>0.506 bln</amount></expiry>
-				<expiry><strike>9.7000</strike><amount>0.241 bln</amount></expiry>
+				<expiry><strike>9.7000</strike><amount>0.261 bln</amount></expiry>
 			</expiries>
 		</ccypair_expiries>
 		<ccypair_expiries>
